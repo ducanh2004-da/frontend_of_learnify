@@ -15,6 +15,7 @@ import {
   REJECT_COURSE_MUTATION,
   CREATE_COURSE_MUTATION,
   DELETE_COURSE_MUTATION,
+  GET_ALL_COURSES_QUERY,
 } from "@/graphql/course";
 import {
   CREATE_LESSON_FROM_AI_MUTATION,
@@ -61,6 +62,19 @@ type GetCoursesByStatusResponse = {
 };
 
 export function useGetAllCourses(skip: number = 0) {
+  return useQuery({
+    queryKey: ["courses", "all", skip],
+    queryFn: async () => {
+      const response =
+        await graphqlClient.request<GetAllPublishedCoursesResponse>(
+          GET_ALL_COURSES_QUERY,
+          { skip }
+        );
+      return response.getAllPublishedCourses;
+    },
+  });
+}
+export function useGetAllPublishedCourses(skip: number = 0) {
   return useQuery({
     queryKey: ["courses", "all", skip],
     queryFn: async () => {

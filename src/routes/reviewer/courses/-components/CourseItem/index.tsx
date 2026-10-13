@@ -11,9 +11,9 @@ type TCourseItemProps = {
 };
 
 const STATUS_CLASS: Record<string, string> = {
-  Pending: "pending",
-  Published: "published",
-  Rejected: "rejected",
+  Pending: "Pending",
+  Published: "Published",
+  Rejected: "Rejected",
 };
 
 const CourseItem = (props: TCourseItemProps) => {

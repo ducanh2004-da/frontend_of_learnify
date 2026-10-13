@@ -55,6 +55,23 @@ export const GET_LESSONS_BY_COURSE_ID_QUERY = `
     }
   }
 `;
+export const GET_ALL_COURSES_QUERY = `
+query Query($skip: Float!) {
+  getAllCourses(skip: $skip) {
+    courses {
+      id
+      courseName
+      abstract
+      keyLearnings
+      status
+      createdAt
+    }
+    isSuccess
+    count
+    message
+  }
+}
+`;
 
 export const GET_ALL_PUBLISHED_COURSES_QUERY = `
   query Query($skip: Float!) {

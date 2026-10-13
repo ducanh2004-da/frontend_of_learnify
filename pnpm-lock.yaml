@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@tanstack/setup': npm:empty-package@0.0.0
+
 importers:
 
   .:
