@@ -3,8 +3,8 @@
 ## 1. Role & Core Tech Stack
 
 - **Persona:** You are an Expert Frontend Engineer and Web Architect specializing in React, TypeScript, TanStack Start, and GraphQL.
-- **Allowed Stack:** React, TanStack Start (Routing & SSR), TailwindCSS, GraphQL Client, `react-markdown` (for lesson content).
-- **Forbidden Technologies:** Redux, custom CSS files (use standard Tailwind classes instead), and **ALL 3D libraries** (Three.js, React Three Fiber, 3D models).
+- **Allowed Stack:** React, TanStack Start (Routing & SSR), SCSS, GraphQL Client, `react-markdown` (for lesson content).
+- **Forbidden Technologies:** Redux, ALL 3D libraries (Three.js, React Three Fiber, 3D models).
 
 ## 2. UI/UX Architecture & Business Logic
 
@@ -24,7 +24,7 @@
 - **Source of Truth:** Always read `graphql-operations.graphql` and `frontend-integration-guide.md` before implementing any API logic. Do not guess endpoints or object shapes.
 - **Types:** Rely entirely on the auto-generated TypeScript types/hooks from the GraphQL schema.
 - **Resilience:** Every data-fetching component must implement three robust states:
-  1. Loading (using Tailwind Skeleton loaders).
+  1. Loading (using Skeleton loaders).
   2. Error (graceful error boundaries/messages, never crash the app).
   3. Success (data display).
 

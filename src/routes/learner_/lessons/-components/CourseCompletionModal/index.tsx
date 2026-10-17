@@ -1,18 +1,26 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
+import { useAuthStore } from "@/store";
+import { useUpdateDiamondsMutation } from "@/hooks/useGamification";
+import { logger } from "@/utils/logger";
 import "./style.scss";
 
 type TCourseCompletionModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  courseId?: string;
 };
 
 const CourseCompletionModal = ({
   isOpen,
   onClose,
+  courseId: _courseId,
 }: TCourseCompletionModalProps) => {
   const { t } = useTranslation();
+  const currentUser = useAuthStore((s) => s.user);
+  const userId = currentUser?.id;
+
   const overlayRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const diamondRef = useRef<HTMLDivElement>(null);
@@ -20,6 +28,27 @@ const CourseCompletionModal = ({
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const rewardRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
+
+  const hasRewardedRef = useRef(false);
+
+  const { mutate: updateDiamonds, isPending } = useUpdateDiamondsMutation({
+    onError: (error) => {
+      logger.error("Failed to update diamonds on course completion:", error);
+    },
+  });
+
+  useEffect(() => {
+    if (!isOpen || !userId || hasRewardedRef.current) return;
+    hasRewardedRef.current = true;
+    updateDiamonds({
+      data: {
+        userId,
+        amount: 10,
+        transactionType: "EARN",
+        source: "SYSTEM_STREAK",
+      },
+    });
+  }, [isOpen, userId, updateDiamonds]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -109,8 +138,11 @@ const CourseCompletionModal = ({
           className="course-completion-modal__btn"
           ref={btnRef}
           onClick={onClose}
+          disabled={isPending}
         >
-          {t("course_completion.continue")}
+          {isPending
+            ? t("tetris_loader.loading", "Loading...")
+            : t("course_completion.continue")}
         </button>
       </div>
     </div>

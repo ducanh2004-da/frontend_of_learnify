@@ -25,6 +25,7 @@ import { Route as ContactIndexRouteImport } from "./routes/contact/index";
 import { Route as BlogsIndexRouteImport } from "./routes/blogs/index";
 import { Route as AdminIndexRouteImport } from "./routes/admin/index";
 import { Route as AboutUsIndexRouteImport } from "./routes/about-us/index";
+import { Route as InstructorCourseBuilderRouteImport } from "./routes/instructor/course-builder";
 import { Route as ApiUsersRouteImport } from "./routes/api/users";
 import { Route as ReviewerCoursesRouteRouteImport } from "./routes/reviewer/courses/route";
 import { Route as LearnerLessonsRouteRouteImport } from "./routes/learner_/lessons/route";
@@ -51,6 +52,7 @@ import { Route as AuthLogInIndexRouteImport } from "./routes/auth/log-in/index";
 import { Route as AuthForgotPasswordIndexRouteImport } from "./routes/auth/forgot-password/index";
 import { Route as AdminUsersIndexRouteImport } from "./routes/admin/users/index";
 import { Route as ApiUsersIdRouteImport } from "./routes/api/users.$id";
+import { Route as ReviewerCoursesCourseIdIndexRouteImport } from "./routes/reviewer/courses/$courseId/index";
 import { Route as LearnerLessonsLessonIdIndexRouteImport } from "./routes/learner_/lessons/$lessonId/index";
 import { Route as LearnerUserUserIdIndexRouteImport } from "./routes/learner/user/$userId/index";
 import { Route as LearnerRoadmapsRoadmapIdIndexRouteImport } from "./routes/learner/roadmaps/$roadmapId/index";
@@ -144,6 +146,11 @@ const AboutUsIndexRoute = AboutUsIndexRouteImport.update({
 } as any).lazy(() =>
   import("./routes/about-us/index.lazy").then((d) => d.Route),
 );
+const InstructorCourseBuilderRoute = InstructorCourseBuilderRouteImport.update({
+  id: "/course-builder",
+  path: "/course-builder",
+  getParentRoute: () => InstructorRouteRoute,
+} as any);
 const ApiUsersRoute = ApiUsersRouteImport.update({
   id: "/api/users",
   path: "/api/users",
@@ -303,6 +310,12 @@ const ApiUsersIdRoute = ApiUsersIdRouteImport.update({
   path: "/$id",
   getParentRoute: () => ApiUsersRoute,
 } as any);
+const ReviewerCoursesCourseIdIndexRoute =
+  ReviewerCoursesCourseIdIndexRouteImport.update({
+    id: "/$courseId/",
+    path: "/$courseId/",
+    getParentRoute: () => ReviewerCoursesRouteRoute,
+  } as any);
 const LearnerLessonsLessonIdIndexRoute =
   LearnerLessonsLessonIdIndexRouteImport.update({
     id: "/$lessonId/",
@@ -368,6 +381,7 @@ export interface FileRoutesByFullPath {
   "/learner/lessons": typeof LearnerLessonsRouteRouteWithChildren;
   "/reviewer/courses": typeof ReviewerCoursesRouteRouteWithChildren;
   "/api/users": typeof ApiUsersRouteWithChildren;
+  "/instructor/course-builder": typeof InstructorCourseBuilderRoute;
   "/about-us/": typeof AboutUsIndexRoute;
   "/admin/": typeof AdminIndexRoute;
   "/blogs/": typeof BlogsIndexRoute;
@@ -402,12 +416,14 @@ export interface FileRoutesByFullPath {
   "/learner/roadmaps/$roadmapId/": typeof LearnerRoadmapsRoadmapIdIndexRoute;
   "/learner/user/$userId/": typeof LearnerUserUserIdIndexRoute;
   "/learner/lessons/$lessonId/": typeof LearnerLessonsLessonIdIndexRoute;
+  "/reviewer/courses/$courseId/": typeof ReviewerCoursesCourseIdIndexRoute;
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute;
   "/deferred": typeof DeferredRoute;
   "/redirect": typeof RedirectRoute;
   "/api/users": typeof ApiUsersRouteWithChildren;
+  "/instructor/course-builder": typeof InstructorCourseBuilderRoute;
   "/about-us": typeof AboutUsIndexRoute;
   "/admin": typeof AdminIndexRoute;
   "/blogs": typeof BlogsIndexRoute;
@@ -442,6 +458,7 @@ export interface FileRoutesByTo {
   "/learner/roadmaps/$roadmapId": typeof LearnerRoadmapsRoadmapIdIndexRoute;
   "/learner/user/$userId": typeof LearnerUserUserIdIndexRoute;
   "/learner/lessons/$lessonId": typeof LearnerLessonsLessonIdIndexRoute;
+  "/reviewer/courses/$courseId": typeof ReviewerCoursesCourseIdIndexRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
@@ -459,6 +476,7 @@ export interface FileRoutesById {
   "/learner_/lessons": typeof LearnerLessonsRouteRouteWithChildren;
   "/reviewer/courses": typeof ReviewerCoursesRouteRouteWithChildren;
   "/api/users": typeof ApiUsersRouteWithChildren;
+  "/instructor/course-builder": typeof InstructorCourseBuilderRoute;
   "/about-us/": typeof AboutUsIndexRoute;
   "/admin/": typeof AdminIndexRoute;
   "/blogs/": typeof BlogsIndexRoute;
@@ -493,6 +511,7 @@ export interface FileRoutesById {
   "/learner/roadmaps/$roadmapId/": typeof LearnerRoadmapsRoadmapIdIndexRoute;
   "/learner/user/$userId/": typeof LearnerUserUserIdIndexRoute;
   "/learner_/lessons/$lessonId/": typeof LearnerLessonsLessonIdIndexRoute;
+  "/reviewer/courses/$courseId/": typeof ReviewerCoursesCourseIdIndexRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
@@ -511,6 +530,7 @@ export interface FileRouteTypes {
     | "/learner/lessons"
     | "/reviewer/courses"
     | "/api/users"
+    | "/instructor/course-builder"
     | "/about-us/"
     | "/admin/"
     | "/blogs/"
@@ -544,13 +564,15 @@ export interface FileRouteTypes {
     | "/learner/payment/success/"
     | "/learner/roadmaps/$roadmapId/"
     | "/learner/user/$userId/"
-    | "/learner/lessons/$lessonId/";
+    | "/learner/lessons/$lessonId/"
+    | "/reviewer/courses/$courseId/";
   fileRoutesByTo: FileRoutesByTo;
   to:
     | "/"
     | "/deferred"
     | "/redirect"
     | "/api/users"
+    | "/instructor/course-builder"
     | "/about-us"
     | "/admin"
     | "/blogs"
@@ -584,7 +606,8 @@ export interface FileRouteTypes {
     | "/learner/payment/success"
     | "/learner/roadmaps/$roadmapId"
     | "/learner/user/$userId"
-    | "/learner/lessons/$lessonId";
+    | "/learner/lessons/$lessonId"
+    | "/reviewer/courses/$courseId";
   id:
     | "__root__"
     | "/"
@@ -601,6 +624,7 @@ export interface FileRouteTypes {
     | "/learner_/lessons"
     | "/reviewer/courses"
     | "/api/users"
+    | "/instructor/course-builder"
     | "/about-us/"
     | "/admin/"
     | "/blogs/"
@@ -634,7 +658,8 @@ export interface FileRouteTypes {
     | "/learner/payment/success/"
     | "/learner/roadmaps/$roadmapId/"
     | "/learner/user/$userId/"
-    | "/learner_/lessons/$lessonId/";
+    | "/learner_/lessons/$lessonId/"
+    | "/reviewer/courses/$courseId/";
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
@@ -770,6 +795,13 @@ declare module "@tanstack/react-router" {
       fullPath: "/about-us/";
       preLoaderRoute: typeof AboutUsIndexRouteImport;
       parentRoute: typeof rootRouteImport;
+    };
+    "/instructor/course-builder": {
+      id: "/instructor/course-builder";
+      path: "/course-builder";
+      fullPath: "/instructor/course-builder";
+      preLoaderRoute: typeof InstructorCourseBuilderRouteImport;
+      parentRoute: typeof InstructorRouteRoute;
     };
     "/api/users": {
       id: "/api/users";
@@ -953,6 +985,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof ApiUsersIdRouteImport;
       parentRoute: typeof ApiUsersRoute;
     };
+    "/reviewer/courses/$courseId/": {
+      id: "/reviewer/courses/$courseId/";
+      path: "/$courseId";
+      fullPath: "/reviewer/courses/$courseId/";
+      preLoaderRoute: typeof ReviewerCoursesCourseIdIndexRouteImport;
+      parentRoute: typeof ReviewerCoursesRouteRoute;
+    };
     "/learner_/lessons/$lessonId/": {
       id: "/learner_/lessons/$lessonId/";
       path: "/$lessonId";
@@ -1028,11 +1067,13 @@ const InstructorCoursesRouteRouteWithChildren =
 
 interface InstructorRouteRouteChildren {
   InstructorCoursesRouteRoute: typeof InstructorCoursesRouteRouteWithChildren;
+  InstructorCourseBuilderRoute: typeof InstructorCourseBuilderRoute;
   InstructorIndexRoute: typeof InstructorIndexRoute;
 }
 
 const InstructorRouteRouteChildren: InstructorRouteRouteChildren = {
   InstructorCoursesRouteRoute: InstructorCoursesRouteRouteWithChildren,
+  InstructorCourseBuilderRoute: InstructorCourseBuilderRoute,
   InstructorIndexRoute: InstructorIndexRoute,
 };
 
@@ -1108,10 +1149,12 @@ const LearnerRouteRouteWithChildren = LearnerRouteRoute._addFileChildren(
 
 interface ReviewerCoursesRouteRouteChildren {
   ReviewerCoursesIndexRoute: typeof ReviewerCoursesIndexRoute;
+  ReviewerCoursesCourseIdIndexRoute: typeof ReviewerCoursesCourseIdIndexRoute;
 }
 
 const ReviewerCoursesRouteRouteChildren: ReviewerCoursesRouteRouteChildren = {
   ReviewerCoursesIndexRoute: ReviewerCoursesIndexRoute,
+  ReviewerCoursesCourseIdIndexRoute: ReviewerCoursesCourseIdIndexRoute,
 };
 
 const ReviewerCoursesRouteRouteWithChildren =

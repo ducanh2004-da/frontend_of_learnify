@@ -12,9 +12,9 @@ import {
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import ChatArea from "../-components/ChatArea";
+import LessonContent from "../-components/LessonContent";
 import CourseContext from "../-components/CourseContext";
 import type { TCourseContextRef } from "../-components/CourseContext/type";
-import TeacherPanel from "../-components/TeacherPanel";
 import useLessonDetail from "../-hooks/useLessonDetail";
 import useTeacher from "../-hooks/useTeacher";
 import { graphqlClient } from "@/lib/graphql";
@@ -31,6 +31,7 @@ export const Route = createLazyFileRoute("/learner_/lessons/$lessonId/")({
 
 function LessonDetail() {
   const { lessonId } = Route.useParams();
+  const loaderData = Route.useLoaderData();
   const {
     data,
     isLoading,
@@ -43,36 +44,16 @@ function LessonDetail() {
     reset,
     handleComplete,
     isCourseCompleted,
-  } = useLessonDetail(lessonId);
+  } = useLessonDetail(lessonId, loaderData);
   const {
     chatRef,
     stopRef,
     isMuted,
-    isModelReady,
-    modelsReady,
-    animation,
-    status,
-    isSettingsOpen,
-    selectedVoiceId,
-    is3DMode,
-    loadingMessageIndex,
     stopChat,
-    handleModelReady,
-    handleModelsReady,
-    handlePause,
-    handleResume,
-    handleStop,
-    handleSelectVoice,
-    handlePreviewVoice,
     setAnimation,
     setStatus,
-    setIsMuted,
-    setIsSettingsOpen,
-    toggle3DMode,
     resetTeacher,
   } = useTeacher();
-  const [ttsSpeed, setTtsSpeed] = useState(1);
-  const [autoScroll, setAutoScroll] = useState(true);
   const courseContextRef = useRef<TCourseContextRef>(null);
   const isInitialMount = useRef(true);
 
@@ -92,10 +73,11 @@ function LessonDetail() {
   }, [lessonId]);
 
   useEffect(() => {
+    const ref = stopRef;
     return () => {
-      stopRef.current?.();
+      ref.current?.();
     };
-  }, []);
+  }, [stopRef]);
 
   const handleSkipLesson = useCallback(() => {
     stopChat();
@@ -118,10 +100,6 @@ function LessonDetail() {
   const handleLessonComplete = useCallback(() => {
     skipToQA();
   }, [skipToQA]);
-
-  const handleReload = useCallback(() => {
-    window.location.reload();
-  }, []);
 
   const courseId = data?.lesson?.courseId;
   const userId = useAuthStore((s) => s.user?.id);
@@ -190,70 +168,48 @@ function LessonDetail() {
 
   return (
     <div className="lesson-detail-page">
-      <ChatArea
-        state={state}
+      <LessonContent
         lessonName={data?.lesson?.lessonName}
         abstract={data?.lesson?.abstract}
-        sectionCount={data?.sections?.length}
         sections={data?.sections || []}
-        chatRef={chatRef}
-        stopRef={stopRef}
-        lessonId={lessonId}
-        isMuted={isMuted}
-        isModelReady={isModelReady}
-        modelsReady={modelsReady}
-        startLesson={startLesson}
-        onSkipLesson={handleSkipLesson}
-        onSkipQA={handleSkipQA}
-        onSkipQuiz={handleSkipQuiz}
-        handleLessonComplete={handleLessonComplete}
-        setAnimation={setAnimation}
-        setStatus={setStatus}
-        courseId={courseId ?? ""}
-        nextLessonId={nextLesson?.id}
+        isLoading={isLoading}
       />
 
-      {showChatArea && (
-        <CourseContext
-          ref={courseContextRef}
-          references={sections?.references}
-          documents={sections?.documents}
+      <div className="lesson-sidebar-column">
+        <ChatArea
+          state={state}
+          lessonName={data?.lesson?.lessonName}
+          abstract={data?.lesson?.abstract}
+          sectionCount={data?.sections?.length}
+          sections={data?.sections || []}
+          chatRef={chatRef}
+          stopRef={stopRef}
+          lessonId={lessonId}
+          isMuted={isMuted}
+          startLesson={startLesson}
+          onSkipLesson={handleSkipLesson}
+          onSkipQA={handleSkipQA}
+          onSkipQuiz={handleSkipQuiz}
+          handleLessonComplete={handleLessonComplete}
+          setAnimation={setAnimation}
+          setStatus={setStatus}
+          courseId={courseId ?? ""}
+          nextLessonId={nextLesson?.id}
         />
-      )}
 
-      <TeacherPanel
-        state={state}
-        is3DMode={is3DMode}
-        animation={animation}
-        status={status}
-        isMuted={isMuted}
-        isSettingsOpen={isSettingsOpen}
-        selectedVoiceId={selectedVoiceId}
-        isModelReady={isModelReady}
-        modelsReady={modelsReady}
-        loadingMessageIndex={loadingMessageIndex}
-        onModelReady={handleModelReady}
-        onModelsReady={handleModelsReady}
-        onPause={handlePause}
-        onResume={handleResume}
-        onStop={handleStop}
-        onMute={() => setIsMuted(true)}
-        onUnmute={() => setIsMuted(false)}
-        onOpenSettings={() => setIsSettingsOpen(true)}
-        onCloseSettings={() => setIsSettingsOpen(false)}
-        onSelectVoice={handleSelectVoice}
-        onPreviewVoice={handlePreviewVoice}
-        onToggle3DMode={toggle3DMode}
-        onReload={handleReload}
-        ttsSpeed={ttsSpeed}
-        onTtsSpeedChange={setTtsSpeed}
-        autoScroll={autoScroll}
-        onAutoScrollChange={setAutoScroll}
-      />
+        {showChatArea && (
+          <CourseContext
+            ref={courseContextRef}
+            references={sections?.references}
+            documents={sections?.documents}
+          />
+        )}
+      </div>
 
       <CourseCompletionModal
         isOpen={showCourseModal}
         onClose={() => setShowCourseModal(false)}
+        courseId={courseId}
       />
     </div>
   );

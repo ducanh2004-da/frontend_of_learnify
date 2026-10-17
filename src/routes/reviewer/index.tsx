@@ -22,7 +22,7 @@ function ReviewerDashboard() {
   const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
   const { data, isLoading } = useGetAllCourses(0);
-  const courses = data?.courses ?? [];
+  const courses = useMemo(() => data?.courses ?? [], [data]);
 
   const stats = useMemo(() => {
     const pending = courses.filter(

@@ -1,0 +1,321 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.lesson-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  background-color: $white;
+  border: toRem(2) solid $green-200;
+  border-radius: $br-xl;
+  padding: toRem(32) toRem(36);
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  @include box-shadow(0, 4, 6, -1);
+
+  &--loading {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+    padding: toRem(32);
+
+    .lesson-content__skeleton-header {
+      height: toRem(36);
+      width: 60%;
+      background: $green-150;
+      border-radius: $br-md;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    .lesson-content__skeleton-line {
+      height: toRem(18);
+      width: 90%;
+      background: $green-100;
+      border-radius: $br-xs;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    .lesson-content__skeleton-box {
+      height: toRem(240);
+      width: 100%;
+      margin-top: toRem(16);
+      background: $green-100;
+      border-radius: $br-md;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+  }
+
+  &__header {
+    margin-bottom: toRem(28);
+    padding-bottom: toRem(20);
+    border-bottom: toRem(1) solid $green-200;
+  }
+
+  &__title {
+    font-size: $fs-heading2;
+    font-weight: $fw-bold;
+    color: $neutral-900;
+    line-height: 1.25;
+    margin: 0 0 toRem(10) 0;
+    letter-spacing: -0.5px;
+  }
+
+  &__abstract {
+    font-size: $fs-paragraph;
+    line-height: 1.65;
+    color: $neutral-700;
+    margin: 0;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: toRem(12);
+    margin-top: toRem(14);
+  }
+
+  &__meta-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: toRem(13);
+    font-weight: $fw-semibold;
+    color: $green-800;
+    background-color: $green-150;
+    border: toRem(1) solid $green-200;
+    padding: toRem(4) toRem(12);
+    border-radius: $br-rounded;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: toRem(60) toRem(20);
+    text-align: center;
+    color: $neutral-600;
+    font-size: $fs-paragraph;
+  }
+
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(36);
+  }
+}
+
+.lesson-section {
+  display: flex;
+  flex-direction: column;
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: toRem(16);
+    margin-bottom: toRem(20);
+  }
+
+  &__badge {
+    font-size: toRem(13);
+    font-weight: $fw-bold;
+    color: $green-900;
+    background-color: $green-200;
+    padding: toRem(5) toRem(14);
+    border-radius: $br-rounded;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  &__line {
+    flex: 1;
+    height: toRem(2);
+    background-color: $green-200;
+    border-radius: $br-xs;
+  }
+
+  &__image-container {
+    margin: toRem(16) 0 toRem(24) 0;
+    border-radius: $br-md;
+    overflow: hidden;
+    border: toRem(1) solid $green-200;
+    background-color: $neutral-100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: toRem(12);
+    box-sizing: border-box;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: $br-sm;
+    object-fit: contain;
+  }
+
+  &__markdown {
+    font-size: toRem(16);
+    line-height: 1.8;
+    color: $neutral-900;
+    word-break: break-word;
+
+    p {
+      margin: 0 0 toRem(16) 0;
+      color: $neutral-900;
+      line-height: 1.8;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $neutral-900;
+      font-weight: $fw-bold;
+      line-height: 1.35;
+      margin-top: toRem(24);
+      margin-bottom: toRem(12);
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    h1 {
+      font-size: toRem(26);
+    }
+
+    h2 {
+      font-size: toRem(22);
+    }
+
+    h3 {
+      font-size: toRem(19);
+    }
+
+    h4 {
+      font-size: toRem(17);
+    }
+
+    ul,
+    ol {
+      margin: 0 0 toRem(18) 0;
+      padding-left: toRem(24);
+      line-height: 1.75;
+
+      li {
+        margin-bottom: toRem(6);
+      }
+    }
+
+    blockquote {
+      margin: toRem(18) 0;
+      padding: toRem(12) toRem(18);
+      background-color: $green-150;
+      border-left: toRem(4) solid $green-600;
+      border-radius: 0 $br-sm $br-sm 0;
+      font-style: italic;
+      color: $neutral-800;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    code {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background-color: $green-150;
+      color: $green-900;
+      padding: toRem(2) toRem(6);
+      border-radius: $br-xs;
+      font-size: toRem(14);
+    }
+
+    pre {
+      background-color: $neutral-900;
+      color: #f8fafc;
+      padding: toRem(16) toRem(20);
+      border-radius: $br-md;
+      overflow-x: auto;
+      margin: toRem(16) 0 toRem(20) 0;
+
+      code {
+        background-color: transparent;
+        color: inherit;
+        padding: 0;
+        font-size: toRem(14);
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: toRem(16) 0 toRem(24) 0;
+      font-size: toRem(15);
+
+      th,
+      td {
+        border: toRem(1) solid $green-200;
+        padding: toRem(10) toRem(14);
+        text-align: left;
+      }
+
+      th {
+        background-color: $green-150;
+        font-weight: $fw-semibold;
+      }
+    }
+
+    hr {
+      border: none;
+      height: toRem(1);
+      background-color: $green-200;
+      margin: toRem(24) 0;
+    }
+
+    a {
+      color: $green-700;
+      text-decoration: underline;
+      text-underline-offset: toRem(3);
+
+      &:hover {
+        color: $green-900;
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@include break(md) {
+  .lesson-content {
+    padding: toRem(20);
+    height: auto;
+    max-height: none;
+
+    &__title {
+      font-size: toRem(24);
+    }
+  }
+}

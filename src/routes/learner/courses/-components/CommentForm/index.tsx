@@ -9,6 +9,8 @@ import "./style.scss";
 
 type CommentFormProps = {
   className?: string;
+  initialRating?: number;
+  initialContent?: string;
   onSubmit: (rating: number, content: string) => void;
   onCancel: () => void;
   isLoading?: boolean;
@@ -16,12 +18,14 @@ type CommentFormProps = {
 
 const CommentForm = ({
   className,
+  initialRating = 0,
+  initialContent = "",
   onSubmit,
   onCancel,
-  isLoading,
+  isLoading = false,
 }: CommentFormProps) => {
-  const [rating, setRating] = useState(0);
-  const [content, setContent] = useState("");
+  const [rating, setRating] = useState(initialRating);
+  const [content, setContent] = useState(initialContent);
   const { t } = useTranslation();
   const cls = classnames("comment-form", className);
 
@@ -31,11 +35,7 @@ const CommentForm = ({
       toast.error(t("comment_form.toast_no_rating"));
       return;
     }
-    if (!content.trim()) {
-      toast.error(t("comment_form.toast_no_review"));
-      return;
-    }
-    onSubmit(rating, content);
+    onSubmit(rating, content.trim());
   };
 
   return (
@@ -108,12 +108,17 @@ const CommentForm = ({
         <div className="submit-btn-wrapper">
           {isLoading && <TetrisLoader size="sm" />}
           <TextButton
-            text={t("comment_form.submit")}
+            text={
+              isLoading
+                ? (t("course_detail.processing") ?? "Submitting...")
+                : t("comment_form.submit")
+            }
             type="primary"
             icon="send"
             size="small"
+            buttonType="submit"
             onClick={() => {}}
-            disabled={isLoading}
+            disabled={isLoading || rating === 0}
           />
         </div>
       </div>

@@ -71,7 +71,6 @@ function PaymentSuccessComponent() {
                 if (courseId) {
                   await enrollCourseMutation.mutateAsync({
                     courseId,
-                    userId: currentUser.id,
                   });
                   toast.success(t("payment.success_desc"));
                 }
@@ -96,6 +95,13 @@ function PaymentSuccessComponent() {
     searchParams.status,
     searchParams.cancel,
     searchParams.id,
+    updatePaymentStatusMutation,
+    enrollCourseMutation,
+    currentUser?.id,
+    paymentData?.courseId,
+    queryClient,
+    router,
+    t,
   ]);
 
   const isLoading =

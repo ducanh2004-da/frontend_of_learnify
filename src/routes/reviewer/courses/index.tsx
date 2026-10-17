@@ -7,14 +7,18 @@ import NotFound from "@/components/NotFound";
 import TetrisLoader from "@/components/TetrisLoader";
 
 const searchSchema = z.object({
+  tab: z
+    .enum(["All", "Pending", "Published", "Rejected"])
+    .optional()
+    .default("All"),
+  skip: z.number().optional().default(0),
   courseId: z.string().optional(),
-  tab: z.enum(["Pending", "Published", "Rejected", "All"]).optional(),
 });
 
 export const Route = createFileRoute("/reviewer/courses/")({
   validateSearch: searchSchema,
   head: () => ({
-    meta: [{ title: "Manage Courses | Content Reviewer | Learnify" }],
+    meta: [{ title: "Course Review Management | Content Reviewer | Learnify" }],
   }),
   notFoundComponent: () => <RouterComponentHolder children={<NotFound />} />,
   pendingComponent: () => <RouterComponentHolder children={<TetrisLoader />} />,

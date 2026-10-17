@@ -5,15 +5,14 @@ import { useTranslation } from "react-i18next";
 
 type TLessonWelcomeProps = {
   lessonName?: string;
-  abstract?: string;
+  abstract?: string | null;
   sectionCount?: number;
-  modelsReady: boolean;
   onStart: () => void;
 };
 
 const LessonWelcome = (props: TLessonWelcomeProps) => {
   const { t } = useTranslation();
-  const { lessonName, abstract, sectionCount, modelsReady, onStart } = props;
+  const { lessonName, abstract, sectionCount, onStart } = props;
 
   return (
     <div className="lesson-welcome">
@@ -27,16 +26,9 @@ const LessonWelcome = (props: TLessonWelcomeProps) => {
       <TextButton
         text={t("lesson_welcome.start_lesson")}
         onClick={onStart}
-        disabled={!modelsReady}
-        tooltip={!modelsReady ? t("lesson_welcome.tooltip_disabled") : ""}
         size="medium"
         icon="play"
       />
-      {!modelsReady && (
-        <div className="lesson-welcome__loading">
-          <span>{t("lesson_welcome.tooltip_disabled")}</span>
-        </div>
-      )}
     </div>
   );
 };

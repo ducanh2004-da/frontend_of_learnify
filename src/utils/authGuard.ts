@@ -2,6 +2,7 @@ import { redirect } from "@tanstack/react-router";
 import { toast } from "sonner";
 import type { TRole } from "@/types/global";
 import type { TSessionUser } from "@/router";
+import { normalizeRole } from "./role";
 
 export type TAuthState = {
   user: TSessionUser | null;
@@ -27,7 +28,8 @@ export function requireAuth(auth: TAuthState) {
 export function requireRole(...roles: TRole[]) {
   return (auth: TAuthState & { expired?: boolean }) => {
     requireAuth(auth);
-    if (!auth.user?.role || !roles.includes(auth.user.role as TRole)) {
+    const userRole = normalizeRole(auth.user?.role);
+    if (!auth.user?.role || !roles.includes(userRole)) {
       throw redirect({ to: "/" });
     }
   };

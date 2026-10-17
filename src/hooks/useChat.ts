@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { TTeacherAnimation } from "@/routes/learner_/lessons/-components/TeacherAnimation/type";
 import useSpeechSynthesis from "@/hooks/useSpeechSynthesis";
@@ -47,16 +47,18 @@ const useChat = (props: TUseChatProps): TUseChatReturn => {
   const [isLoading, setIsLoading] = useState(false);
   const isSpeakingRef = useRef(isSpeaking);
   const isMutedRef = useRef(isMuted);
-  const statusRef = useRef<TTeacherStatus>("idle");
   const { t } = useTranslation();
 
-  const thinkingTexts = [
-    t("chat.thinking.the_teacher_is_thinking"),
-    t("chat.thinking.processing_your_question"),
-    t("chat.thinking.let_me_check"),
-    t("chat.thinking.searching_knowledge_base"),
-    t("chat.thinking.analyzing_your_query"),
-  ];
+  const thinkingTexts = useMemo(
+    () => [
+      t("chat.thinking.the_teacher_is_thinking"),
+      t("chat.thinking.processing_your_question"),
+      t("chat.thinking.let_me_check"),
+      t("chat.thinking.searching_knowledge_base"),
+      t("chat.thinking.analyzing_your_query"),
+    ],
+    [t]
+  );
 
   useEffect(() => {
     isSpeakingRef.current = isSpeaking;
@@ -168,7 +170,14 @@ const useChat = (props: TUseChatProps): TUseChatReturn => {
         setIsLoading(false);
       }
     },
-    [setMessages, onAnimationChange, onStatusChange, speak, lessonId]
+    [
+      setMessages,
+      onAnimationChange,
+      onStatusChange,
+      speak,
+      lessonId,
+      thinkingTexts,
+    ]
   );
 
   const handleStop = useCallback(() => {

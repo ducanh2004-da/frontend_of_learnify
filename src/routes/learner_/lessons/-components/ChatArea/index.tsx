@@ -14,27 +14,19 @@ import type { TTeacherStatus } from "../TeacherStatusIndicator/type";
 import type { TChatMessageRef } from "../ChatMessages";
 import type { TStopFn } from "../../-hooks/useTeacher";
 
-type TSectionItem = {
-  id: string;
-  urlPdf: string;
-  content?: string;
-  order: number;
-  lecturer_segment: string[];
-};
+import type { SectionResponse } from "@/hooks/useLesson";
 
 type TChatAreaProps = {
   className?: string;
   state?: "initial" | "complete" | "lesson" | "qa" | "quiz";
   lessonName?: string;
-  abstract?: string;
+  abstract?: string | null;
   sectionCount?: number;
-  sections: TSectionItem[];
+  sections: SectionResponse[];
   chatRef: React.RefObject<TChatMessageRef | null>;
   stopRef: React.MutableRefObject<TStopFn | null>;
   lessonId?: string;
   isMuted: boolean;
-  isModelReady: boolean;
-  modelsReady: boolean;
   startLesson: () => void;
   onSkipLesson: () => void;
   onSkipQA: () => void;
@@ -60,8 +52,6 @@ const ChatArea = (props: TChatAreaProps) => {
     stopRef,
     lessonId,
     isMuted,
-    isModelReady,
-    modelsReady,
     startLesson,
     onSkipLesson,
     onSkipQA,
@@ -100,7 +90,6 @@ const ChatArea = (props: TChatAreaProps) => {
           lessonName={lessonName}
           abstract={abstract}
           sectionCount={sectionCount}
-          modelsReady={modelsReady}
           onStart={startLesson}
         />
       )}
@@ -114,7 +103,6 @@ const ChatArea = (props: TChatAreaProps) => {
           onAnimationChange={setAnimation}
           onStatusChange={setStatus}
           isMuted={isMuted}
-          isModelReady={isModelReady}
           stopRef={stopRef}
           lessonId={lessonId}
         />

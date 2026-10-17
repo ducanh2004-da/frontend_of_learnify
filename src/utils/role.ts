@@ -9,6 +9,7 @@ const VALID_ROLES: readonly TRole[] = [
 
 export function normalizeRole(raw: unknown): TRole {
   const lowered = typeof raw === "string" ? raw.toLowerCase() : "";
+  if (lowered === "teacher") return "instructor";
   return (VALID_ROLES as readonly string[]).includes(lowered)
     ? (lowered as TRole)
     : "learner";
@@ -16,8 +17,8 @@ export function normalizeRole(raw: unknown): TRole {
 
 const ROLE_DEFAULT_ROUTE: Record<TRole, string> = {
   learner: "/learner",
-  instructor: "/instructor",
-  reviewer: "/reviewer",
+  instructor: "/instructor/course-builder",
+  reviewer: "/reviewer/courses",
   admin: "/admin",
 };
 

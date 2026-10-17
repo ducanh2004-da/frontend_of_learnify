@@ -16,7 +16,9 @@
   width: toRem(60);
 
   &.expanded {
-    width: 20dvw;
+    width: toRem(250);
+    min-width: toRem(250);
+    max-width: toRem(250);
     align-items: stretch;
   }
 

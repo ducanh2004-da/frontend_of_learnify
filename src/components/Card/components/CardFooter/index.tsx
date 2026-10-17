@@ -17,7 +17,7 @@ const CardFooter = (props: TCardFooterProps) => {
 
   const cardFooterClassName = classNames("card-footer", status);
 
-  const { tooltip, icon } = useCardFooterButton(status);
+  const { icon } = useCardFooterButton(status);
 
   if (status === "inProgress") {
     return (

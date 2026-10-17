@@ -1,11 +1,8 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import Icon from "@/components/Icon";
 import PillTopNav from "@/components/PillTopNav";
-import PixelBlast from "@/components/PixelBlast";
 import { BLOG_POSTS } from "@/mock/blogs";
 import { Trans, useTranslation } from "react-i18next";
-import CubeLoader from "@/components/CubeLoader";
-import { Suspense } from "react";
 
 export const Route = createLazyFileRoute("/blogs/")({
   component: Blogs,
@@ -18,14 +15,6 @@ function Blogs() {
       <PillTopNav />
       <main className="blogs__content">
         <section className="blogs__hero">
-          <Suspense fallback={<CubeLoader />}>
-            <PixelBlast
-              color="#B497CF"
-              variant="circle"
-              pixelSize={4}
-              speed={0.3}
-            />
-          </Suspense>
           <div className="blogs__hero-content">
             <h1>
               <Trans

@@ -11,7 +11,6 @@ import { GET_PROFILE } from "@/graphql/user";
 import type { GetUserProfileResponse } from "@/hooks/useProfile";
 import { graphqlClient } from "@/lib/graphql";
 import { createLearnerHead } from "@/utils";
-import { logger } from "@/utils/logger";
 
 function UserErrorComponent() {
   const { t } = useTranslation();

@@ -15,7 +15,7 @@ export type TDecorationCardProps = {
   backgroundColor?: string;
   status?: TStatusCard;
   percentage?: TProgress;
-  star?: number;
+  star?: number | string;
   shape?: React.ReactNode;
   onStartClick?: () => void;
   startText?: string;

@@ -8,12 +8,13 @@
   flex-direction: column;
   background-color: $green-100;
   border: toRem(2) solid $green-200;
-  padding: toRem(30);
-  gap: toRem(20);
+  padding: toRem(16);
+  gap: toRem(12);
   border-radius: $br-xl;
   @include box-shadow(0, 4, 6, -1);
   overflow-y: auto;
   scroll-behavior: smooth;
+  flex-shrink: 0;
 
   &_header {
     display: none;

@@ -4,20 +4,27 @@
 @use "@styles/functions" as *;
 
 .chat-messages {
-  display: grid;
-  grid-template-rows: 1fr auto;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  flex-grow: 1;
   min-height: 0;
-  overflow: auto;
-  scroll-behavior: smooth;
+  overflow: hidden;
 
   &-list {
     display: flex;
     flex-direction: column;
-    gap: toRem(4);
+    gap: toRem(8);
+    flex-grow: 1;
+    min-height: 0;
     overflow-y: auto;
-    padding: toRem(16);
+    padding: toRem(12) toRem(6);
     scroll-behavior: smooth;
+  }
+
+  .chat-input {
+    flex-shrink: 0;
+    margin-top: auto;
   }
 
   &-empty {

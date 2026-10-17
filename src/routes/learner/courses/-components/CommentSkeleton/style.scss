@@ -1,0 +1,74 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+@keyframes comment-skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.comment-skeleton {
+  background-color: $neutral-150;
+  padding: toRem(16) toRem(20);
+  border-radius: toRem(16);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(12);
+
+  .skeleton-shape {
+    background: linear-gradient(
+      90deg,
+      rgba(220, 224, 233, 0.6) 25%,
+      rgba(240, 243, 248, 0.9) 50%,
+      rgba(220, 224, 233, 0.6) 75%
+    );
+    background-size: 200% 100%;
+    animation: comment-skeleton-shimmer 1.5s infinite linear;
+    border-radius: toRem(4);
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: toRem(12);
+  }
+
+  &__avatar {
+    width: toRem(36);
+    height: toRem(36);
+    border-radius: 50% !important;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+    flex-grow: 1;
+  }
+
+  &__name {
+    width: 45%;
+    height: toRem(14);
+  }
+
+  &__time {
+    width: 30%;
+    height: toRem(10);
+  }
+
+  &__stars {
+    width: 25%;
+    height: toRem(12);
+  }
+
+  &__body {
+    width: 90%;
+    height: toRem(14);
+  }
+}

@@ -8,6 +8,7 @@
     "friends": "Bạn bè",
     "about": "Giới thiệu",
     "manage_courses": "Quản lý khóa học",
+    "course_builder": "Tạo khoá học AI",
     "add_course": "Thêm khóa học",
     "add_lesson": "Thêm bài học"
   },
@@ -245,7 +246,11 @@
     "enroll": "Đăng ký khóa học",
     "processing": "Đang xử lý...",
     "show_feedback": "Xem đánh giá",
+    "hide_feedback": "Ẩn đánh giá",
     "send_feedback": "Gửi đánh giá",
+    "no_reviews": "Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá khóa học này!",
+    "your_review": "Đánh giá của bạn",
+    "edit_review": "Chỉnh sửa",
     "empty_title": "Không tìm thấy khóa học",
     "empty_description": "Không có khóa học nào phù hợp với tìm kiếm của bạn",
     "empty_create": "Tạo khóa học",
@@ -400,8 +405,7 @@
   "lesson_welcome": {
     "lesson_fallback": "Bài học",
     "sections_to_cover": "{{count}} phần cần học",
-    "start_lesson": "Bắt đầu bài học",
-    "tooltip_disabled": "Đang chuẩn bị bài học 3D của bạn"
+    "start_lesson": "Bắt đầu bài học"
   },
   "lesson_complete": {
     "title": "Hoàn thành bài học!",
@@ -422,42 +426,6 @@
   },
   "dropdown_menu": {
     "more": "thêm"
-  },
-  "teacher_controller": {
-    "loading": "Đang tải...",
-    "resume": "Tiếp tục",
-    "pause": "Tạm dừng",
-    "stop": "Dừng",
-    "unmute": "Bật âm",
-    "mute": "Tắt âm",
-    "settings": "Cài đặt",
-    "switch_2d": "Chuyển sang 2D",
-    "switch_3d": "Chuyển sang 3D",
-    "menu": "Điều khiển",
-    "reload": "Tải lại"
-  },
-  "voice_settings": {
-    "title": "Cài đặt",
-    "voice_label": "Giọng nói",
-    "speed_label": "Tốc độ TTS",
-    "auto_scroll_label": "Tự động cuộn",
-    "theme_label": "Giao diện",
-    "language_label": "Ngôn ngữ",
-    "dark": "Tối",
-    "light": "Sáng",
-    "voices": [
-      {
-        "label": "Default",
-        "description": "ElevenLabs AI — giọng nói"
-      }
-    ]
-  },
-  "teacher_panel": {
-    "loading_env": "Đang tải môi trường 3D...",
-    "loading_model": "Đang tải mô hình giáo viên...",
-    "loading_animations": "Đang khởi tạo hoạt ảnh...",
-    "ready": "Sẵn sàng!",
-    "enriching": "Đang chuẩn bị bài học 3D của bạn"
   },
   "chat_header": {
     "new_conversation": "Cuộc trò chuyện mới",

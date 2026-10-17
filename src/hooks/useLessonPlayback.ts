@@ -5,18 +5,12 @@ import type { TTeacherAnimation } from "@/routes/learner_/lessons/-components/Te
 import { TALKING_ANIMATIONS } from "@/mock/chats";
 import { logger } from "@/utils/logger";
 
+import type { SectionResponse } from "@/hooks/useLesson";
+
 type TTeacherStatus = "idle" | "thinking" | "speaking" | "paused";
 
-type SectionItem = {
-  id: string;
-  urlPdf: string;
-  content?: string;
-  order: number;
-  lecturer_segment: string[];
-};
-
 type TUseLessonPlaybackProps = {
-  sections: SectionItem[];
+  sections: SectionResponse[];
   onAnimationChange: (animation: TTeacherAnimation) => void;
   onStatusChange: (status: TTeacherStatus) => void;
   isMuted?: boolean;

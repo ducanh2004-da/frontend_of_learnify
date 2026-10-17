@@ -14,17 +14,21 @@ export const GET_LESSON_BY_ID = `
   }
 `;
 
-export const GET_SECTIONS_BY_LESSON = `
-  query GetSectionsByLesson($lessonId: String!) {
+export const GET_SECTION_BY_LESSON = `
+  query GetSectionByLesson($lessonId: String!) {
     getSectionByLesson(lessonId: $lessonId) {
       id
       urlPdf
       content
-      order
       lecturer_segment
+      order
+      lessonId
+      createdAt
     }
   }
 `;
+
+export const GET_SECTIONS_BY_LESSON = GET_SECTION_BY_LESSON;
 
 export const GET_COURSE_BY_ID = `
   query GetCourseById($id: String!) {

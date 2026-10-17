@@ -12,7 +12,6 @@ services:
         - VITE_ELEVENLABS_OUTPUT_FORMAT
         - VITE_ELENVENLABS_ENABLE_TIMESTAMPS
         - VITE_EDGETTS_VOICE_ID
-        - VITE_MODEL_CDN_URL
     env_file:
       - .env.production
     restart: unless-stopped

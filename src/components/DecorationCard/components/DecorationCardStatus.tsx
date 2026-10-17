@@ -6,7 +6,7 @@ import type { TIconName } from "@/components/Icon";
 type TDecorationCardStatusProps = {
   status: TStatusCard;
   percentage: TProgress;
-  star: number;
+  star: number | string;
   onStartClick?: () => void;
   startText?: string;
   startIcon?: TIconName;

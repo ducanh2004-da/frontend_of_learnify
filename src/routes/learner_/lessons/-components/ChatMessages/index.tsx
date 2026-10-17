@@ -22,19 +22,13 @@ import type { TTeacherAnimation } from "../TeacherAnimation/type";
 import type { TTeacherStatus } from "../TeacherStatusIndicator/type";
 import "./style.scss";
 
+import type { SectionResponse } from "@/hooks/useLesson";
+
 export type TChatMessageRef = {
   pause: () => void;
   resume: () => void;
   stop: () => void;
   resetAndClear: () => void;
-};
-
-type SectionItem = {
-  id: string;
-  urlPdf: string;
-  content?: string;
-  order: number;
-  lecturer_segment: string[];
 };
 
 type TChatMessagesProps = {
@@ -43,9 +37,8 @@ type TChatMessagesProps = {
   isMuted?: boolean;
   className?: string;
   mode?: "qa" | "lesson";
-  sections?: SectionItem[];
+  sections?: SectionResponse[];
   onLessonComplete?: () => void;
-  isModelReady?: boolean;
   stopRef?: React.MutableRefObject<TStopFn | null>;
   lessonId?: string;
 };
@@ -60,7 +53,6 @@ const ChatMessages = forwardRef<TChatMessageRef, TChatMessagesProps>(
       mode = "qa",
       sections = [],
       onLessonComplete,
-      isModelReady = false,
       stopRef,
       lessonId,
     } = props;
@@ -70,11 +62,6 @@ const ChatMessages = forwardRef<TChatMessageRef, TChatMessagesProps>(
     const playbackStartedRef = useRef(false);
     const messagesContainerRef = useRef<HTMLDivElement>(null);
     const isNearBottomRef = useRef(true);
-    const isModelReadyRef = useRef(false);
-
-    useEffect(() => {
-      isModelReadyRef.current = isModelReady;
-    }, [isModelReady]);
 
     const scrollToBottom = useCallback(() => {
       if (isNearBottomRef.current) {
@@ -127,8 +114,7 @@ const ChatMessages = forwardRef<TChatMessageRef, TChatMessagesProps>(
       if (
         mode === "lesson" &&
         !playbackStartedRef.current &&
-        sections.length > 0 &&
-        isModelReadyRef.current
+        sections.length > 0
       ) {
         playbackStartedRef.current = true;
         playbackStart();
@@ -205,9 +191,7 @@ const ChatMessages = forwardRef<TChatMessageRef, TChatMessagesProps>(
             <div className="chat-messages-empty">
               <Icon name="chat" />
               <p className="chat-messages-empty-text">
-                {mode === "lesson"
-                  ? t("chat_message_wrapper.preparing_lesson")
-                  : t("chat_message_wrapper.start_conversation")}
+                {t("chat_message_wrapper.start_conversation")}
               </p>
             </div>
           ) : (

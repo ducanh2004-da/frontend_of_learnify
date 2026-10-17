@@ -1,6 +1,5 @@
 import { OptimizeImage } from "@/components/Images";
 import PillTopNav from "@/components/PillTopNav";
-import PixelBlast from "@/components/PixelBlast";
 import { ABOUT_STATS } from "@/mock";
 import AboutStat from "@learner/about/-components/AboutStat";
 import MemberItem from "@learner/about/-components/MemberItem";
@@ -27,13 +26,6 @@ function AboutUs() {
             <h1 className="about-us__head-title">{t("about.page_title")}</h1>
             <h3 className="about-us__head-tagline">{t("about.tagline")}</h3>
           </div>
-          <PixelBlast
-            color="#3f5a42"
-            variant="square"
-            pixelSize={3}
-            speed={0.4}
-            patternDensity={0.8}
-          />
         </section>
 
         <section className="about-us__story" ref={heroRef}>

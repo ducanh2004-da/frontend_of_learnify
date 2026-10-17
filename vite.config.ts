@@ -53,12 +53,6 @@ export default defineConfig({
           )
             return "vendor-util";
           if (id.includes("node_modules/@tanstack")) return "vendor-tanstack";
-          if (
-            id.includes("node_modules/three") ||
-            id.includes("node_modules/@react-three") ||
-            id.includes("node_modules/postprocessing")
-          )
-            return "vendor-three";
         },
       },
     },
@@ -70,8 +64,5 @@ export default defineConfig({
         silenceDeprecations: ["import", "global-builtin"],
       },
     },
-  },
-  define: {
-    __MODEL_CDN_URL__: JSON.stringify(process.env.VITE_MODEL_CDN_URL || ""),
   },
 });

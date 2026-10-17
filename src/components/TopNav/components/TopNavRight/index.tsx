@@ -80,7 +80,9 @@ const TopNavRight = () => {
         </div>
         <TextButton
           icon="diamond"
-          text={String(user.diamond ?? 0)}
+          text={String(
+            user.diamond ?? (user as { diamonds?: number })?.diamonds ?? 0
+          )}
           tooltip={t("pill_top_nav.diamond_tooltip")}
           onClick={() => navigate({ to: "/learner/shop" })}
           size="small"
@@ -89,7 +91,11 @@ const TopNavRight = () => {
         />
         <TextButton
           icon="mode_heat"
-          text={String(user.currentSteak ?? 0)}
+          text={String(
+            user.currentSteak ??
+              (user as { currentStreak?: number })?.currentStreak ??
+              0
+          )}
           tooltip={t("pill_top_nav.streak_tooltip")}
           onClick={() => navigate({ to: "/learner/streak" })}
           size="small"

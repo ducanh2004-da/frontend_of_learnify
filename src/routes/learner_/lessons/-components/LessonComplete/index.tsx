@@ -1,6 +1,9 @@
+import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import Icon from "@/components/Icon";
+import { useIncreaseStreakMutation } from "@/hooks/useGamification";
+import { logger } from "@/utils/logger";
 import "./style.scss";
 
 type TLessonCompleteProps = {
@@ -10,6 +13,20 @@ type TLessonCompleteProps = {
 
 const LessonComplete = ({ courseId, nextLessonId }: TLessonCompleteProps) => {
   const { t } = useTranslation();
+  const hasUpdatedStreakRef = useRef(false);
+
+  const { mutate: increaseStreak } = useIncreaseStreakMutation({
+    onError: (error) => {
+      logger.error("Failed to increase streak on lesson complete:", error);
+    },
+  });
+
+  useEffect(() => {
+    if (hasUpdatedStreakRef.current) return;
+    hasUpdatedStreakRef.current = true;
+    increaseStreak();
+  }, [increaseStreak]);
+
   return (
     <div className="lesson-complete">
       <Icon name="check_circle" className="lesson-complete__icon" />

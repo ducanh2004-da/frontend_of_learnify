@@ -1,13 +1,11 @@
 import "./HeroSection.scss";
 
 import TextButton from "@/components/TextButton";
-import { COLORS } from "@/styles/colors";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import LazySilkBackground from "../index.lazy";
 
 interface HeroSectionProps {
   onLearnerClick: () => void;
@@ -51,13 +49,6 @@ export default function HeroSection({
 
   return (
     <section ref={ref} className="landing-hero">
-      <LazySilkBackground
-        speed={10}
-        scale={1.2}
-        color={COLORS.neutral200}
-        noiseIntensity={0.6}
-        rotation={0.15}
-      />
       <div className="landing-hero__content">
         <h1 className="landing-hero__headline">
           <span>{t("landing.hero.headline_line1")}</span>

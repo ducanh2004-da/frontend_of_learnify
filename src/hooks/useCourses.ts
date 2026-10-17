@@ -1,3 +1,4 @@
+import type { TLesson } from "@/routes/instructor/courses/-hooks/useManageCourses";
 import {
   useQuery,
   useMutation,
@@ -16,6 +17,7 @@ import {
   CREATE_COURSE_MUTATION,
   DELETE_COURSE_MUTATION,
   GET_ALL_COURSES_QUERY,
+  GET_LESSONS_BY_COURSE_ID_QUERY,
 } from "@/graphql/course";
 import {
   CREATE_LESSON_FROM_AI_MUTATION,
@@ -35,11 +37,21 @@ export type TBackendCourse = {
   updatedAt: string;
 };
 
-type GetCourseByIdResponse = {
-  getCourseById: {
+type TCourseLessonsResponse = {
+  getLessonsByCourseId?: { lessons?: TLesson[] };
+  getCourseById?: {
     isSuccess: boolean;
     message: string;
     course: TBackendCourse;
+  };
+};
+
+type GetAllCoursesResponse = {
+  getAllCourses: {
+    count: number;
+    courses: TBackendCourse[];
+    isSuccess: boolean;
+    message: string;
   };
 };
 
@@ -65,12 +77,11 @@ export function useGetAllCourses(skip: number = 0) {
   return useQuery({
     queryKey: ["courses", "all", skip],
     queryFn: async () => {
-      const response =
-        await graphqlClient.request<GetAllPublishedCoursesResponse>(
-          GET_ALL_COURSES_QUERY,
-          { skip }
-        );
-      return response.getAllPublishedCourses;
+      const response = await graphqlClient.request<GetAllCoursesResponse>(
+        GET_ALL_COURSES_QUERY,
+        { skip }
+      );
+      return response.getAllCourses;
     },
   });
 }
@@ -102,7 +113,7 @@ export function useSuspenseGetAllCourses(skip: number = 0) {
   });
 }
 
-export function useGetCoursesStatus(status: string, skip: number = 0) {
+export function useGetCoursesByStatus(status: string, skip: number = 0) {
   return useQuery({
     queryKey: ["courses", "status", status, skip],
     queryFn: async () => {
@@ -115,6 +126,8 @@ export function useGetCoursesStatus(status: string, skip: number = 0) {
   });
 }
 
+export const useGetCoursesStatus = useGetCoursesByStatus;
+
 export function usePublishCourse() {
   const queryClient = useQueryClient();
 
@@ -122,10 +135,18 @@ export function usePublishCourse() {
     mutationFn: async (courseId: string) => {
       return await graphqlClient.request(PUBLISH_COURSE_MUTATION, { courseId });
     },
-    onSuccess: (_, variables) => {
+    onSuccess: (_data, courseId) => {
       queryClient.invalidateQueries({
-        queryKey: ["courses", "all"],
+        queryKey: ["courses"],
       });
+      if (courseId) {
+        queryClient.invalidateQueries({
+          queryKey: ["courses", "id", courseId],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["course-detail", courseId],
+        });
+      }
       toast.success(i18n.t("courses.toast.course_published"));
     },
     onError: (error) => {
@@ -145,10 +166,18 @@ export function useRejectCourse() {
     mutationFn: async (courseId: string) => {
       return await graphqlClient.request(REJECT_COURSE_MUTATION, { courseId });
     },
-    onSuccess: (_, variables) => {
+    onSuccess: (_data, courseId) => {
       queryClient.invalidateQueries({
-        queryKey: ["courses", "all"],
+        queryKey: ["courses"],
       });
+      if (courseId) {
+        queryClient.invalidateQueries({
+          queryKey: ["courses", "id", courseId],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["course-detail", courseId],
+        });
+      }
       toast.success(i18n.t("courses.toast.course_rejected"));
     },
     onError: (error) => {
@@ -168,7 +197,7 @@ export function useGetCoursesById(
   return useQuery({
     queryKey: ["courses", "id", courseId],
     queryFn: async () => {
-      const response = await graphqlClient.request<any>(
+      const response = await graphqlClient.request<TCourseLessonsResponse>(
         GET_COURSE_LESSONS_BY_ID_QUERY,
         { getCourseByIdId: courseId }
       );
@@ -176,6 +205,24 @@ export function useGetCoursesById(
     },
     staleTime: 0,
     enabled: options?.enabled ?? true,
+  });
+}
+
+export function useGetLessonsByCourseId(courseId: string) {
+  return useQuery({
+    queryKey: ["lessons", "by-course", courseId],
+    queryFn: async () => {
+      const response = await graphqlClient.request<{
+        getLessonsByCourseId: {
+          count: number;
+          isSuccess: boolean;
+          lessons: TLesson[];
+          message: string;
+        };
+      }>(GET_LESSONS_BY_COURSE_ID_QUERY, { id: courseId });
+      return response.getLessonsByCourseId?.lessons ?? [];
+    },
+    enabled: !!courseId,
   });
 }
 

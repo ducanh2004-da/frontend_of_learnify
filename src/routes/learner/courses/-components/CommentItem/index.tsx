@@ -3,14 +3,25 @@ import type { TCommentItemProps } from "./type.d.ts";
 import "./style.scss";
 
 const CommentItem = (props: TCommentItemProps) => {
-  const { userName, time, content, rating } = props;
+  const { userName, avatar, time, content, rating, isCurrentUser } = props;
+
+  const initial = userName ? userName.trim().charAt(0).toUpperCase() : "?";
 
   return (
     <div className="comment-item">
       <div className="comment-item-head">
-        <div className="comment-avatar"></div>
+        <div className="comment-avatar">
+          {avatar ? (
+            <img src={avatar} alt={userName} />
+          ) : (
+            <span>{initial}</span>
+          )}
+        </div>
         <div className="comment-head-infor">
-          <span>{userName}</span>
+          <div className="comment-user-row">
+            <span className="comment-user-name">{userName}</span>
+            {isCurrentUser && <span className="comment-you-badge">You</span>}
+          </div>
           <p>{time}</p>
           <div className="comment-head-infor-stars">
             {Array.from({ length: 5 }).map((_, index) => (
@@ -31,7 +42,7 @@ const CommentItem = (props: TCommentItemProps) => {
           <Icon name="more_vert" className="icon" />
         </div>
       </div>
-      <div className="comment-item-body">{content}</div>
+      {content && <div className="comment-item-body">{content}</div>}
     </div>
   );
 };

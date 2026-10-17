@@ -5,11 +5,13 @@
 
 .chat-input {
   background-color: $neutral-150;
-  padding: toRem(20);
+  padding: toRem(12) toRem(16);
   border-radius: $br-xl;
   display: flex;
   align-items: flex-end;
   gap: toRem(10);
+  box-sizing: border-box;
+  width: 100%;
 
   textarea {
     background-color: transparent;

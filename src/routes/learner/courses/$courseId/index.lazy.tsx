@@ -9,16 +9,19 @@ import { useLayout } from "@/contexts/LayoutContext";
 import {
   useCourseProgress,
   useCoursePrice,
-  useCreateReview,
   useEnrollCourse,
   useUserEnrollments,
 } from "@/hooks/useCourseDetail";
+import {
+  useCourseReviews,
+  useCreateReviewMutation,
+} from "@/hooks/useCourseReviews";
 import { useCreatePayment } from "@/hooks/usePayment";
-import { MOCK_COMMENT } from "@/mock";
 import { useAuthStore } from "@/store/authStore";
 import { COLORS } from "@/styles/colors";
 import type { TProgress, TStatusCard } from "@/types/global";
 import { formatDate } from "@/utils";
+import { normalizeRole } from "@/utils/role";
 import { courseQueryOptions } from "@/utils/courses";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createLazyFileRoute, useNavigate } from "@tanstack/react-router";
@@ -34,6 +37,7 @@ import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import CommentForm from "../-components/CommentForm";
 import CommentItem from "../-components/CommentItem";
+import CommentSkeleton from "../-components/CommentSkeleton";
 
 export const Route = createLazyFileRoute("/learner/courses/$courseId/")({
   component: CourseComponent,
@@ -48,13 +52,17 @@ function CourseComponent() {
   const userId = currentUser?.id;
 
   const { data } = useSuspenseQuery(courseQueryOptions(courseId));
-  const { getCourseById, getLessonsByCourseId, getReviewsByCourse } = data;
+  const { getCourseById, getLessonsByCourseId } = data;
   const { setLayoutConfigState } = useLayout();
   const { data: coursePrice } = useCoursePrice(courseId);
   const isPaidCourse = coursePrice ? coursePrice.isFree === false : false;
 
+  const normalizedRole = normalizeRole(currentUser?.role);
   const isInstructorOrAdmin =
-    currentUser?.role === "teacher" || currentUser?.role === "admin";
+    normalizedRole === "instructor" ||
+    normalizedRole === "admin" ||
+    normalizedRole === "reviewer" ||
+    currentUser?.role === "teacher";
 
   useEffect(() => {
     if (getCourseById?.courseName) {
@@ -76,7 +84,15 @@ function CourseComponent() {
     }
   }, [getCourseById?.status, isInstructorOrAdmin, navigate, t]);
 
-  const createReview = useCreateReview();
+  const {
+    reviews,
+    totalReviews,
+    averageRating,
+    myReview,
+    isLoading: isReviewsLoading,
+  } = useCourseReviews(courseId);
+
+  const createReviewMutation = useCreateReviewMutation(courseId);
   const enrollCourseMutation = useEnrollCourse();
   const createPaymentMutation = useCreatePayment();
 
@@ -123,23 +139,19 @@ function CourseComponent() {
     if (getLessonsByCourseId?.isSuccess) {
       return getLessonsByCourseId.lessons.map((lesson, idx) => {
         let status: "default" | "locked" | "completed" = "locked";
-        let percentage: number = 0;
+        let percentage: TProgress = 0;
 
-        if (isEnrolled) {
-          if (progressData?.isSuccess && progressData.progress?.[0]) {
-            const p = progressData.progress[0];
-            if (idx < p.completedLessons) {
-              status = "completed";
-              percentage = 100;
-            } else if (idx === p.completedLessons) {
-              status = "default";
-              percentage = p.percentage;
-            } else {
-              status = "locked";
-            }
-          } else {
+        if (isEnrolled && progressData?.progress?.[0]) {
+          const completedCount = progressData.progress[0].completedLessons ?? 0;
+          if (idx < completedCount) {
+            status = "completed";
+            percentage = 100;
+          } else if (idx === completedCount) {
             status = "default";
+            percentage = 0;
           }
+        } else if (isEnrolled && idx === 0) {
+          status = "default";
         }
 
         return {
@@ -155,20 +167,6 @@ function CourseComponent() {
     }
     return null;
   }, [getLessonsByCourseId, isEnrolled, progressData, t]);
-
-  const commentDisplay = useMemo(() => {
-    if (getReviewsByCourse?.isSuccess) {
-      return getReviewsByCourse.reviews.map((review) => ({
-        id: review.id,
-        userName: review.user.username,
-        time: formatDate(review.createdAt),
-        rating: review.rating,
-        content: review.content || t("course_detail.no_description"),
-        isOptimistic: review.id.startsWith("optimistic-"),
-      }));
-    }
-    return MOCK_COMMENT;
-  }, [getReviewsByCourse, t]);
 
   const courseDisplay = useMemo(() => {
     if (!getCourseById?.id) return null;
@@ -198,7 +196,7 @@ function CourseComponent() {
       toast.error(t("course_detail.toast_login_enroll"));
       return;
     }
-    enrollCourseMutation.mutate({ courseId, userId });
+    enrollCourseMutation.mutate({ courseId });
   }, [userId, courseId, enrollCourseMutation, t]);
 
   const handlePayment = useCallback(() => {
@@ -317,6 +315,31 @@ function CourseComponent() {
     });
   };
 
+  const handleReviewSubmit = async (rating: number, content?: string) => {
+    try {
+      const response = await createReviewMutation.mutateAsync({
+        courseId,
+        rating,
+        content,
+        userId,
+      });
+
+      if (response?.isSuccess) {
+        setShowCommentForm(false);
+        setShowComment(true);
+      }
+    } catch {
+      // Error handled via toast in hook; form text preserved
+    }
+  };
+
+  const bannerStarDisplay = useMemo(() => {
+    if (totalReviews > 0) {
+      return `${averageRating} (${totalReviews})`;
+    }
+    return 0;
+  }, [averageRating, totalReviews]);
+
   if (!courseDisplay) return <NotFound />;
 
   if (!lessonsDisplay)
@@ -380,6 +403,7 @@ function CourseComponent() {
             status={courseDisplay.status}
             listFeature={courseDisplay.listFeature}
             percentage={courseDisplay.percentage}
+            star={bannerStarDisplay}
             onStartClick={handleStartClick}
             startText={startButtonText}
             startIcon={startButtonIcon}
@@ -390,10 +414,16 @@ function CourseComponent() {
           )}
           <div className="course__controller">
             <TextButton
-              text={t("course_detail.show_feedback")}
+              text={
+                showComment
+                  ? (t("course_detail.hide_feedback") ?? "Hide feedback")
+                  : totalReviews > 0
+                    ? `${t("course_detail.show_feedback")} (${totalReviews})`
+                    : t("course_detail.show_feedback")
+              }
               size="small"
               icon="feedback"
-              type="outlined"
+              type={showComment ? "secondary" : "outlined"}
               typeSpecial="course"
               onClick={() => setShowComment((prev) => !prev)}
             />
@@ -419,44 +449,102 @@ function CourseComponent() {
       </Suspense>
       <Activity mode={showComment ? "visible" : "hidden"}>
         <div className="course__comment">
-          <TextButton
-            text={t("course_detail.send_feedback")}
-            size="small"
-            icon="add"
-            type="outlined"
-            typeSpecial="course"
-            className="course__send-btn"
-            onClick={() => {
-              if (!currentUser) {
-                toast.warning(t("course_detail.toast_login_feedback"));
-                return;
-              }
-              setShowCommentForm((prev) => !prev);
-            }}
-          />
+          {/* Feedback Form / Your Review widget */}
+          {myReview && !showCommentForm ? (
+            <div className="course__my-review-card">
+              <div className="course__my-review-header">
+                <div className="course__my-review-title-group">
+                  <span className="course__my-review-badge">
+                    {t("course_detail.your_review") ?? "Your Review"}
+                  </span>
+                  <div className="course__my-review-stars">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Icon
+                        key={s}
+                        name="star"
+                        className="icon"
+                        style={{
+                          color: s <= myReview.rating ? "#FFC107" : "#E0E0E0",
+                          fontSize: "16px",
+                        }}
+                        fill={s <= myReview.rating}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <TextButton
+                  text={t("course_detail.edit_review") ?? "Edit"}
+                  size="tiny"
+                  icon="edit"
+                  type="outlined"
+                  onClick={() => setShowCommentForm(true)}
+                />
+              </div>
+              {myReview.content && (
+                <p className="course__my-review-content">{myReview.content}</p>
+              )}
+              <span className="course__my-review-date">
+                {formatDate(myReview.createdAt)}
+              </span>
+            </div>
+          ) : !showCommentForm ? (
+            <TextButton
+              text={t("course_detail.send_feedback")}
+              size="small"
+              icon="add"
+              type="outlined"
+              typeSpecial="course"
+              className="course__send-btn"
+              onClick={() => {
+                if (!currentUser) {
+                  toast.warning(t("course_detail.toast_login_feedback"));
+                  return;
+                }
+                setShowCommentForm(true);
+              }}
+            />
+          ) : null}
+
+          {/* Comment Form when editing or creating */}
           <Activity mode={showCommentForm ? "visible" : "hidden"}>
             <CommentForm
-              onSubmit={(rating, content) => {
-                createReview.mutate(
-                  { courseId: courseId, rating, content },
-                  {
-                    onSuccess: () => setShowCommentForm(false),
-                  }
-                );
-              }}
+              key={myReview?.id ? `edit-${myReview.id}` : "new-review"}
+              initialRating={myReview?.rating || 0}
+              initialContent={myReview?.content || ""}
+              onSubmit={handleReviewSubmit}
               onCancel={() => setShowCommentForm(false)}
-              isLoading={createReview.isPending}
+              isLoading={createReviewMutation.isPending}
             />
           </Activity>
-          {commentDisplay.map((comment) => (
-            <CommentItem
-              key={comment.id}
-              userName={comment.userName}
-              time={comment.time}
-              rating={comment.rating}
-              content={comment.content}
-            />
-          ))}
+
+          {/* Reviews List */}
+          {isReviewsLoading ? (
+            <>
+              <CommentSkeleton />
+              <CommentSkeleton />
+              <CommentSkeleton />
+            </>
+          ) : reviews.length === 0 ? (
+            <div className="course__reviews-empty">
+              <Icon name="feedback" className="course__reviews-empty-icon" />
+              <p className="course__reviews-empty-text">
+                {t("course_detail.no_reviews") ??
+                  "No reviews yet. Be the first to rate this course!"}
+              </p>
+            </div>
+          ) : (
+            reviews.map((review) => (
+              <CommentItem
+                key={review.id}
+                userName={review.user?.username || "Anonymous"}
+                avatar={review.user?.avatar}
+                time={formatDate(review.createdAt)}
+                rating={review.rating}
+                content={review.content}
+                isCurrentUser={Boolean(userId && review.user?.id === userId)}
+              />
+            ))
+          )}
         </div>
       </Activity>
     </div>

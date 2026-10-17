@@ -44,6 +44,84 @@
     width: 20dvw;
     flex-shrink: 0;
   }
+
+  &__my-review-card {
+    background-color: $neutral-150;
+    border: 1px solid rgba(67, 97, 238, 0.25);
+    padding: toRem(16) toRem(20);
+    border-radius: toRem(16);
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10);
+  }
+
+  &__my-review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: toRem(8);
+  }
+
+  &__my-review-title-group {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+    flex-wrap: wrap;
+  }
+
+  &__my-review-badge {
+    font-size: toRem(12);
+    font-weight: 700;
+    color: #4361ee;
+    background-color: rgba(67, 97, 238, 0.12);
+    padding: toRem(2) toRem(8);
+    border-radius: toRem(6);
+  }
+
+  &__my-review-stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  &__my-review-content {
+    font-size: toRem(14);
+    color: $neutral-900;
+    line-height: 1.5;
+    margin: 0;
+    word-break: break-word;
+  }
+
+  &__my-review-date {
+    font-size: toRem(12);
+    color: $mode-neutral;
+  }
+
+  &__reviews-empty {
+    background-color: $neutral-150;
+    border: 1px dashed $neutral-300;
+    border-radius: toRem(16);
+    padding: toRem(28) toRem(20);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: toRem(10);
+
+    .course__reviews-empty-icon {
+      font-size: toRem(36);
+      color: $mode-neutral;
+    }
+
+    .course__reviews-empty-text {
+      font-size: toRem(13);
+      color: $mode-neutral;
+      margin: 0;
+      line-height: 1.5;
+      max-width: toRem(240);
+    }
+  }
 }
 
 @include break(md) {

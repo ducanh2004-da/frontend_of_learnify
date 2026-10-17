@@ -1,7 +1,9 @@
+import type { TIconName } from "@/components/Icon";
+
 export type TSubscription = {
   type: "Starter" | "Pro" | "Career";
   title: string;
-  icon: import("@/components/Icon").TIconName;
+  icon: TIconName;
   price: string;
   subtitle: string;
   descriptions: string[];

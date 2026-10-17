@@ -41,6 +41,11 @@ export const instructorTopItems: TTopItem[] = [
     href: "/instructor",
   },
   {
+    iconName: "add",
+    labelKey: "sidebar.course_builder",
+    href: "/instructor/course-builder",
+  },
+  {
     iconName: "school",
     labelKey: "sidebar.manage_courses",
     href: "/instructor/courses",

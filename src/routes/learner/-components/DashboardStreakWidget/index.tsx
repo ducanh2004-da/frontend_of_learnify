@@ -6,7 +6,10 @@ import "./style.scss";
 const DashboardStreakWidget = () => {
   const { t } = useTranslation();
   const user = useAuthStore((s) => s.user);
-  const currentStreak = user?.currentSteak ?? 0;
+  const currentStreak =
+    user?.currentSteak ??
+    (user as { currentStreak?: number } | null | undefined)?.currentStreak ??
+    0;
   const days = t("dashboard.day_labels", { returnObjects: true }) as string[];
 
   const todayIndex = new Date().getDay();

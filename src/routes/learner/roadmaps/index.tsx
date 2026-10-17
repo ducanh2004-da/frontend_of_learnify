@@ -109,7 +109,6 @@ function RoadmapsPage() {
     if (activeCategory) {
       const cat = CATEGORIES.find((c) => c.key === activeCategory);
       if (cat) {
-        const query = q?.toLowerCase() ?? "";
         result = result.filter((r) => {
           const text = `${r.title} ${r.description ?? ""}`.toLowerCase();
           return cat.keywords.some((kw) => text.includes(kw));

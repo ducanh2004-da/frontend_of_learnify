@@ -6,11 +6,11 @@ import "./style.scss";
 
 const SignUpVerification = memo(function SignUpVerification({
   data,
-  errors,
-  isPending,
+  errors: _errors,
+  isPending: _isPending,
   isResending,
-  onChange,
-  onSubmit,
+  onChange: _onChange,
+  onSubmit: _onSubmit,
   onResend,
 }: TSignUpVerificationProps) {
   const { t } = useTranslation();

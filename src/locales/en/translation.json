@@ -8,6 +8,7 @@
     "friends": "Friends",
     "about": "About",
     "manage_courses": "Manage Courses",
+    "course_builder": "AI Course Builder",
     "add_course": "Add Course",
     "add_lesson": "Add Lesson"
   },
@@ -245,7 +246,11 @@
     "enroll": "Enroll Course",
     "processing": "Processing...",
     "show_feedback": "Show feedback",
+    "hide_feedback": "Hide feedback",
     "send_feedback": "Send feedback",
+    "no_reviews": "No reviews yet. Be the first to rate this course!",
+    "your_review": "Your Review",
+    "edit_review": "Edit",
     "empty_title": "No products found",
     "empty_description": "No products match your search",
     "empty_create": "Create a course",
@@ -401,8 +406,7 @@
   "lesson_welcome": {
     "lesson_fallback": "Lesson",
     "sections_to_cover": "{{count}} sections to cover",
-    "start_lesson": "Start Lesson",
-    "tooltip_disabled": "Enriching your 3D lessons"
+    "start_lesson": "Start Lesson"
   },
   "lesson_complete": {
     "title": "Lesson Complete!",
@@ -423,42 +427,6 @@
   },
   "dropdown_menu": {
     "more": "more"
-  },
-  "teacher_controller": {
-    "loading": "Loading...",
-    "resume": "Resume",
-    "pause": "Pause",
-    "stop": "Stop",
-    "unmute": "Unmute",
-    "mute": "Mute",
-    "settings": "Settings",
-    "switch_2d": "Switch to 2D",
-    "switch_3d": "Switch to 3D",
-    "menu": "Controls",
-    "reload": "Reload"
-  },
-  "voice_settings": {
-    "title": "Settings",
-    "voice_label": "Voice",
-    "speed_label": "TTS Speed",
-    "auto_scroll_label": "Auto-scroll",
-    "theme_label": "Theme",
-    "language_label": "Language",
-    "dark": "Dark",
-    "light": "Light",
-    "voices": [
-      {
-        "label": "Default",
-        "description": "ElevenLabs AI — voice"
-      }
-    ]
-  },
-  "teacher_panel": {
-    "loading_env": "Loading 3D environment...",
-    "loading_model": "Loading teacher model...",
-    "loading_animations": "Initializing animations...",
-    "ready": "Ready!",
-    "enriching": "Enriching your 3D lessons"
   },
   "chat_header": {
     "new_conversation": "New Conversation",
@@ -957,19 +925,6 @@
     "coming_soon": "Streak Protections & Boosts — Coming Soon!",
     "message": "Your daily streak will unlock powerful tools to supercharge your learning: streak freezes to protect your progress on busy days, XP boosts to accelerate your course completion, and exclusive bonus rewards for maintaining long streaks. Stay consistent and reap the benefits!",
     "back": "Back to Dashboard"
-  },
-  "course_completion": {
-    "lesson": "Lesson",
-    "lab": "Lab",
-    "check": "Check",
-    "course": "Course",
-    "roadmap": "Roadmap",
-    "certificate": "Certificate",
-    "public": "Public",
-    "private": "Private",
-    "starter": "Starter",
-    "pro": "Pro",
-    "career": "Career"
   },
   "course_completion": {
     "title": "Course Completed!",

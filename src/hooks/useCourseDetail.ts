@@ -288,7 +288,7 @@ export function useEnrollCourse() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (input: { courseId: string; userId: string }) => {
+    mutationFn: async (input: { courseId: string }) => {
       try {
         const response = await graphqlClient.request<{
           enrollCourse: TEnrollment;
@@ -305,10 +305,7 @@ export function useEnrollCourse() {
     onSuccess: (_, variables) => {
       toast.success("Course enrolled successfully!");
       queryClient.invalidateQueries({
-        queryKey: ["user-enrollments", variables.userId],
-      });
-      queryClient.invalidateQueries({
-        queryKey: ["course-progress", variables.userId, variables.courseId],
+        queryKey: ["course-progress", variables.courseId],
       });
     },
     onError: (error) => {
