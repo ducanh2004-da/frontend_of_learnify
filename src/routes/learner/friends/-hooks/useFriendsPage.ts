@@ -9,6 +9,7 @@ import {
 import type { TBackendUser } from "@/hooks/useProfile";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import type { TFriendDetail } from "../-components/FriendDetail/type";
 import type {
   TFriendItem,
@@ -118,13 +119,7 @@ export function useFriendsPage(currentUserId?: string): TUseFriendsPageReturn {
   let shouldShowAddFriendBtn = false;
   if (typeFriend === "leaderboard" && selectedFriend) {
     const isSelf = currentUserId === selectedFriend.id;
-    const isAlreadyFriend = friendsData?.users?.some(
-      (u) => u.id === selectedFriend.id
-    );
-    const isPending = pendingData?.users?.some(
-      (u) => u.id === selectedFriend.id
-    );
-    shouldShowAddFriendBtn = !isSelf && !isAlreadyFriend && !isPending;
+    shouldShowAddFriendBtn = !isSelf;
   }
 
   const handleRespondRequest = (requesterId: string, isAccepted: boolean) => {
@@ -133,14 +128,14 @@ export function useFriendsPage(currentUserId?: string): TUseFriendsPageReturn {
       {
         onSuccess: (res) => {
           if (res.respondFriendRequest.isSuccess) {
-            alert(
+            toast.success(
               isAccepted
                 ? t("friends.alerts.accepted")
                 : t("friends.alerts.declined")
             );
             if (selectedId === requesterId) setSelectedId(null);
           } else {
-            alert(res.respondFriendRequest.message);
+            toast.error(res.respondFriendRequest.message);
           }
         },
       }
@@ -148,18 +143,7 @@ export function useFriendsPage(currentUserId?: string): TUseFriendsPageReturn {
   };
 
   const handleSendRequest = (targetUserId: string) => {
-    sendRequestMutation.mutate(
-      { targetUserId },
-      {
-        onSuccess: (res) => {
-          if (res.sendFriendRequest.isSuccess) {
-            alert(t("friends.alerts.sent"));
-          } else {
-            alert(res.sendFriendRequest.message);
-          }
-        },
-      }
-    );
+    sendRequestMutation.mutate({ targetUserId });
   };
 
   const isLoading =

@@ -63,10 +63,26 @@
     border: none;
     cursor: pointer;
     font-weight: 600;
+    transition: all 0.2s ease-in-out;
 
     &:disabled {
       cursor: not-allowed;
       opacity: 0.7;
+    }
+
+    &--pending {
+      background-color: $neutral-300;
+      color: $neutral-700;
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
+
+    &--friend {
+      background-color: $neutral-200;
+      color: $neutral-700;
+      border: toRem(1) solid $neutral-300;
+      cursor: not-allowed;
+      opacity: 0.9;
     }
   }
 

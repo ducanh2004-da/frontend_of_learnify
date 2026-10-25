@@ -25,9 +25,7 @@ function FriendsPage() {
     friendDetailData,
     shouldShowAddFriendBtn,
     isLoading,
-    isSendingRequest,
     handleRespondRequest,
-    handleSendRequest,
     tabs,
   } = useFriendsPage(currentUser?.id);
 
@@ -89,9 +87,8 @@ function FriendsPage() {
               {friendDetailData ? (
                 <FriendDetail
                   {...friendDetailData}
+                  currentUserId={currentUser.id}
                   showAddFriendBtn={shouldShowAddFriendBtn}
-                  isSendingRequest={isSendingRequest}
-                  onSendFriendRequest={() => handleSendRequest(selectedId!)}
                 />
               ) : (
                 <div className="friend-page__placeholder-profile">

@@ -83,6 +83,10 @@
     "detail": {
       "add_friend": "Thêm bạn",
       "sending": "Đang gửi...",
+      "pending": "Đang chờ",
+      "request_sent": "Đã gửi lời mời",
+      "friend": "Bạn bè",
+      "friends": "Bạn bè",
       "badges": "Huy hiệu",
       "followers": "Người theo dõi",
       "streak_days": "Ngày liên tiếp",

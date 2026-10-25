@@ -1,16 +1,21 @@
 import { useTranslation } from "react-i18next";
 import type { TFriendDetail } from "./type";
+import FriendActionButton from "./FriendActionButton";
 import "./style.scss";
 
 type Props = TFriendDetail & {
   showAddFriendBtn?: boolean;
   isSendingRequest?: boolean;
   onSendFriendRequest?: () => void;
+  targetUserId?: string;
+  currentUserId?: string;
 };
 
 const FriendDetail = (props: Props) => {
   const { t } = useTranslation();
   const {
+    id,
+    targetUserId = id,
     imgBackground,
     imgUrl,
     name,
@@ -19,8 +24,8 @@ const FriendDetail = (props: Props) => {
     badges,
     follower,
     course,
-    showAddFriendBtn,
-    isSendingRequest,
+    showAddFriendBtn = true,
+    currentUserId,
     onSendFriendRequest,
   } = props;
 
@@ -45,15 +50,11 @@ const FriendDetail = (props: Props) => {
         <h3 className="friend-detail__name bold">{name}</h3>
         <p className="friend-detail__meta">{email}</p>
         {showAddFriendBtn && (
-          <button
-            className="friend-detail__add-btn"
-            onClick={onSendFriendRequest}
-            disabled={isSendingRequest}
-          >
-            {isSendingRequest
-              ? t("friends.detail.sending")
-              : t("friends.detail.add_friend")}
-          </button>
+          <FriendActionButton
+            targetUserId={targetUserId}
+            currentUserId={currentUserId}
+            onSendSuccess={onSendFriendRequest}
+          />
         )}
 
         <div className="friend-detail__stats friend-detail__stats--with-btn">

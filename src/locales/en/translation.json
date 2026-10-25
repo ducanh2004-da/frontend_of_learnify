@@ -83,6 +83,10 @@
     "detail": {
       "add_friend": "Add Friend",
       "sending": "Sending...",
+      "pending": "Pending",
+      "request_sent": "Request Sent",
+      "friend": "Friend",
+      "friends": "Friends",
       "badges": "Badges",
       "followers": "Followers",
       "streak_days": "Streak Days",
