@@ -111,7 +111,6 @@ function LearnerVerifyEmailPage() {
       if (countdownTimer) clearInterval(countdownTimer);
     };
   }, [token, navigate, router]);
-
   return (
     <div className="verify-email" id="verify-email-page">
       <div className="verify-email__container">
