@@ -49,6 +49,8 @@ type UserResponse {
   phoneNumber: String
   avatar: String
   role: String
+  diamond: Float
+  currentSteak: Float
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -533,6 +535,8 @@ input CreateCourseDto {
   courseName: String!
   abstract: String
   creatorId: String
+  isFree: Boolean!
+  originalPrice: Float!
 }
 
 input UpdateCourseDto {
@@ -699,6 +703,29 @@ input CreateReviewInput {
   courseId: String!
   rating: Int!
   content: String
+}
+
+type QuizOption {
+  id: String!
+  text: String!
+  isCorrect: Boolean!
+}
+
+type QuizQuestion {
+  id: String!
+  text: String!
+  options: [QuizOption!]!
+}
+
+type QuizResponse {
+  id: String!
+  lessonId: String!
+  name: String!
+  questions: [QuizQuestion!]!
+}
+
+type Mutation {
+  generateAutoQuiz(lessonId: String!): QuizResponse!
 }
 
 type Subscription {

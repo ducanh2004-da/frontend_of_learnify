@@ -7,6 +7,7 @@
   from {
     transform: translateY(100%);
   }
+
   to {
     transform: translateY(0%);
   }
@@ -17,6 +18,7 @@
   100% {
     stroke-dashoffset: 900;
   }
+
   50% {
     stroke-dashoffset: 750;
   }
@@ -26,9 +28,11 @@
   0% {
     transform: rotate(0deg);
   }
+
   50% {
     transform: rotate(180deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -39,6 +43,7 @@
   100% {
     opacity: 0.7;
   }
+
   50% {
     opacity: 1;
   }
@@ -46,7 +51,7 @@
 
 .loader-container {
   position: fixed;
-  z-index: 2;
+  z-index: 3;
 
   .logo {
     background-color: transparent;
@@ -106,12 +111,15 @@
     &-4 {
       background-color: $white;
     }
+
     &-3 {
       background-color: $mode-yellow;
     }
+
     &-2 {
       background-color: $mode-salmon;
     }
+
     &-1 {
       background-color: $mode-orange;
     }

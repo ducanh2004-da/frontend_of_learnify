@@ -1,0 +1,69 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.course-detail-view {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(16);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(20);
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding-right: toRem(4);
+  }
+
+  .course-detail-header {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+
+    &__learnings {
+      background-color: $neutral-150;
+      border-radius: $br-xs;
+    }
+  }
+
+  .lesson-syllabus {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+
+    &__title {
+      font-size: $fs-heading6;
+      margin-bottom: toRem(12);
+    }
+
+    &__item {
+      border-color: $neutral-200;
+    }
+
+    &__trigger {
+      background-color: $neutral-100;
+      border-radius: $br-xs;
+
+      &:hover {
+        background-color: $neutral-150;
+      }
+
+      &--open {
+        background-color: $neutral-150;
+        border-radius: $br-xs $br-xs 0 0;
+      }
+    }
+  }
+
+  .review-action-panel {
+    position: static;
+    border-radius: $br-sm;
+    @include box-shadow(0, 2, 12, 0);
+    margin-top: auto;
+  }
+}

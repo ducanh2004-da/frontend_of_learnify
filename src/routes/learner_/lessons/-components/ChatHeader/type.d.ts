@@ -6,5 +6,6 @@ export type TChatHeaderProps = {
   onSkipQA?: () => void;
   onSkipQuiz?: () => void;
   onFlag?: () => void;
+  flagged?: boolean;
   state?: "initial" | "lesson" | "qa" | "quiz" | "complete";
 };

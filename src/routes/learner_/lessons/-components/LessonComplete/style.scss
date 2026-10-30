@@ -1,0 +1,84 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.lesson-complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+  gap: toRem(16);
+  padding: toRem(40);
+
+  &__icon {
+    font-size: toRem(64);
+    color: $green-600;
+  }
+
+  &__title {
+    font-size: $fs-heading2;
+    font-weight: $fw-bold;
+    color: $neutral-900;
+    margin: 0;
+  }
+
+  &__text {
+    font-size: $fs-paragraph;
+    color: $neutral-600;
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    gap: toRem(16);
+    margin-top: toRem(16);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__next,
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: toRem(8);
+    padding: toRem(12) toRem(32);
+    border: none;
+    border-radius: $br-md;
+    font-size: $fs-paragraph;
+    font-weight: $fw-semibold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  &__next {
+    background-color: $navy-600;
+    color: $white;
+
+    &:hover {
+      background-color: $navy-700;
+    }
+  }
+
+  &__back {
+    background-color: transparent;
+    color: $navy-600;
+    border: 2px solid $navy-600;
+
+    &:hover {
+      background-color: $navy-100;
+    }
+  }
+
+  &__next-icon {
+    font-size: toRem(20);
+    order: 1;
+  }
+
+  &__back-icon {
+    font-size: toRem(20);
+  }
+}

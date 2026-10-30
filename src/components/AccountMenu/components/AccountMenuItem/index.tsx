@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import Icon from "@/components/Icon";
+import Icon, { type TIconName } from "@/components/Icon";
 
 type TAccountMenuItemProps = {
-  icon: string;
+  icon: TIconName;
   text: string;
   to?: string;
   onClick?: () => void;

@@ -1,0 +1,32 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.admin-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(16);
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(4);
+  }
+
+  &__title {
+    font-size: $fs-heading4;
+    font-weight: $fw-bold;
+    color: $neutral-900;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  &__subtitle {
+    font-size: $fs-paragraph;
+    color: $neutral-500;
+    margin: 0;
+    line-height: 1.5;
+  }
+}

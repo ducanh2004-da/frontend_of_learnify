@@ -21,7 +21,11 @@
     "noUncheckedIndexedAccess": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@styles/*": ["./src/styles/*"],
+      "@reviewer/*": ["./src/routes/reviewer/*"],
+      "@learner/*": ["./src/routes/learner/*"],
+      "@instructor/*": ["./src/routes/instructor/*"],
+      "@admin/*": ["./src/routes/admin/*"]
     },
     "noEmit": true
   }

@@ -93,13 +93,86 @@ export const GOOGLE_LOGIN_MUTATION = `
   }
 `;
 
-export const REFRESH_TOKEN_MUTATION = `
-  mutation RefreshToken($refreshToken: String!) {
-    refreshToken(refreshToken: $refreshToken) {
-      success
-      accessToken
-      refreshToken
+export const MARK_COMPLETE_LESSON_MUTATION = `
+  mutation MarkCompleteLesson($input: MarkCompleteInput!) {
+    markCompleteLesson(input: $input) {
+      isSuccess
       message
+    }
+  }
+`;
+
+export const GENERATE_AUTO_QUIZ_MUTATION = `
+  mutation GenerateAutoQuiz($lessonId: String!) {
+    generateAutoQuiz(lessonId: $lessonId) {
+      id
+      lessonId
+      name
+      questions {
+        id
+        text
+        options {
+          id
+          isCorrect
+          text
+        }
+      }
+    }
+  }
+`;
+
+export const UPDATE_PROGRESS_MUTATION = `
+  mutation UpdateProgress($input: UpdateProgressInput!) {
+    updateProgress(input: $input) {
+      isSuccess
+      message
+      progress {
+        id
+        userId
+        status
+        percentage
+        completedLessons
+        totalLessons
+        courseId
+      }
+    }
+  }
+`;
+
+export const CREATE_LESSON_FROM_AI_MUTATION = `
+  mutation CreateLessonFromAi($data: CreateLessonFromAiInput!, $pdfFile: Upload!) {
+    createLessonFromAi(data: $data, pdfFile: $pdfFile) {
+      lesson_id
+      content {
+        url_pdf
+        content
+      }
+    }
+  }
+`;
+
+export const DELETE_LESSON_MUTATION = `
+  mutation DeleteLesson($id: String!) {
+    deleteLesson(id: $id) {
+      id
+      lessonName
+      abstract
+      createdAt
+    }
+  }
+`;
+
+export const UPLOAD_DOCUMENT_MUTATION = `
+  mutation UploadDocument($file: Upload!, $uploadedBy: String) {
+    uploadDocument(file: $file, uploadedBy: $uploadedBy) {
+      success
+      document {
+        id
+        fileName
+        fileUrl
+        fileType
+        fileSize
+      }
     }
   }
 `;

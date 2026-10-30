@@ -2,10 +2,12 @@
 @use "@styles/colors" as *;
 @use "@styles/mixins" as *;
 @use "@styles/functions" as *;
+
 @keyframes skeleton-shimmer {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -32,6 +34,7 @@
     font-weight: 500;
     color: $mode-neutral;
   }
+
   &-info {
     display: flex;
     align-items: center;
@@ -82,11 +85,12 @@
   }
 }
 
-@include break(s) {
+@include break(sm) {
   .friend-item {
     padding: toRem(12) toRem(16);
     gap: toRem(12);
   }
+
   .friend-item-skeleton__avatar {
     width: toRem(32);
     height: toRem(32);

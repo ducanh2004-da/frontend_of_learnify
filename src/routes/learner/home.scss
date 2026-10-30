@@ -9,15 +9,19 @@
   gap: toRem(20);
   place-items: center;
 
-  > .title {
+  &__title {
     display: flex;
     place-items: center;
     flex-direction: column;
     gap: toRem(20);
 
-    h1,
-    h5 {
+    &-main,
+    &-sub {
       text-align: center;
+    }
+
+    &-sub {
+      font-size: $fs-heading5;
     }
   }
 
@@ -44,7 +48,7 @@
   }
 }
 
-@include break(s) {
+@include break(sm) {
   .home {
     margin-top: -5dvh;
     height: 85dvh;

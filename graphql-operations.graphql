@@ -1,0 +1,962 @@
+# ==============================================================================
+# Learnify Backend - Comprehensive GraphQL Operations & Fragments
+# Ready for Frontend Integration (Apollo Client / URQL / TanStack Query) & Postman/Altair
+# ==============================================================================
+
+# ==============================================================================
+# 1. CORE REUSABLE FRAGMENTS
+# ==============================================================================
+
+fragment UserFields on UserResponse {
+  id
+  username
+  email
+  phoneNumber
+  avatar
+  role
+  currentSteak
+  longestSteak
+  diamond
+  createdAt
+  updatedAt
+  learningDate
+}
+
+fragment CourseFields on CourseDto {
+  id
+  courseName
+  abstract
+  createdAt
+  updatedAt
+  keyLearnings
+  status
+}
+
+fragment CoursePriceFields on CoursePriceDto {
+  id
+  originalPrice
+  salePrice
+  isFree
+}
+
+fragment LessonFields on LessonDto {
+  id
+  lessonName
+  abstract
+  courseId
+  createdAt
+  updatedAt
+}
+
+fragment ProgressFields on ProgressResponse {
+  id
+  userId
+  courseId
+  completedLessons
+  totalLessons
+  percentage
+  status
+  lastCompletedLessonId
+  lastCompleteAt
+  updatedAt
+}
+
+fragment ProgressLessonFields on ProgressLessonResponse {
+  id
+  userId
+  courseId
+  lessonId
+  isUnlocked
+  isCompleted
+  completeAt
+  lessonOrder
+  createdAt
+}
+
+fragment NoteFields on NoteReturn {
+  id
+  title
+  content
+  enrollmentId
+  createdAt
+}
+
+fragment DocumentFields on Document {
+  id
+  fileName
+  fileUrl
+  fileType
+  fileSize
+  publicId
+  uploadedBy
+  createdAt
+  updatedAt
+}
+
+fragment PaymentFields on Payment {
+  id
+  userId
+  courseId
+  amount
+  currency
+  paymentStatus
+  transactionId
+  orderId
+  payosOrderCode
+  payosCheckoutUrl
+  payosQrCode
+  payosBin
+  payosAccountNumber
+  payosAccountName
+  paidAt
+  expiredAt
+  createdAt
+  updatedAt
+}
+
+fragment ReviewFields on Review {
+  id
+  rating
+  content
+  createdAt
+  updatedAt
+  user {
+    ...UserFields
+  }
+}
+
+fragment QuizFields on QuizResponse {
+  id
+  name
+  lessonId
+  createdAt
+  updatedAt
+  questions {
+    id
+    text
+    order
+    options {
+      id
+      text
+      isCorrect
+    }
+  }
+}
+
+fragment NodeFields on NodeResponse {
+  id
+  title
+  description
+  order
+}
+
+fragment RoadmapFields on RoadmapDto {
+  id
+  roadMapName
+  abstract
+  isDeleted
+  deletedAt
+}
+
+# ==============================================================================
+# 2. AUTHENTICATION & USER QUERIES AND MUTATIONS
+# ==============================================================================
+
+mutation Register($data: RegisterInput!) {
+  register(data: $data) {
+    success
+    message
+  }
+}
+
+mutation Login($data: LoginInput!) {
+  login(data: $data) {
+    success
+    message
+    accessToken
+    refreshToken
+  }
+}
+
+mutation GoogleLogin($idToken: String!) {
+  googleLogin(idToken: $idToken) {
+    success
+    message
+    accessToken
+    refreshToken
+  }
+}
+
+mutation VerifyEmail($token: String!) {
+  verifyEmail(token: $token) {
+    success
+    message
+  }
+}
+
+mutation VerifyUserByEmail($email: String!) {
+  verifyUserByEmail(email: $email) {
+    success
+    message
+  }
+}
+
+mutation RefreshToken {
+  refresh {
+    success
+    message
+  }
+}
+
+mutation Logout {
+  logout {
+    success
+    message
+  }
+}
+
+query GetCurrentUser {
+  currentUser {
+    isSuccess
+    count
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+query GetUserById($userId: String!) {
+  userById(userId: $userId) {
+    ...UserFields
+  }
+}
+
+query GetAllUsers {
+  users {
+    isSuccess
+    count
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+mutation CreateUser($data: CreateUserInput!) {
+  createUser(data: $data) {
+    ...UserFields
+  }
+}
+
+mutation UpdateUser($data: UpdateUserInput!) {
+  updateUser(data: $data) {
+    isSuccess
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+mutation UpdateUserAdmin($data: UpdateUserAdminInput!) {
+  updateAdmin(data: $data) {
+    ...UserFields
+  }
+}
+
+mutation DeleteUser($id: String!) {
+  deleteUser(id: $id)
+}
+
+# Gamification, Diamonds, Streaks & Friends
+mutation IncreaseStreak {
+  increaseCurrentStreak {
+    isSuccess
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+mutation UpdateDiamonds($data: UpdateDiamondInput!) {
+  updateDiamond(data: $data) {
+    isSuccess
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+query GetStreakLeaderboard {
+  getSteakLeaderboard {
+    isSuccess
+    count
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+query GetMyFriends {
+  myFriends {
+    isSuccess
+    count
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+query GetMyPendingFriendRequests {
+  myPendingFriendRequests {
+    isSuccess
+    count
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+mutation SendFriendRequest($targetUserId: String!) {
+  sendFriendRequest(targetUserId: $targetUserId) {
+    isSuccess
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+mutation RespondFriendRequest($requesterId: String!, $isAccepted: Boolean!) {
+  respondFriendRequest(requesterId: $requesterId, isAccepted: $isAccepted) {
+    isSuccess
+    message
+    users {
+      ...UserFields
+    }
+  }
+}
+
+# ==============================================================================
+# 3. COURSE MANAGEMENT QUERIES AND MUTATIONS
+# ==============================================================================
+
+query GetAllCourses($skip: Float!) {
+  getAllCourses(skip: $skip) {
+    isSuccess
+    count
+    message
+    courses {
+      ...CourseFields
+    }
+  }
+}
+
+query GetAllPublishedCourses($skip: Float!) {
+  getAllPublishedCourses(skip: $skip) {
+    isSuccess
+    count
+    message
+    courses {
+      ...CourseFields
+    }
+  }
+}
+
+query GetCoursesByStatus($status: StatusCourse!, $skip: Float!) {
+  getCoursesByStatus(status: $status, skip: $skip) {
+    isSuccess
+    count
+    message
+    courses {
+      ...CourseFields
+    }
+  }
+}
+
+query GetCourseById($id: String!) {
+  getCourseById(id: $id) {
+    ...CourseFields
+  }
+}
+
+query GetCourseByUserId($userId: String!) {
+  getCourseByUserId(userId: $userId) {
+    ...CourseFields
+  }
+}
+
+query GetCoursePrice($courseId: String!) {
+  getCoursePrice(courseId: $courseId) {
+    ...CoursePriceFields
+  }
+}
+
+mutation CreateCourse($data: CreateCourseDto!) {
+  createCourse(data: $data) {
+    isSuccess
+    message
+    courses {
+      ...CourseFields
+    }
+  }
+}
+
+mutation UpdateCourse($data: UpdateCourseDto!) {
+  updateCourse(data: $data) {
+    isSuccess
+    message
+    courses {
+      ...CourseFields
+    }
+  }
+}
+
+mutation DeleteCourse($id: String!) {
+  deleteCourse(id: $id) {
+    isSuccess
+    message
+  }
+}
+
+mutation PublishCourse($courseId: String!) {
+  publishCourse(courseId: $courseId) {
+    isSuccess
+    message
+    courses {
+      ...CourseFields
+    }
+  }
+}
+
+mutation RejectCourse($courseId: String!) {
+  rejectCourse(courseId: $courseId) {
+    isSuccess
+    message
+    courses {
+      ...CourseFields
+    }
+  }
+}
+
+# ==============================================================================
+# 4. LESSON & AI GENERATION OPERATIONS
+# ==============================================================================
+
+query GetAllLessons {
+  getAllLessons {
+    isSuccess
+    count
+    message
+    lessons {
+      ...LessonFields
+    }
+  }
+}
+
+query GetLessonsByCourseId($id: String!) {
+  getLessonsByCourseId(id: $id) {
+    isSuccess
+    count
+    message
+    lessons {
+      ...LessonFields
+    }
+  }
+}
+
+query GetLessonById($id: String!) {
+  getLessonById(id: $id) {
+    isSuccess
+    lessons {
+      ...LessonFields
+    }
+  }
+}
+
+query GetSectionByLesson($lessonId: String!) {
+  getSectionByLesson(lessonId: $lessonId) {
+    id
+    urlPdf
+    content
+    lecturer_segment
+    order
+    lessonId
+    createdAt
+  }
+}
+
+mutation CreateLessonFromAi(
+  $data: CreateLessonFromAiInput!
+  $pdfFile: Upload!
+) {
+  createLessonFromAi(data: $data, pdfFile: $pdfFile) {
+    lesson_id
+    content {
+      url_pdf
+      content
+    }
+  }
+}
+
+mutation UpdateLesson($data: UpdateLessonDto!) {
+  updateLesson(data: $data) {
+    isSuccess
+    message
+    lessons {
+      ...LessonFields
+    }
+  }
+}
+
+mutation DeleteLesson($id: String!) {
+  deleteLesson(id: $id) {
+    isSuccess
+    message
+  }
+}
+
+mutation MarkLessonDone($id: String!, $isDone: Boolean!) {
+  markDone(id: $id, isDone: $isDone) {
+    isSuccess
+    message
+    lessons {
+      ...LessonFields
+    }
+  }
+}
+
+query AskLessonQuestion($lessonId: String!, $question: String!) {
+  askLessonQuestion(lessonId: $lessonId, question: $question)
+}
+
+# ==============================================================================
+# 5. ENROLLMENT, PROGRESS & NOTES
+# ==============================================================================
+
+mutation EnrollCourse($input: CreateEnrollmentInput!) {
+  enrollCourse(input: $input) {
+    id
+    userId
+    courseId
+    enrolledAt
+  }
+}
+
+query GetUserEnrollments($userId: String!) {
+  getUserEnrollments(userId: $userId) {
+    id
+    userId
+    courseId
+    enrolledAt
+  }
+}
+
+query FindEnrollment($courseId: String!) {
+  findEnrollment(courseId: $courseId) {
+    id
+    userId
+    courseId
+    enrolledAt
+  }
+}
+
+query CountSuccessEnrollments($userId: String!) {
+  countSuccessEnrollments(userId: $userId) {
+    count
+    data {
+      id
+      courseName
+      abstract
+      keyLearnings
+      isDone
+    }
+  }
+}
+
+query CountInProgressEnrollments($userId: String!) {
+  countInProgressEnrollments(userId: $userId) {
+    count
+    progress
+    data {
+      id
+      courseName
+      abstract
+      keyLearnings
+      isDone
+    }
+  }
+}
+
+mutation InitProgressEnroll($input: CreateProgressInput!) {
+  initProgressEnroll(input: $input) {
+    isSuccess
+    count
+    message
+    progress {
+      ...ProgressFields
+    }
+    lessonProgress {
+      ...ProgressLessonFields
+    }
+  }
+}
+
+query GetProgressByUserAndCourse($userId: String!, $courseId: String!) {
+  getProgressByUserAndCourse(userId: $userId, courseId: $courseId) {
+    isSuccess
+    progress {
+      ...ProgressFields
+    }
+  }
+}
+
+query GetProgressLessonByUserAndCourse($userId: String!, $courseId: String!) {
+  getProgressLessonByUserAndCourse(userId: $userId, courseId: $courseId) {
+    isSuccess
+    lessonProgress {
+      ...ProgressLessonFields
+    }
+  }
+}
+
+mutation UpdateProgress($input: UpdateProgressInput!) {
+  updateProgress(input: $input) {
+    isSuccess
+    message
+    progress {
+      ...ProgressFields
+    }
+  }
+}
+
+mutation MarkCompleteLesson($input: MarkCompleteInput!) {
+  markCompleteLesson(input: $input) {
+    isSuccess
+    message
+    lessonProgress {
+      ...ProgressLessonFields
+    }
+  }
+}
+
+query GetNotesByEnrollment($enrollmentId: String!) {
+  getNotesByEnrollment(enrollmentId: $enrollmentId) {
+    ...NoteFields
+  }
+}
+
+mutation CreateNote($data: CreateNoteInput!) {
+  createNote(data: $data) {
+    isSuccess
+    message
+    data {
+      ...NoteFields
+    }
+  }
+}
+
+mutation UpdateNote($id: String!, $data: UpdateNoteInput!) {
+  updateNote(id: $id, data: $data) {
+    isSuccess
+    message
+    data {
+      ...NoteFields
+    }
+  }
+}
+
+mutation DeleteNote($id: String!) {
+  deleteNote(id: $id) {
+    isSuccess
+    message
+  }
+}
+
+# ==============================================================================
+# 6. AI CONVERSATIONS & CHAT (GRAPHQL & REALTIME)
+# ==============================================================================
+
+query GetMyAiConversations {
+  myConversations {
+    id
+    name
+    creatorId
+    createdAt
+    updatedAt
+  }
+}
+
+query GetAiConversationById($id: String!) {
+  conversation(id: $id) {
+    id
+    name
+    creatorId
+    createdAt
+    updatedAt
+  }
+}
+
+query GetMessagesByConversation($conversationId: String!) {
+  messagesByConversation(conversationId: $conversationId) {
+    id
+    content
+    senderType
+    conversationId
+    timestamp
+    type
+    message
+    agent
+    response
+  }
+}
+
+mutation CreateAiConversation($data: CreateConversationInput!) {
+  createConversation(data: $data) {
+    isSuccess
+    message
+    conversations {
+      id
+      name
+      creatorId
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation CreateAiMessage($data: CreateMessage2Input!) {
+  createMessage(data: $data) {
+    id
+    content
+    senderType
+    conversationId
+    timestamp
+    response
+  }
+}
+
+mutation UpdateAiMessage($data: UpdateMessageInput!) {
+  updateMessage(data: $data) {
+    id
+    content
+    timestamp
+  }
+}
+
+mutation DeleteAiMessage($id: String!) {
+  deleteMessage(id: $id) {
+    id
+  }
+}
+
+# Peer-to-Peer Chat & Socket Token Handshake
+mutation CreateSocketToken {
+  createSocketToken
+}
+
+mutation CreateConversationChat($userIds: [String!]!, $title: String) {
+  createConversationChat(userIds: $userIds, title: $title) {
+    id
+    title
+    isGroup
+    createdAt
+    participants {
+      id
+      userId
+      joinedAt
+    }
+  }
+}
+
+# Realtime Subscription for incoming messages
+subscription OnMessageAdded($conversationId: String!) {
+  messageAdded(conversationId: $conversationId) {
+    id
+    content
+    senderType
+    conversationId
+    timestamp
+    response
+  }
+}
+
+# ==============================================================================
+# 8. MINDMAP, QUIZ, ROADMAP & DOCUMENTS
+# ==============================================================================
+
+query GetMindMapByCourse($courseId: String!) {
+  getMindMapByCourse(courseId: $courseId) {
+    id
+    title
+    courseId
+    createdAt
+    nodes {
+      ...NodeFields
+      children {
+        ...NodeFields
+      }
+    }
+  }
+}
+
+mutation CreateMindMap($data: CreateMindMapInput!) {
+  createMindMap(data: $data) {
+    message
+    data {
+      id
+      title
+      courseId
+    }
+  }
+}
+
+mutation CreateMindMapNode($data: CreateNodeInput!) {
+  createNode(data: $data) {
+    message
+    data {
+      ...NodeFields
+    }
+  }
+}
+
+query GetQuizByLesson($lessonId: String!) {
+  getQuizByLesson(lessonId: $lessonId) {
+    ...QuizFields
+  }
+}
+
+mutation GenerateAutoQuiz($lessonId: String!) {
+  generateAutoQuiz(lessonId: $lessonId) {
+    ...QuizFields
+  }
+}
+
+query GetAllRoadmaps {
+  getAllRoadmap {
+    isSuccess
+    count
+    message
+    roadmap {
+      ...RoadmapFields
+    }
+  }
+}
+
+query GetRoadmapById($id: String!) {
+  getRoadmapById(id: $id) {
+    isSuccess
+    message
+    roadmap {
+      id
+      roadMapName
+      abstract
+      isDeleted
+      deletedAt
+      courses {
+        ...CourseFields
+      }
+    }
+  }
+}
+
+query GetAllDocuments {
+  getAllDocuments {
+    ...DocumentFields
+  }
+}
+
+query GetDocumentById($id: String!) {
+  getDocumentById(id: $id) {
+    ...DocumentFields
+  }
+}
+
+mutation UploadDocument($file: Upload!, $uploadedBy: String) {
+  uploadDocument(file: $file, uploadedBy: $uploadedBy) {
+    success
+    document {
+      ...DocumentFields
+    }
+  }
+}
+
+mutation DeleteDocument($id: String!) {
+  deleteDocument(id: $id) {
+    success
+  }
+}
+
+# ==============================================================================
+# 9. PAYMENTS & REVIEWS
+# ==============================================================================
+
+mutation CreatePayment($input: CreatePaymentInput!) {
+  createPayment(input: $input) {
+    id
+    orderId
+    checkoutUrl
+    qrCode
+    amount
+    currency
+    status
+    expiresAt
+    accountNumber
+    accountName
+    bin
+  }
+}
+
+query GetPaymentDetails($paymentId: String!) {
+  payment(paymentId: $paymentId) {
+    ...PaymentFields
+    course {
+      ...CourseFields
+    }
+  }
+}
+
+query GetMyPayments {
+  myPayments {
+    ...PaymentFields
+  }
+}
+
+query CheckPaymentStatus($input: CheckPaymentStatusInput!) {
+  checkPaymentStatus(input: $input) {
+    isSuccess
+    message
+    status
+    paidAt
+  }
+}
+
+mutation CancelPayment($input: CancelPaymentInput!) {
+  cancelPayment(input: $input)
+}
+
+query GetReviewsByCourse($courseId: String!) {
+  getReviewsByCourse(courseId: $courseId) {
+    isSuccess
+    message
+    reviews {
+      ...ReviewFields
+    }
+  }
+}
+
+mutation CreateReview($data: CreateReviewInput!) {
+  createReview(data: $data) {
+    isSuccess
+    message
+    reviews {
+      ...ReviewFields
+    }
+  }
+}

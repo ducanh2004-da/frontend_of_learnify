@@ -9,13 +9,24 @@
   align-items: center;
   gap: toRem(20);
   cursor: pointer;
-  color: $neutral-900;
+  color: $neutral-600;
+  background: none;
+  border: none;
+  padding: toRem(8) toRem(16);
   @include transition;
   transition-property: color, transform;
 
   &:hover {
     color: $black;
     transform: translateY(toRem(-2));
+  }
+
+  &--selected {
+    color: $navy-600;
+
+    .label {
+      font-weight: $fw-semibold;
+    }
   }
 
   .icon {

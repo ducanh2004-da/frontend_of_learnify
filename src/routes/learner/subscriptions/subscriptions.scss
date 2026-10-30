@@ -1,0 +1,44 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.subscriptions {
+  display: flex;
+  flex-direction: column;
+  padding: 0 toRem(100);
+  align-items: center;
+  gap: toRem(50);
+
+  &__subtitle {
+    margin-top: toRem(-30);
+  }
+
+  &__heading,
+  &__subtitle {
+    text-align: center;
+    padding: 0 toRem(200);
+  }
+
+  &__cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(toRem(300), 1fr));
+    gap: toRem(30);
+  }
+
+  @include break(md) {
+    padding: 0;
+
+    &__heading,
+    &__subtitle {
+      padding: 0;
+    }
+  }
+
+  @include break(sm) {
+    &__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+}

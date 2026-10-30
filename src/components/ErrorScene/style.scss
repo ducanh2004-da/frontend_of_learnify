@@ -18,7 +18,7 @@
   text-wrap: balance;
   height: 100%;
 
-  @include break(s) {
+  @include break(sm) {
     padding: toRem(24);
   }
 

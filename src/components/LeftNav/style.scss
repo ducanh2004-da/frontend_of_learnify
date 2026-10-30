@@ -6,16 +6,18 @@
 .left-nav {
   position: sticky;
   top: 0;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
   justify-content: space-between;
   padding: toRem(20) toRem(15);
-  border-right: toRem(1) solid transparent;
   height: 100dvh;
   width: toRem(67.5 + 30);
   background-color: $white;
   @include transition;
   transition-property: background-color, border-color, margin-left;
   border-right: toRem(1) solid $navy-pastel-200;
-  z-index: 1;
+  z-index: 2;
 
   &.active {
     margin-left: 0;
@@ -25,40 +27,28 @@
     margin-left: toRem(-(67.5 + 30));
   }
 
-  @include break(s) {
+  @include break(sm) {
     position: fixed;
-    z-index: 100;
-  }
-
-  &.compact {
-    width: toRem(60);
-    padding: toRem(20);
-    height: calc(100dvh - toRem(77));
-  }
-
-  &,
-  &-top,
-  &-bot,
-  .item-list {
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-  }
-
-  &-top {
-    row-gap: toRem(40);
-  }
-
-  &-bot {
-    row-gap: toRem(24);
-  }
-
-  .item-list {
-    row-gap: toRem(20);
   }
 
   .hidden {
     display: none;
+  }
+
+  &__overlay {
+    display: none;
+  }
+}
+
+@include break(sm) {
+  .left-nav__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: to-rgba($black, 0.45);
+    z-index: 1;
+    @include transition;
+    transition-property: opacity;
   }
 }
 
@@ -67,7 +57,7 @@
   border-color: transparent;
 }
 
-@include break(s) {
+@include break(sm) {
   .left-nav.top {
     background-color: $white;
   }

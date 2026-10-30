@@ -164,6 +164,9 @@ export const COLORS = {
   accentDarkYellow: "var(--color-accent-dark-yellow)",
   accentPortage: "var(--color-accent-portage)",
   accentIndicolite: "var(--color-accent-indicolite)",
+  accentEmerald: "var(--color-accent-emerald)",
+  accentBlaze: "var(--color-accent-blaze)",
+  accentWarning: "var(--color-accent-warning)",
 } as const;
 
 export type ThemeColors = typeof COLORS;

@@ -6,7 +6,7 @@ export const Route = createFileRoute("/learner/user")({
     const { user } = await getCurrentUserFn();
     if (!user)
       throw redirect({
-        to: "/learner/log-in",
+        to: "/auth/log-in",
         search: { redirect: "/learner/user" },
       });
     return { user };

@@ -1,0 +1,274 @@
+$green-shades: 100, 150, 200, 250, 300, 400, 500, 600, 700, 800, 900;
+$warm-shades: 100, 200, 250, 300, 400, 500, 600, 700, 800, 900;
+
+$color-map: (
+  "green": (
+    shades: $green-shades,
+    values: (
+      100: #f9faf9,
+      150: #e3e8e4,
+      200: #d2dad3,
+      250: #b6c3b8,
+      300: #9aac9c,
+      400: #4a6a4d,
+      500: #567659,
+      600: #3f5a42,
+      700: #2a3e2c,
+      800: #242e25,
+      900: #1d201d,
+    ),
+  ),
+  "green-pastel": (
+    shades: (
+      100,
+      200,
+    ),
+    values: (
+      100: #d0f1d3,
+      200: #adebb4,
+    ),
+  ),
+  "neutral": (
+    shades: $green-shades,
+    values: (
+      100: #f5f5f5,
+      150: #ebebeb,
+      200: #dbdbdb,
+      250: #c7c7c7,
+      300: #adadad,
+      400: #6b6b6b,
+      500: #757575,
+      600: #5c5c5c,
+      700: #474747,
+      800: #2e2e2e,
+      900: #151515,
+    ),
+  ),
+  "neutral-pastel": (
+    shades: (
+      100,
+      200,
+    ),
+    values: (
+      100: #e0e0e0,
+      200: #cccccc,
+    ),
+  ),
+  "orange": (
+    shades: $green-shades,
+    values: (
+      100: #f8e4df,
+      150: #f4d2ca,
+      200: #eeb8ad,
+      250: #e89a8c,
+      300: #e7956c,
+      400: #d97a6e,
+      500: #d85e45,
+      600: #d65b40,
+      700: #e64c2e,
+      800: #b94a32,
+      900: #9f402a,
+    ),
+  ),
+  "orange-pastel": (
+    shades: (
+      100,
+      200,
+    ),
+    values: (
+      100: #f1d6d0,
+      200: #ebb9ad,
+    ),
+  ),
+  "salmon": (
+    shades: $green-shades,
+    values: (
+      100: #fdf0ec,
+      150: #fbe3dd,
+      200: #f8d2ca,
+      250: #f4beb3,
+      300: #f0aaa0,
+      400: #ed9c91,
+      500: #eb9689,
+      600: #ea9285,
+      700: #ec9a8d,
+      800: #d28276,
+      900: #b86f64,
+    ),
+  ),
+  "salmon-pastel": (
+    shades: (
+      100,
+      200,
+    ),
+    values: (
+      100: #f1d4d0,
+      200: #ebb6ad,
+    ),
+  ),
+  "dark-green": (
+    shades: $green-shades,
+    values: (
+      100: #daddd9,
+      150: #c9cec8,
+      200: #b5bdb3,
+      250: #98a394,
+      300: #7b8979,
+      400: #5e6f5d,
+      500: #485847,
+      600: #3a4b3f,
+      700: #242e25,
+      800: #1d251e,
+      900: #171c18,
+    ),
+  ),
+  "dark-green-pastel": (
+    shades: (
+      100,
+      200,
+    ),
+    values: (
+      100: #d0f1d3,
+      200: #adebb4,
+    ),
+  ),
+  "navy": (
+    shades: $green-shades,
+    values: (
+      100: #e1e4e8,
+      150: #cfd4db,
+      200: #b8c0ca,
+      250: #9ca6b4,
+      300: #808c9e,
+      400: #647387,
+      500: #556477,
+      600: #4b5a6c,
+      700: #2b323d,
+      800: #232932,
+      900: #1c2128,
+    ),
+  ),
+  "navy-pastel": (
+    shades: (
+      100,
+      200,
+    ),
+    values: (
+      100: #d0ddf1,
+      200: #adc5eb,
+    ),
+  ),
+  "brown": (
+    shades: $green-shades,
+    values: (
+      100: #e8e1da,
+      150: #d9cfc4,
+      200: #c6b7a6,
+      250: #af9b86,
+      300: #978065,
+      400: #7f664c,
+      500: #6e5740,
+      600: #624f39,
+      700: #4c3824,
+      800: #3e2e1e,
+      900: #322519,
+    ),
+  ),
+  "brown-pastel": (
+    shades: (
+      100,
+      200,
+    ),
+    values: (
+      100: #f1e0d0,
+      200: #ebccad,
+    ),
+  ),
+  "yellow": (
+    shades: $green-shades,
+    values: (
+      100: #fff7eb,
+      150: #fdedd8,
+      200: #fce1bf,
+      250: #fbd5a6,
+      300: #fac98d,
+      400: #f9c07a,
+      500: #f9ba70,
+      600: #f8b668,
+      700: #ffbb65,
+      800: #d9a55f,
+      900: #b88c4f,
+    ),
+  ),
+  "yellow-pastel": (
+    shades: (
+      100,
+      200,
+    ),
+    values: (
+      100: #f1e2d0,
+      200: #ebd0ad,
+    ),
+  ),
+  "warm": (
+    shades: $warm-shades,
+    values: (
+      100: #fdf9f2,
+      200: #f6f0e3,
+      250: #ede6d9,
+      300: #dbd4c7,
+      400: #b8b2a2,
+      500: #979286,
+      600: #6b6861,
+      700: #4a4845,
+      800: #302f2c,
+      900: #201f1d,
+    ),
+  ),
+  "cool": (
+    shades: $warm-shades,
+    values: (
+      100: #fafaf9,
+      200: #ecece9,
+      250: #dbdbd4,
+      300: #c8c9c4,
+      400: #b2b3af,
+      500: #989a9a,
+      600: #646a6b,
+      700: #494f4f,
+      800: #303535,
+      900: #191b1b,
+    ),
+  ),
+  "purple": (
+    shades: $green-shades,
+    values: (
+      100: #f0f0fc,
+      150: #e0e0fa,
+      200: #c8c8f5,
+      250: #b0b0f0,
+      300: #9595e8,
+      400: #7a7ae0,
+      500: #667eea,
+      600: #5568d3,
+      700: #764ba2,
+      800: #5a3d82,
+      900: #3d2a5c,
+    ),
+  ),
+);
+
+$accent-map: (
+  "accent-smoothing-lime": #daef68,
+  "accent-lilac-vodka": #c0baf2,
+  "accent-minty": #73d29e,
+  "accent-light-truffle": #baa694,
+  "accent-blue-celeste": #81c2ec,
+  "accent-classic-pink": #fa9cc6,
+  "accent-dark-yellow": #ffce00,
+  "accent-portage": #8f9bff,
+  "accent-indicolite": #91fa91,
+  "accent-emerald": #10b981,
+  "accent-blaze": #ef4444,
+  "accent-warning": #f59e0b,
+);

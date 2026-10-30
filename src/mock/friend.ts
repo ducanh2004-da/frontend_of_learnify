@@ -1,6 +1,6 @@
 import { DEFAULT_AVATAR } from "@/constants/avatar";
-import type { TFriendDetail } from "@/routes/learner/friends/-components/FriendDetail/type";
-import type { TFriendItem } from "@/routes/learner/friends/-components/FriendItem/type";
+import type { TFriendDetail } from "@learner/friends/-components/FriendDetail/type";
+import type { TFriendItem } from "@learner/friends/-components/FriendItem/type";
 
 export const MOCK_FRIEND: TFriendItem[] = [
   {

@@ -1,12 +1,16 @@
 import classnames from "classnames";
-import "./style.scss";
+import { useTranslation } from "react-i18next";
+
 import Icon from "@/components/Icon";
 import IconButton from "@/components/IconButton";
 import { COLORS } from "@/styles/colors";
 import { useChatHeader } from "./-hooks/useChatHeader";
 import type { TChatHeaderProps } from "./type";
 
+import "./style.scss";
+
 const ChatHeader = (props: TChatHeaderProps) => {
+  const { t } = useTranslation();
   const {
     className,
     initialValue,
@@ -15,11 +19,12 @@ const ChatHeader = (props: TChatHeaderProps) => {
     onSkipQA,
     onSkipQuiz,
     onFlag,
+    flagged,
     state,
   } = props;
   const { inputRef, wrapperRef, handleInputChange, handleSubmit } =
     useChatHeader({
-      placeholder: "New Conversation",
+      placeholder: t("chat_header.new_conversation"),
       initialValue,
       onUpdate,
     });
@@ -29,20 +34,20 @@ const ChatHeader = (props: TChatHeaderProps) => {
   return (
     <form className={cls} onSubmit={handleSubmit}>
       <div className="chat-header-context" ref={wrapperRef}>
-        <Icon name="chat" style={{ pointerEvents: "none" }} />
+        <Icon name="chat" style={{ pointerEvents: "none" }} size="25px" />
         <div>
           <input
             id="chat-header-input"
             ref={inputRef}
             className="chat-header-context-title medium"
-            placeholder="New Conversation"
+            placeholder={t("chat_header.new_conversation")}
             onChange={handleInputChange}
           />
           <IconButton
             icon="arrow_drop_down"
             type="secondary"
             size="tiny"
-            tooltip="Change topic"
+            tooltip={t("chat_header.change_topic")}
             className="chat-header-context-dropdown"
           />
         </div>
@@ -57,7 +62,7 @@ const ChatHeader = (props: TChatHeaderProps) => {
                 size="tiny"
                 color={COLORS.white}
                 backgroundColor={COLORS.accentLilacVodka}
-                tooltip="Skip to Q&A"
+                tooltip={t("chat_header.skip_qa")}
               />
             )}
             {state === "qa" && (
@@ -67,7 +72,7 @@ const ChatHeader = (props: TChatHeaderProps) => {
                 size="tiny"
                 color={COLORS.white}
                 backgroundColor={COLORS.accentBlueCeleste}
-                tooltip="Skip to Quiz"
+                tooltip={t("chat_header.skip_quiz")}
               />
             )}
             {state === "quiz" && (
@@ -77,16 +82,17 @@ const ChatHeader = (props: TChatHeaderProps) => {
                 size="tiny"
                 color={COLORS.white}
                 backgroundColor={COLORS.accentPortage}
-                tooltip="Complete lesson"
+                tooltip={t("chat_header.complete_lesson")}
               />
             )}
             <IconButton
               icon="flag"
               onClick={onFlag}
               size="tiny"
-              color={COLORS.white}
-              backgroundColor={COLORS.modeOrange}
-              tooltip="Report issue"
+              disabled={flagged}
+              color={flagged ? COLORS.neutral500 : COLORS.white}
+              backgroundColor={flagged ? COLORS.neutral200 : COLORS.modeOrange}
+              tooltip={t("chat_header.report_issue")}
             />
           </>
         )}

@@ -14,7 +14,16 @@ log()  { printf "${GREEN}[%s]${NC} %s\n" "$(date +%H:%M:%S)" "$1"; }
 err()  { printf "${RED}[%s]${NC} %s\n" "$(date +%H:%M:%S)" "$1" >&2; }
 
 log "Building Docker image ${IMAGE_NAME}..."
-docker build -t "$IMAGE_NAME" .
+
+BUILD_ARGS=""
+if [[ -f .env ]]; then
+    set -a; source .env; set +a
+fi
+for Var in VITE_GRAPHQL_ENDPOINT VITE_GOOGLE_CLIENT_ID VITE_ELEVENLABS_API_KEY VITE_ELEVENLABS_VOICE_ID VITE_ELENVENLABS_MODEL_ID VITE_ELEVENLABS_OUTPUT_FORMAT VITE_ELENVENLABS_ENABLE_TIMESTAMPS VITE_EDGETTS_VOICE_ID VITE_MODEL_CDN_URL; do
+    BUILD_ARGS="$BUILD_ARGS --build-arg ${Var}=${!Var:-}"
+done
+
+docker build --no-cache $BUILD_ARGS -t "$IMAGE_NAME" .
 
 log "Compressing image..."
 IMAGE_FILE="/tmp/learnify-deploy-$(date +%s).tar.gz"

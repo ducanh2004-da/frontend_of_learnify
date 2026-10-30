@@ -1,0 +1,130 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.admin-recent-users {
+  background-color: $white;
+  border-radius: $br-lg;
+  padding: toRem(22) toRem(24);
+  @include box-shadow(0, 2, 16, 0);
+  @include transition;
+  display: flex;
+  flex-direction: column;
+  gap: toRem(16);
+  flex: 1;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: $fs-heading6;
+    font-weight: $fw-bold;
+    color: $neutral-900;
+    margin: 0;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: toRem(0);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: toRem(12);
+    padding: toRem(12) 0;
+    border-bottom: toRem(1) solid $neutral-100;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  &__avatar {
+    width: toRem(38);
+    height: toRem(38);
+    border-radius: 50%;
+    background: linear-gradient(135deg, $navy-400, $navy-700);
+    color: $white;
+    font-size: $fs-paragraph;
+    font-weight: $fw-bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: toRem(2);
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: $fs-paragraph;
+    font-weight: $fw-semibold;
+    color: $neutral-900;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__email {
+    font-size: $fs-small;
+    color: $neutral-500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: toRem(4);
+    flex-shrink: 0;
+  }
+
+  &__role {
+    font-size: $fs-smaller;
+    font-weight: $fw-semibold;
+    padding: toRem(3) toRem(8);
+    border-radius: $br-xl;
+
+    &--blue {
+      background-color: $navy-pastel-100;
+      color: $navy-700;
+    }
+
+    &--green {
+      background-color: $green-pastel-200;
+      color: $green-700;
+    }
+
+    &--orange {
+      background-color: $orange-pastel-100;
+      color: $orange-700;
+    }
+
+    &--red {
+      background-color: $salmon-pastel-100;
+      color: $salmon-700;
+    }
+  }
+
+  &__time {
+    font-size: $fs-smaller;
+    color: $neutral-400;
+  }
+}

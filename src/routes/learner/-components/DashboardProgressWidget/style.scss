@@ -10,7 +10,7 @@
   gap: toRem(20);
   overflow: hidden;
 
-  &-header {
+  &__header {
     h3 {
       font-size: toRem(20);
       line-height: toRem(25);
@@ -20,36 +20,36 @@
     }
   }
 
-  &-grid {
+  &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: toRem(10);
+  }
 
-    &-pill {
-      display: flex;
-      align-items: center;
-      padding: toRem(5);
-      font-size: toRem(12);
-      font-weight: 500;
-      border-radius: $br-xl;
+  &__grid-pill {
+    display: flex;
+    align-items: center;
+    padding: toRem(5);
+    font-size: toRem(12);
+    font-weight: 500;
+    border-radius: $br-xl;
 
-      .dot {
-        width: toRem(8);
-        height: toRem(8);
-        border-radius: 50%;
-        background-color: $mode-navy;
-        margin-right: toRem(8);
-      }
-      .num {
-        margin-left: auto;
-        color: $black;
-      }
+    .dot {
+      width: toRem(8);
+      height: toRem(8);
+      border-radius: 50%;
+      background-color: $mode-navy;
+      margin-right: toRem(8);
+    }
+    .num {
+      margin-left: auto;
+      color: $black;
     }
   }
 }
 
-@include break(s) {
-  .progress-widget-grid {
+@include break(sm) {
+  .progress-widget__grid {
     grid-template-columns: 1fr;
   }
 }

@@ -2,10 +2,15 @@ import { queryOptions } from "@tanstack/react-query";
 import axios from "redaxios";
 
 export type User = {
-  id: number;
-  name: string;
+  id: string;
+  name?: string;
   email: string;
   username?: string;
+  role?: string;
+  diamond?: number;
+  currentSteak?: number;
+  phoneNumber?: string;
+  avatar?: string;
 };
 
 export const DEPLOY_URL = "http://localhost:3000";

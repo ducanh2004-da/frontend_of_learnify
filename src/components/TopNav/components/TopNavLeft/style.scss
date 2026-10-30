@@ -5,13 +5,24 @@
 .top-nav-left {
   gap: toRem(20);
 
+  .search {
+    padding: toRem(2) toRem(10);
+    font-size: $fs-paragraph;
+    min-width: 40dvw;
+
+    button svg {
+      width: toRem(25);
+    }
+  }
+
   &-context {
     gap: toRem(10);
     display: flex;
   }
 
   button,
-  a {
+  a,
+  svg {
     color: $black;
   }
 

@@ -11,70 +11,83 @@
   background-color: $white;
   overflow: hidden;
 
-  &-top {
+  &__top {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: toRem(16);
+  }
 
-    &-number {
-      font-size: toRem(80);
-      font-weight: 500;
-      line-height: 1;
-      color: $neutral-900;
-      margin: 0;
+  &__top-number {
+    font-size: toRem(80);
+    font-weight: 500;
+    line-height: 1;
+    color: $neutral-900;
+    margin: 0;
+  }
+
+  &__top-info {
+    display: flex;
+    flex-direction: column;
+
+    .fire-icon {
+      font-size: toRem(24);
     }
-
-    &-info {
-      display: flex;
-      flex-direction: column;
-
-      .fire-icon {
-        font-size: toRem(24);
-      }
-      .streak-text {
-        font-size: toRem(12);
-        color: $neutral-900;
-        line-height: 1.2;
-      }
+    .streak-text {
+      font-size: toRem(12);
+      color: $neutral-900;
+      line-height: 1.2;
     }
   }
 
-  &-divider {
+  &__divider {
     border: none;
     border-top: toRem(1) solid $neutral-250;
     margin: 0;
   }
 
-  &-days {
+  &__days {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: toRem(5);
+  }
 
-    &-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: toRem(8);
+  &__days-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: toRem(8);
 
-      .circle {
-        width: toRem(24);
-        height: toRem(24);
-        border-radius: 50%;
-        background-color: $neutral-100;
-        border: toRem(1) dashed $mode-neutral;
+    .circle {
+      width: toRem(24);
+      height: toRem(24);
+      border-radius: 50%;
+      background-color: $neutral-100;
+      border: toRem(1) dashed $mode-neutral;
+      transition:
+        background-color $transition-duration,
+        border-color $transition-duration;
+
+      &--active {
+        background-color: $mode-orange;
+        border-color: $mode-orange;
       }
-      span {
-        font-size: toRem(10);
-        color: $black;
+
+      &--streak {
+        background-color: $green-pastel-200;
+        border-color: $green-400;
       }
+    }
+    span {
+      font-size: toRem(10);
+      color: $black;
     }
   }
 }
 
-@include break(s) {
-  .streak-widget-top-number {
+@include break(sm) {
+  .streak-widget__top-number {
     font-size: toRem(60);
   }
 }

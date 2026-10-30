@@ -1,13 +1,16 @@
 import classnames from "classnames";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import TextButton from "@/components/TextButton";
 import Icon from "@/components/Icon";
 import TetrisLoader from "@/components/TetrisLoader";
+import TextButton from "@/components/TextButton";
 import "./style.scss";
 
 type CommentFormProps = {
   className?: string;
+  initialRating?: number;
+  initialContent?: string;
   onSubmit: (rating: number, content: string) => void;
   onCancel: () => void;
   isLoading?: boolean;
@@ -15,36 +18,54 @@ type CommentFormProps = {
 
 const CommentForm = ({
   className,
+  initialRating = 0,
+  initialContent = "",
   onSubmit,
   onCancel,
-  isLoading,
+  isLoading = false,
 }: CommentFormProps) => {
-  const [rating, setRating] = useState(0);
-  const [content, setContent] = useState("");
+  const [rating, setRating] = useState(initialRating);
+  const [content, setContent] = useState(initialContent);
+  const { t } = useTranslation();
   const cls = classnames("comment-form", className);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     if (rating === 0) {
-      toast.error("Please select a rating!");
+      toast.error(t("comment_form.toast_no_rating"));
       return;
     }
-    if (!content.trim()) {
-      toast.error("Please enter your review!");
-      return;
-    }
-    onSubmit(rating, content);
+    onSubmit(rating, content.trim());
   };
 
   return (
-    <div className={cls}>
+    <form className={cls} onSubmit={handleSubmit}>
       <div className="comment-form-head">
-        <h4>Rate this course</h4>
-        <div className="stars">
+        <h4 id="comment-form-rating-label">{t("comment_form.rating_label")}</h4>
+        <div
+          className="stars"
+          role="radiogroup"
+          aria-labelledby="comment-form-rating-label"
+        >
           {[1, 2, 3, 4, 5].map((star) => (
-            <span
+            <button
               key={star}
+              type="button"
+              role="radio"
+              aria-checked={star <= rating}
+              aria-label={
+                star === 1
+                  ? t("comment_form.star_aria", { star })
+                  : t("comment_form.star_aria_plural", { star })
+              }
               onClick={() => setRating(star)}
-              style={{ cursor: "pointer" }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setRating(star);
+                }
+              }}
+              disabled={isLoading}
             >
               <Icon
                 name="star"
@@ -57,13 +78,17 @@ const CommentForm = ({
                       : "var(--color-neutral-200)",
                 }}
               />
-            </span>
+            </button>
           ))}
         </div>
       </div>
       <div className="comment-form-body">
+        <label htmlFor="comment-form-textarea" className="sr-only">
+          {t("comment_form.review_label")}
+        </label>
         <textarea
-          placeholder="Share your thoughts about this course..."
+          id="comment-form-textarea"
+          placeholder={t("comment_form.placeholder")}
           value={content}
           onChange={(e) => setContent(e.target.value)}
           rows={3}
@@ -72,22 +97,32 @@ const CommentForm = ({
       </div>
       <div className="comment-form-footer">
         <TextButton
-          text="Cancel"
+          text={t("comment_form.cancel")}
           type="outlined"
+          icon="close"
+          size="small"
           onClick={onCancel}
           disabled={isLoading}
+          buttonType="button"
         />
         <div className="submit-btn-wrapper">
           {isLoading && <TetrisLoader size="sm" />}
           <TextButton
-            text="Submit Review"
+            text={
+              isLoading
+                ? (t("course_detail.processing") ?? "Submitting...")
+                : t("comment_form.submit")
+            }
             type="primary"
-            onClick={handleSubmit}
-            disabled={isLoading}
+            icon="send"
+            size="small"
+            buttonType="submit"
+            onClick={() => {}}
+            disabled={isLoading || rating === 0}
           />
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

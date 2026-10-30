@@ -1,0 +1,43 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+@use "sass:math";
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  width: 100dvw;
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    background-color: $green-100;
+    @include transition;
+    padding: toRem(50) toRem(100);
+    gap: 10dvh;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100dvh - toRem(65) - toRem(100));
+  }
+}
+
+@include break(md) {
+  .body {
+    .inner {
+      padding: toRem(100) toRem(75);
+    }
+  }
+}
+
+@include break(sm) {
+  .body {
+    .inner {
+      padding: toRem(75) toRem(50);
+    }
+  }
+}

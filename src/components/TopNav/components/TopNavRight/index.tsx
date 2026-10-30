@@ -1,8 +1,9 @@
 import AccountMenu from "@/components/AccountMenu";
 import IconButton from "@/components/IconButton";
-import Icon from "@/components/Icon";
+import NotificationPopup from "@/components/NotificationPopup";
 import classNames from "classnames";
 import { useMemo, useState, useRef, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { logoutFn } from "@/server/auth";
 import useOnClickOutside from "@/hooks/useOnClickOutside";
 import { useAuthStore } from "@/store/authStore";
@@ -13,8 +14,11 @@ import { useShallow } from "zustand/react/shallow";
 import "./style.scss";
 
 const TopNavRight = () => {
+  const { t } = useTranslation();
   const [accountMenuVisible, setAccountMenuVisible] = useState(false);
+  const [notificationVisible, setNotificationVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const notifyRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const { isAuthenticated, user, onLogout } = useAuthStore(
@@ -29,10 +33,14 @@ const TopNavRight = () => {
     if (accountMenuVisible) setAccountMenuVisible(false);
   });
 
+  useOnClickOutside(notifyRef, () => {
+    if (notificationVisible) setNotificationVisible(false);
+  });
+
   const handleLogout = useCallback(async () => {
     await logoutFn();
     onLogout();
-    navigate({ to: "/learner/log-in" });
+    navigate({ to: "/auth/log-in" });
   }, [onLogout, navigate]);
 
   const accountMenuClassName = useMemo(() => {
@@ -44,20 +52,20 @@ const TopNavRight = () => {
       return (
         <>
           <TextButton
-            text="Sign up"
+            text={t("pill_top_nav.sign_up")}
             icon="person_add"
             type="secondary"
             size="small"
-            onClick={() => navigate({ to: "/learner/sign-up" })}
+            onClick={() => navigate({ to: "/auth/sign-up" })}
           />
           <TextButton
-            text="Log in"
+            text={t("pill_top_nav.log_in")}
             icon="login"
             type="secondary"
             backgroundColor={COLORS.modeGreen}
             size="small"
             color={COLORS.white}
-            onClick={() => navigate({ to: "/learner/log-in" })}
+            onClick={() => navigate({ to: "/auth/log-in" })}
           />
         </>
       );
@@ -65,14 +73,35 @@ const TopNavRight = () => {
 
     return (
       <>
-        <div className="crystal">
-          <Icon name="diamond" />
-          <p>{user.diamond || 0}</p>
+        <div ref={notifyRef}>
+          <NotificationPopup
+            className={classNames({ invisible: !notificationVisible })}
+          />
         </div>
-        <div className="streak">
-          <Icon name="mode_heat" />
-          <p>{user.currentSteak || 0}</p>
-        </div>
+        <TextButton
+          icon="diamond"
+          text={String(
+            user.diamond ?? (user as { diamonds?: number })?.diamonds ?? 0
+          )}
+          tooltip={t("pill_top_nav.diamond_tooltip")}
+          onClick={() => navigate({ to: "/learner/shop" })}
+          size="small"
+          type="secondary"
+          typeSecondary="pastelNavy"
+        />
+        <TextButton
+          icon="mode_heat"
+          text={String(
+            user.currentSteak ??
+              (user as { currentStreak?: number })?.currentStreak ??
+              0
+          )}
+          tooltip={t("pill_top_nav.streak_tooltip")}
+          onClick={() => navigate({ to: "/learner/streak" })}
+          size="small"
+          type="secondary"
+          typeSecondary="pastelOrange"
+        />
         <IconButton
           icon="notifications_active"
           specialIcon="notifications"
@@ -80,7 +109,7 @@ const TopNavRight = () => {
           size="tiny"
           shape="circle"
           ariaLabel="Notifications"
-          onClick={() => {}}
+          onClick={() => setNotificationVisible(!notificationVisible)}
         />
         <IconButton
           icon="person"
@@ -95,7 +124,7 @@ const TopNavRight = () => {
           username={user.username || "User"}
           uid={user.email || ""}
           id={user.id || ""}
-          subscription={"starter"}
+          subscription={user.subscription || "Starter"}
           className={accountMenuClassName}
           onLogout={handleLogout}
         />

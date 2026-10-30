@@ -1,0 +1,105 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.course-detail-header {
+  background-color: $white;
+  border-radius: $br-sm;
+  padding: toRem(24) toRem(28);
+  @include box-shadow(0, 2, 12, 0);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(20);
+
+  &__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: toRem(16);
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+  }
+
+  &__title {
+    font-size: $fs-heading5;
+    font-weight: $fw-medium;
+    color: $neutral-900;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  &__byline {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+    flex-wrap: wrap;
+  }
+
+  &__creator {
+    font-size: $fs-paragraph;
+    color: $neutral-600;
+
+    strong {
+      color: $neutral-800;
+      font-weight: $fw-semibold;
+    }
+  }
+
+  &__separator {
+    color: $neutral-400;
+    user-select: none;
+  }
+
+  &__date {
+    font-size: $fs-paragraph;
+    color: $neutral-500;
+  }
+
+  &__abstract {
+    font-size: $fs-paragraph;
+    color: $neutral-700;
+    line-height: 1.7;
+    margin: 0;
+    padding-top: toRem(4);
+    border-top: toRem(1) solid $neutral-200;
+  }
+
+  &__learnings {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(12);
+    background-color: $neutral-150;
+    border-radius: $br-xs;
+    padding: toRem(16) toRem(20);
+  }
+
+  &__learnings-title {
+    font-size: $fs-heading6;
+    font-weight: $fw-semibold;
+    color: $neutral-800;
+    margin: 0;
+  }
+
+  &__learnings-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(toRem(260), 1fr));
+    gap: toRem(8) toRem(20);
+  }
+
+  &__learning-item {
+    display: flex;
+    align-items: flex-start;
+    gap: toRem(8);
+    font-size: $fs-paragraph;
+    color: $neutral-700;
+    line-height: 1.5;
+  }
+}

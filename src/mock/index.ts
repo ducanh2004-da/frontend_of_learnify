@@ -8,5 +8,4 @@ export * from "./dashboard";
 export * from "./friend";
 export * from "./home";
 export * from "./roadmap-detail";
-export * from "./roadmap";
 export * from "./team-member";

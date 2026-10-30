@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import Icon from "@/components/Icon";
 import IconButton from "@/components/IconButton";
 import useCardFooterButton from "../../hooks/useCardFooterButton";
@@ -7,15 +8,16 @@ import type { TStatusCard } from "@/types/global";
 type TCardFooterProps = {
   status?: TStatusCard;
   percentage?: number;
-  duration?: string;
+  duration?: number;
 };
 
 const CardFooter = (props: TCardFooterProps) => {
+  const { t } = useTranslation();
   const { status = "default", percentage = 0, duration } = props;
 
   const cardFooterClassName = classNames("card-footer", status);
 
-  const { tooltip, icon } = useCardFooterButton(status);
+  const { icon } = useCardFooterButton(status);
 
   if (status === "inProgress") {
     return (
@@ -28,11 +30,14 @@ const CardFooter = (props: TCardFooterProps) => {
     );
   }
 
+  const durationLabel =
+    duration != null ? t("card.duration", { count: duration }) : "";
+
   return (
     <div className={cardFooterClassName}>
-      <div className="duration">
-        {duration && <Icon name="pace" />}
-        <small>{duration}</small>
+      <div className="duration" title={durationLabel || undefined}>
+        {duration != null && <Icon name="pace" />}
+        <small>{durationLabel}</small>
       </div>
       <IconButton
         className={status}
@@ -41,7 +46,7 @@ const CardFooter = (props: TCardFooterProps) => {
         type="outlined"
         onClick={() => {}}
         shape="circle"
-        tooltip={tooltip}
+        tooltip={t(`card_footer_tooltip.${status}`)}
       />
     </div>
   );

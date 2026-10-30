@@ -5,10 +5,11 @@ export type MockCourse = {
   typeSpecial: TSpecial;
   title: string;
   description?: string;
-  duration?: string;
+  duration?: number;
   status?: TStatusCard;
   listFeature?: string[];
   percentage?: TProgress;
+  badgeStatus?: "public" | "private";
 };
 
 export const MOCK_COURSES: MockCourse[] = [
@@ -18,7 +19,7 @@ export const MOCK_COURSES: MockCourse[] = [
     title: "Mastering ReactJS & TanStack",
     description:
       "Course from basic to advanced on the TanStack ecosystem, including Router, Query, and Start.",
-    duration: "45 mins",
+    duration: 45,
     status: "default",
     listFeature: ["Data Analysis", "Trend Prediction", "Workflow Optimization"],
   },
@@ -28,7 +29,7 @@ export const MOCK_COURSES: MockCourse[] = [
     title: "UI/UX Hands-on for Developers",
     description:
       "Learn to design beautiful interfaces and optimize user experience with TailwindCSS.",
-    duration: "45 mins",
+    duration: 45,
     status: "default",
     listFeature: ["Data Analysis", "Trend Prediction", "Workflow Optimization"],
   },
@@ -38,7 +39,7 @@ export const MOCK_COURSES: MockCourse[] = [
     title: "NestJS Backend API",
     description:
       "Build powerful, scalable API systems with NestJS and TypeScript.",
-    duration: "45 mins",
+    duration: 45,
     status: "default",
     listFeature: ["Data Analysis", "Trend Prediction", "Workflow Optimization"],
   },
@@ -47,7 +48,7 @@ export const MOCK_COURSES: MockCourse[] = [
     typeSpecial: "course",
     title: "Basic database",
     description: "Build powerful, optimized Database systems.",
-    duration: "45 mins",
+    duration: 45,
     status: "default",
     listFeature: ["Data Analysis", "Trend Prediction", "Workflow Optimization"],
   },
@@ -57,7 +58,7 @@ export const MOCK_COURSES: MockCourse[] = [
     title: "NestJS Backend API",
     description:
       "Build powerful, scalable API systems with NestJS and TypeScript.",
-    duration: "45 mins",
+    duration: 45,
     status: "default",
     listFeature: ["Data Analysis", "Trend Prediction", "Workflow Optimization"],
   },

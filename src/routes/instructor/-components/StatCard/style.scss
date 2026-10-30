@@ -1,0 +1,46 @@
+@use "@styles/functions" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: toRem(16);
+  padding: toRem(20);
+  border-radius: $br-lg;
+  background: $white;
+  border: toRem(1) solid $neutral-250;
+  @include box-shadow(0, 2, 4, -2);
+
+  &__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: toRem(48);
+    height: toRem(48);
+    border-radius: $br-md;
+    background: to-rgba(var(--stat-accent), 0.12);
+    color: var(--stat-accent);
+    flex-shrink: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(2);
+  }
+
+  &__value {
+    font-size: toRem(28);
+    font-weight: 700;
+    line-height: 1.1;
+    color: $neutral-900;
+  }
+
+  &__label {
+    font-size: toRem(12);
+    color: $neutral-500;
+    white-space: nowrap;
+  }
+}

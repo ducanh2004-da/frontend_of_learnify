@@ -1,0 +1,51 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/functions" as *;
+
+.notification-popup {
+  position: absolute;
+  top: 65px;
+  right: 10px;
+  width: toRem(320);
+  background-color: $white;
+  border-radius: toRem(12);
+  border: 1px solid $neutral-200;
+  box-shadow: 0 toRem(4) toRem(24) rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1000;
+
+  &_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: toRem(14) toRem(16);
+    border-bottom: 1px solid $neutral-200;
+  }
+
+  &_title {
+    font-size: toRem(14);
+    font-weight: $fw-semibold;
+    color: $neutral-900;
+  }
+
+  &_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: toRem(40) toRem(16);
+    gap: toRem(12);
+
+    .icon {
+      font-size: toRem(40);
+      color: $neutral-300;
+    }
+  }
+
+  &_empty {
+    font-size: toRem(13);
+    color: $neutral-500;
+    text-align: center;
+    margin: 0;
+  }
+}

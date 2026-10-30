@@ -1,0 +1,60 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.lesson-detail-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(toRem(350), toRem(400));
+  height: calc(100dvh - toRem(77));
+  padding: toRem(20);
+  gap: toRem(20);
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @include break(lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(toRem(350), 380px);
+  }
+
+  @include break(md) {
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow-y: auto;
+    padding: toRem(15);
+    gap: toRem(15);
+  }
+}
+
+.lesson-sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(20);
+  height: 100%;
+  max-height: 100%;
+  min-width: toRem(350);
+  width: 100%;
+  overflow: hidden;
+
+  .chat-area {
+    flex: 1;
+    min-height: 0;
+  }
+
+  @include break(md) {
+    min-width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+
+    .chat-area {
+      min-height: toRem(500);
+    }
+  }
+}
+
+.lesson-detail-page_loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100dvh - toRem(77));
+}

@@ -1,0 +1,42 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.admin-chart {
+  background-color: $white;
+  border-radius: $br-lg;
+  padding: toRem(24) toRem(28);
+  @include box-shadow(0, 2, 16, 0);
+  @include transition;
+  display: flex;
+  flex-direction: column;
+  gap: toRem(20);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: toRem(12);
+  }
+
+  &__title {
+    font-size: $fs-heading6;
+    font-weight: $fw-bold;
+    color: $neutral-900;
+    margin: 0;
+  }
+
+  &__badge {
+    font-size: $fs-small;
+    font-weight: $fw-semibold;
+    color: $navy-600;
+    background-color: $navy-pastel-100;
+    padding: toRem(4) toRem(12);
+    border-radius: $br-xl;
+  }
+
+  &__body {
+    min-height: 0;
+  }
+}

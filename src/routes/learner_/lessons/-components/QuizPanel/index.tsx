@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import classnames from "classnames";
+import { useTranslation } from "react-i18next";
 import Icon from "@/components/Icon";
 import type { TQuizQuestion, TQuizAnswer } from "./type";
 import "./style.scss";
@@ -11,6 +12,7 @@ type TQuizPanelProps = {
 };
 
 const QuizPanel = ({ questions, onComplete, className }: TQuizPanelProps) => {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<TQuizAnswer[]>([]);
   const [showResults, setShowResults] = useState(false);
@@ -54,7 +56,7 @@ const QuizPanel = ({ questions, onComplete, className }: TQuizPanelProps) => {
     (optionIndex: number) => {
       const q = currentQuestion!;
       if (currentAnswer?.submitted) return;
-      if (q.type === "multiple-choice" || q.type === "true-false") {
+      if (q.type === "multiple-choice") {
         updateAnswer({ selected: [optionIndex] });
       } else if (q.type === "multiple-answer") {
         const prev = currentAnswer?.selected || [];
@@ -67,27 +69,9 @@ const QuizPanel = ({ questions, onComplete, className }: TQuizPanelProps) => {
     [currentAnswer, currentQuestion, updateAnswer]
   );
 
-  const handleMatchChange = useCallback(
-    (pairIndex: number, optionIndex: number) => {
-      if (currentAnswer?.submitted) return;
-      const prev = currentAnswer?.matchOrder || [];
-      const next = [...prev];
-      next[pairIndex] = optionIndex;
-      updateAnswer({ matchOrder: next });
-    },
-    [currentAnswer, updateAnswer]
-  );
-
   const evaluate = useCallback(
     (answer: TQuizAnswer): boolean => {
       const q = currentQuestion!;
-      if (q.type === "matching" && answer.matchOrder && q.matchPairs) {
-        const correct = q.correctAnswer;
-        return (
-          answer.matchOrder.length === correct.length &&
-          answer.matchOrder.every((v, i) => v === correct[i])
-        );
-      }
       const sortedSelected = [...answer.selected].sort();
       const sortedCorrect = [...q.correctAnswer].sort();
       return (
@@ -125,7 +109,9 @@ const QuizPanel = ({ questions, onComplete, className }: TQuizPanelProps) => {
     return (
       <div className={classnames("quiz-panel", className)}>
         <div className="quiz-panel-results">
-          <div className="quiz-panel-results-header">Quiz Results</div>
+          <div className="quiz-panel-results-header">
+            {t("quiz_panel.results_header")}
+          </div>
           <div className="quiz-panel-results-score">
             <span className="quiz-panel-results-fraction">
               {score.correct}/{score.total}
@@ -157,11 +143,14 @@ const QuizPanel = ({ questions, onComplete, className }: TQuizPanelProps) => {
                     className="quiz-panel-results-item-icon"
                   />
                   <span className="quiz-panel-results-item-label">
-                    Q{i + 1}. {q.question}
+                    {t("quiz_panel.question_label", {
+                      number: i + 1,
+                      question: q.question,
+                    })}
                   </span>
                   {a?.submitted && !correct && (
                     <span className="quiz-panel-results-item-hint">
-                      Correct answer:{" "}
+                      {t("quiz_panel.correct_answer")}{" "}
                       {q.correctAnswer.map((idx) => q.options[idx]).join(", ")}
                     </span>
                   )}
@@ -170,7 +159,7 @@ const QuizPanel = ({ questions, onComplete, className }: TQuizPanelProps) => {
             })}
           </div>
           <button className="quiz-panel-results-complete" onClick={onComplete}>
-            Complete
+            {t("quiz_panel.complete")}
           </button>
         </div>
       </div>
@@ -182,99 +171,54 @@ const QuizPanel = ({ questions, onComplete, className }: TQuizPanelProps) => {
   return (
     <div className={classnames("quiz-panel", className)}>
       <div className="quiz-panel-progress">
-        Question {currentIndex + 1} of {questions.length}
+        {t("quiz_panel.progress", {
+          current: currentIndex + 1,
+          total: questions.length,
+        })}
       </div>
       <div className="quiz-panel-question">
         <div className="quiz-panel-question-type">
           {currentQuestion.type === "multiple-choice"
-            ? "Multiple Choice"
-            : currentQuestion.type === "multiple-answer"
-              ? "Multiple Answer"
-              : currentQuestion.type === "true-false"
-                ? "True or False"
-                : "Matching"}
+            ? t("quiz_panel.type_multiple_choice")
+            : t("quiz_panel.type_multiple_answer")}
         </div>
         <p className="quiz-panel-question-text">{currentQuestion.question}</p>
 
-        {currentQuestion.type !== "matching" ? (
-          <div className="quiz-panel-options">
-            {currentQuestion.options.map((option, i) => {
-              const isSelected = currentAnswer?.selected.includes(i);
-              let optionMod = "";
-              if (currentAnswer?.submitted) {
-                if (currentQuestion.correctAnswer.includes(i)) {
-                  optionMod = "correct";
-                } else if (isSelected) {
-                  optionMod = "wrong";
-                }
+        <div className="quiz-panel-options">
+          {currentQuestion.options.map((option, i) => {
+            const isSelected = currentAnswer?.selected.includes(i);
+            let optionMod = "";
+            if (currentAnswer?.submitted) {
+              if (currentQuestion.correctAnswer.includes(i)) {
+                optionMod = "correct";
               } else if (isSelected) {
-                optionMod = "selected";
+                optionMod = "wrong";
               }
-              return (
-                <button
-                  key={i}
-                  className={classnames("quiz-panel-option", optionMod)}
-                  onClick={() => handleSelectOption(i)}
-                  disabled={currentAnswer?.submitted}
-                >
-                  <Icon
-                    name={
-                      isSelected ? "check_circle" : "radio_button_unchecked"
-                    }
-                    className="quiz-panel-option-indicator"
-                  />
-                  <span className="quiz-panel-option-label">{option}</span>
-                </button>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="quiz-panel-matching">
-            {currentQuestion.matchPairs?.map((pair, i) => {
-              const selected = currentAnswer?.matchOrder?.[i] ?? -1;
-              return (
-                <div key={i} className="quiz-panel-matching-row">
-                  <span className="quiz-panel-matching-left">{pair.left}</span>
-                  <select
-                    className="quiz-panel-matching-select"
-                    value={selected}
-                    onChange={(e) =>
-                      handleMatchChange(i, Number(e.target.value))
-                    }
-                    disabled={currentAnswer?.submitted}
-                  >
-                    <option value={-1} disabled>
-                      Select a description
-                    </option>
-                    {currentQuestion.options.map((opt, oi) => (
-                      <option key={oi} value={oi}>
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
-                  {currentAnswer?.submitted && (
-                    <span
-                      className={classnames(
-                        "quiz-panel-matching-status",
-                        selected === currentQuestion.correctAnswer[i]
-                          ? "correct"
-                          : "wrong"
-                      )}
-                    >
-                      {selected === currentQuestion!.correctAnswer[i]
-                        ? "✓"
-                        : `✗ (${currentQuestion!.options[currentQuestion!.correctAnswer[i]!]!})`}
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
+            } else if (isSelected) {
+              optionMod = "selected";
+            }
+            return (
+              <button
+                key={i}
+                className={classnames("quiz-panel-option", optionMod)}
+                onClick={() => handleSelectOption(i)}
+                disabled={currentAnswer?.submitted}
+              >
+                <Icon
+                  name={isSelected ? "check_circle" : "radio_button_unchecked"}
+                  className="quiz-panel-option-indicator"
+                />
+                <span className="quiz-panel-option-label">{option}</span>
+              </button>
+            );
+          })}
+        </div>
 
-        {currentAnswer?.submitted && (
+        {currentAnswer?.submitted && currentQuestion.explanation && (
           <div className="quiz-panel-explanation">
-            <span className="quiz-panel-explanation-label">Explanation:</span>
+            <span className="quiz-panel-explanation-label">
+              {t("quiz_panel.explanation")}
+            </span>
             <p className="quiz-panel-explanation-text">
               {currentQuestion.explanation}
             </p>
@@ -286,19 +230,15 @@ const QuizPanel = ({ questions, onComplete, className }: TQuizPanelProps) => {
             <button
               className="quiz-panel-submit"
               onClick={handleSubmit}
-              disabled={
-                !currentAnswer ||
-                (currentQuestion.type === "matching"
-                  ? (currentAnswer.matchOrder?.length ?? 0) <
-                    (currentQuestion.matchPairs?.length ?? 0)
-                  : currentAnswer.selected.length === 0)
-              }
+              disabled={!currentAnswer || currentAnswer.selected.length === 0}
             >
-              Submit Answer
+              {t("quiz_panel.submit_answer")}
             </button>
           ) : (
             <button className="quiz-panel-next" onClick={handleNext}>
-              {isLast ? "See Results" : "Next Question"}
+              {isLast
+                ? t("quiz_panel.see_results")
+                : t("quiz_panel.next_question")}
             </button>
           )}
         </div>

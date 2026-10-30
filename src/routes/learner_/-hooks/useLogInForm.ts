@@ -78,6 +78,9 @@ export const useLogInForm = (props: { redirect?: string }) => {
               id: userData.id,
               email: userData.email,
               username: userData.username,
+              role: userData.role,
+              diamond: userData.diamond,
+              currentSteak: userData.currentSteak,
             },
           });
         await router.invalidate();

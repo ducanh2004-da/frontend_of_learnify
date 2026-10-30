@@ -66,8 +66,7 @@ test.json
 /tools
 /src/api
 /src/persistence
-/docs/decisions
-/docs/runbooks
+/docs
 CLAUDE.md
 AGENTS.md
 claude.sh
@@ -82,3 +81,11 @@ src/gql
 /.tanstack/tmp
 /opencode.json
 /ssh-vps.sh
+/knowledge
+/.env.production
+/DESIGN.md
+/docs/designs/materials-design-3-expressive
+
+/.understand-anything
+
+.eslintcache

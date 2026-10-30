@@ -6,6 +6,7 @@ export type TLayoutConfig = {
   showFooter: boolean;
   fullInner: boolean;
   customTitle?: string;
+  showSearch: boolean;
 };
 
 export type TLayoutContextValue = TLayoutConfig & {
@@ -19,6 +20,7 @@ export const LayoutProvider = ({ children }: PropsWithChildren) => {
     compactLeftNav: false,
     showFooter: true,
     fullInner: false,
+    showSearch: false,
   });
 
   const value = {

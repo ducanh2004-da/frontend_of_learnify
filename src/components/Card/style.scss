@@ -25,6 +25,11 @@
     gap: toRem(15);
     min-width: 0;
 
+    .badge {
+      display: flex;
+      gap: toRem(5);
+    }
+
     h5 {
       text-align: left;
       display: -webkit-box;
@@ -54,6 +59,7 @@
     justify-content: space-between;
     gap: toRem(10);
     flex-wrap: wrap;
+    color: $black;
 
     .progress {
       border-radius: $br-rounded;
@@ -96,6 +102,14 @@
       .icon-button {
         background-color: $navy-pastel-200;
         border-color: transparent;
+
+        svg {
+          color: $black;
+
+          [data-theme="dark"] & {
+            color: $white;
+          }
+        }
       }
     }
 
@@ -108,6 +122,10 @@
         color: $black;
         font-size: toRem(30);
         aspect-ratio: 1;
+
+        [data-theme="dark"] & {
+          color: $white;
+        }
       }
     }
   }

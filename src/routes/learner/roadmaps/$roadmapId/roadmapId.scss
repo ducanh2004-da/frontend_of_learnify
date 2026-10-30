@@ -1,0 +1,101 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.roadmap {
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: toRem(20);
+    overflow-x: hidden;
+  }
+
+  &__item-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: toRem(50);
+  }
+
+  &__abstract {
+    color: $mode-neutral;
+    line-height: 1.6;
+    max-width: toRem(680);
+  }
+
+  &__controller {
+    display: flex;
+    gap: toRem(12);
+  }
+
+  &__list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(toRem(300), 1fr));
+    gap: toRem(20);
+    align-items: stretch;
+  }
+
+  &__comment {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+    width: 20dvw;
+    flex-shrink: 0;
+  }
+}
+
+@include break(md) {
+  .roadmap {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    &__item-list {
+      width: 100%;
+    }
+
+    &__list {
+      width: 100%;
+    }
+
+    &__send-btn {
+      width: 100%;
+      justify-content: center;
+      margin-bottom: toRem(12);
+    }
+
+    &__comment {
+      width: 100%;
+      max-width: 100%;
+      margin-top: toRem(20);
+    }
+  }
+}
+
+@include break(xs) {
+  .roadmap {
+    &__container {
+      padding: 0 toRem(12);
+    }
+
+    &__controller {
+      flex-direction: column;
+      width: 100%;
+
+      > button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    &__comment {
+      width: 100%;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:string";
 
 @function toRem($value) {
   @if $value == 0 {
@@ -7,4 +8,11 @@
   $absValue: math.abs($value);
   $unit: math.div($value, $absValue);
   @return math.div($absValue, 16) * 1rem * $unit;
+}
+
+@function to-rgba($color, $alpha) {
+  $percentage: math.percentage($alpha);
+  @return string.unquote(
+    "color-mix(in srgb, #{$color} #{$percentage}, transparent)"
+  );
 }

@@ -1,0 +1,7 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+
+.auth-controls {
+  display: flex;
+  gap: toRem(10);
+}

@@ -6,7 +6,7 @@ function NotFound() {
   return (
     <div className="not-found">
       <OptimizeImage
-        src="/404-light.png"
+        src="/404-light.webp"
         alt="404 Not Found"
         className="cover-image"
       />

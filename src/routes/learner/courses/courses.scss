@@ -1,0 +1,94 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.courses-container {
+  padding: 0 toRem(100);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: toRem(50);
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(20);
+
+    &-context,
+    &-description {
+      text-align: center;
+    }
+
+    &-description {
+      color: $mode-neutral;
+    }
+  }
+
+  .courses-content {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(25);
+    width: 100%;
+
+    .controls {
+      width: 100%;
+      display: flex;
+      gap: toRem(20);
+      justify-content: space-between;
+      align-items: center;
+
+      &__left {
+        @include flex-gap(8);
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+      }
+    }
+  }
+
+  .courses-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(toRem(300), 1fr));
+    gap: toRem(20);
+    align-items: stretch;
+  }
+}
+
+.courses-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: toRem(8);
+  padding: toRem(60) toRem(16);
+  color: $neutral-400;
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: $fs-paragraph;
+    font-weight: $fw-medium;
+  }
+
+  &__desc {
+    font-size: $fs-small !important;
+    font-weight: $fw-regular !important;
+  }
+}
+
+@include break(md) {
+  .courses-container {
+    padding: 0;
+
+    .courses-content {
+      > .search {
+        padding: toRem(10) toRem(20);
+
+        > button > span {
+          font-size: toRem(24);
+        }
+      }
+    }
+  }
+}

@@ -21,12 +21,17 @@ const useLessonFlow = () => {
     setState((prev) => (prev === "quiz" ? "complete" : prev));
   }, []);
 
+  const reset = useCallback(() => {
+    setState("initial");
+  }, []);
+
   return {
     state,
     startLesson,
     skipToQA,
     skipToQuiz,
     completeLesson,
+    reset,
   };
 };
 

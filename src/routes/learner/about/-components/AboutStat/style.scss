@@ -11,7 +11,7 @@
   padding: toRem(30);
   border-radius: $br-xl;
 
-  h5 {
+  .about-stat-index {
     color: $grey;
   }
 
@@ -20,7 +20,7 @@
     flex-direction: column;
     gap: toRem(10);
 
-    h6 {
+    .about-stat-type {
       color: $grey;
     }
   }

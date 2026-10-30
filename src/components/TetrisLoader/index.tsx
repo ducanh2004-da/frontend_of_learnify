@@ -1,15 +1,17 @@
 import classnames from "classnames";
+import { useTranslation } from "react-i18next";
 import useTetrisGame from "./hooks/useTetrisGame";
 import type { TTetrisLoaderProps } from "./type";
 import "./style.scss";
 
 const TetrisLoader = (props: TTetrisLoaderProps) => {
+  const { t } = useTranslation();
   const {
     className,
     size = "md",
     speed = "normal",
     showLoadingText = true,
-    loadingText = "Loading...",
+    loadingText = t("tetris_loader.loading"),
   } = props;
 
   const { displayGrid, isClearing, config } = useTetrisGame({ size, speed });

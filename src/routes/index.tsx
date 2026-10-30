@@ -1,23 +1,32 @@
-import { MOCK_COURSES, MOCK_USER } from "@/mock";
-import "@/styles/_global.scss";
+import { getCurrentUserFn } from "@/server/auth";
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import LandingPage from "@/routes/-components/LandingPage";
+import {
+  MarketingErrorComponent,
+  MarketingNotFoundComponent,
+  MarketingPendingComponent,
+} from "@/utils/marketing";
+import { seo } from "@/utils/seo";
+import { getRoleDefaultRoute, normalizeRole } from "@/utils/role";
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
-    throw redirect({
-      to: "/learner",
-    });
+    const { user } = await getCurrentUserFn();
+    if (user) {
+      throw redirect({ to: getRoleDefaultRoute(normalizeRole(user.role)) });
+    }
   },
-  component: HomePage,
+  errorComponent: MarketingErrorComponent,
+  pendingComponent: MarketingPendingComponent,
+  notFoundComponent: MarketingNotFoundComponent,
+  head: () => ({
+    meta: [
+      ...seo({
+        title: "Learnify | Smart Learning. Real Skills. Ready Careers.",
+        description:
+          "Learnify is an educational platform that combines AI-powered 3D lecturers with hands-on labs. Built for learners, instructors, and academic institutions.",
+      }),
+    ],
+  }),
+  component: LandingPage,
 });
-
-function HomePage() {
-  const featuredCourses = MOCK_COURSES.slice(0, 3);
-  const streak = MOCK_USER.streak;
-  const achievements = MOCK_USER.achievements;
-  const achievementCount = achievements.length;
-  const achievementTotal = MOCK_USER.achievementTotal;
-  const activeDays = MOCK_USER.activeDays;
-
-  return <div className=""></div>;
-}

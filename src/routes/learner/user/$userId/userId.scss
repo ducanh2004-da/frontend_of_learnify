@@ -1,0 +1,227 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.profile {
+  width: 100%;
+  margin-top: toRem(-50);
+  padding: 0 toRem(100);
+
+  &-banner {
+    height: toRem(220);
+    background-color: $accent-lilac-vodka;
+    border-radius: toRem(16);
+  }
+
+  &-info {
+    display: flex;
+    padding: 0 toRem(24);
+    margin-bottom: toRem(40);
+
+    &-avatar {
+      margin-top: toRem(-40);
+      margin-right: toRem(24);
+
+      img {
+        width: toRem(130);
+        height: toRem(130);
+        border-radius: toRem(24);
+        border: toRem(4) solid $white;
+        background-color: $white;
+        @include box-shadow(0, 4, 12, 0);
+      }
+    }
+
+    &-content {
+      flex: 1;
+      padding-top: toRem(16);
+
+      &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: toRem(8);
+
+        &-name {
+          font-size: toRem(28);
+          font-weight: 700;
+          margin: 0;
+        }
+
+        &-btn {
+          display: flex;
+          align-items: center;
+          gap: toRem(8);
+          padding: toRem(10) toRem(25);
+          border: toRem(1) solid $black;
+          border-radius: toRem(20);
+          background: transparent;
+          cursor: pointer;
+          font-weight: 600;
+          @include transition;
+
+          &:hover {
+            background-color: $white;
+          }
+        }
+      }
+
+      &-stats {
+        display: flex;
+        align-items: center;
+        gap: toRem(8);
+        font-size: toRem(14);
+        color: $neutral-400;
+        margin-bottom: toRem(8);
+
+        &-user {
+          font-weight: 600;
+          color: $neutral-800;
+        }
+
+        &-dot {
+          color: $mode-neutral;
+        }
+
+        &-item {
+          color: $neutral-600;
+
+          > strong {
+            font-weight: 600;
+            color: $neutral-800;
+          }
+        }
+      }
+
+      &-details {
+        display: flex;
+        gap: toRem(8);
+        font-size: toRem(13);
+        color: $neutral-600;
+
+        &-dot {
+          color: $mode-neutral;
+        }
+      }
+    }
+  }
+
+  &-personal-info {
+    &-card {
+      background: $white;
+      border-radius: toRem(16);
+      padding: toRem(24);
+      margin-bottom: toRem(40);
+      @include box-shadow(0, 2, 8, 0);
+    }
+
+    &-title {
+      font-size: toRem(18);
+      font-weight: 600;
+      margin-bottom: toRem(24);
+      color: $neutral-800;
+    }
+  }
+
+  &-courses {
+    &-title {
+      font-size: toRem(22);
+      margin-bottom: toRem(20);
+    }
+
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(toRem(220), 1fr));
+      gap: toRem(20);
+
+      &-card {
+        padding: toRem(24);
+        border: toRem(1) solid $neutral-300;
+        border-radius: toRem(16);
+        text-align: center;
+        background: $white;
+        @include box-shadow(0, 2, 8, 0);
+
+        &-icon {
+          width: toRem(70);
+          height: toRem(70);
+          margin: 0 auto toRem(16);
+          border-radius: 50%;
+          border: toRem(2) solid $mode-yellow;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &-shape {
+            width: toRem(30);
+            height: toRem(30);
+            background: purple;
+            transform: rotate(45deg);
+            border-radius: toRem(8);
+          }
+        }
+
+        &-name {
+          font-size: toRem(16);
+          margin-bottom: toRem(8);
+        }
+
+        &-abstract {
+          font-size: toRem(12);
+          color: $neutral-600;
+          line-height: 1.5;
+          margin-bottom: toRem(16);
+        }
+
+        &-status {
+          font-size: toRem(11);
+          font-weight: 700;
+          color: $neutral-600;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
+@include break(sm) {
+  .profile {
+    padding: toRem(12);
+
+    &-info {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0;
+
+      &-avatar {
+        margin-right: 0;
+        margin-bottom: toRem(16);
+      }
+
+      &-content {
+        &-header {
+          flex-direction: column;
+          gap: toRem(12);
+        }
+
+        &-stats,
+        &-details {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      }
+    }
+
+    &-courses-list {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@include break(md) {
+  .profile-courses-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,58 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.graphql-error {
+  margin-top: toRem(-50);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: toRem(16);
+  width: 100%;
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: toRem(96);
+    height: toRem(96);
+    border-radius: 50%;
+    background-color: $orange-100;
+    color: $orange-600;
+
+    &--throttlerexception {
+      background-color: $orange-100;
+      color: $orange-600;
+    }
+
+    &--validationexception {
+      background-color: $yellow-100;
+      color: $yellow-700;
+    }
+
+    &--notfoundexception {
+      background-color: $navy-100;
+      color: $navy-700;
+    }
+
+    &--forbiddenexception {
+      background-color: $orange-100;
+      color: $orange-700;
+    }
+
+    &--badrequestexception {
+      background-color: $yellow-100;
+      color: $yellow-700;
+    }
+
+    &--internalservererror {
+      background-color: $orange-100;
+      color: $orange-700;
+    }
+
+    svg {
+      font-size: toRem(72);
+    }
+  }
+}

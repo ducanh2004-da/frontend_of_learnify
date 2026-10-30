@@ -7,9 +7,83 @@
   width: 100%;
   border: toRem(2) solid $black;
   border-radius: $br-rounded;
-  gap: toRem(20);
-  padding: toRem(10) toRem(30);
   place-items: center;
+  transition: border-radius 400ms cubic-bezier(0.19, 0.63, 0, 0.95);
+
+  &--focused {
+    border-radius: $br-sm;
+  }
+
+  &--large {
+    gap: toRem(12);
+    padding: toRem(10) toRem(16);
+
+    > input {
+      font-size: toRem(16);
+    }
+
+    .search__submit > .icon {
+      width: toRem(30);
+      height: toRem(30);
+    }
+
+    .search__clear > .icon {
+      width: toRem(24);
+      height: toRem(24);
+    }
+  }
+
+  &--medium {
+    gap: toRem(10);
+    padding: toRem(8) toRem(14);
+
+    > input {
+      font-size: toRem(14);
+    }
+
+    .search__submit > .icon {
+      width: toRem(24);
+      height: toRem(24);
+    }
+
+    .search__clear > .icon {
+      width: toRem(20);
+      height: toRem(20);
+    }
+  }
+
+  &--small {
+    gap: toRem(8);
+    padding: toRem(6) toRem(12);
+
+    > input {
+      font-size: toRem(13);
+    }
+
+    .search__submit > .icon {
+      width: toRem(20);
+      height: toRem(20);
+    }
+
+    .search__clear > .icon {
+      width: toRem(18);
+      height: toRem(18);
+    }
+  }
+
+  &__submit,
+  &__clear {
+    all: unset;
+    display: flex;
+    place-items: center;
+    cursor: pointer;
+  }
+
+  &__submit > .icon,
+  &__clear > .icon {
+    color: $black;
+    display: flex;
+  }
 
   > input {
     color: $black;
@@ -27,9 +101,5 @@
     &:focus {
       outline: none;
     }
-  }
-
-  > button > .icon {
-    color: $black;
   }
 }

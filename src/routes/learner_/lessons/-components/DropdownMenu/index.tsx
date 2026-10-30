@@ -1,29 +1,15 @@
-import classNames from "classnames";
-import { useState } from "react";
-import "./style.scss";
-import { COLORS } from "@/styles/colors";
+import "./dropdown-menu.scss";
+
 import Icon from "@/components/Icon";
 import IconButton from "@/components/IconButton";
-
-type TDropdownMenuOption = {
-  value: string;
-  label: string;
-};
-
-export type TDropdownMenuProps = {
-  icon: string;
-  title: string;
-  options: TDropdownMenuOption[];
-  iconOption: string;
-  className?: string;
-  style?: React.CSSProperties;
-  buttonBackgroundColor: string;
-  buttonColor?: string;
-  isOpen?: boolean;
-  onToggle?: (isOpen: boolean) => void;
-};
+import { COLORS } from "@/styles/colors";
+import classNames from "classnames";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import type { TDropdownMenuProps } from "./type";
 
 const DropdownMenu = (props: TDropdownMenuProps) => {
+  const { t } = useTranslation();
   const {
     icon,
     title,
@@ -82,7 +68,7 @@ const DropdownMenu = (props: TDropdownMenuProps) => {
                 icon="more_vert"
                 type="secondary"
                 size="tiny"
-                tooltip="more"
+                tooltip={t("dropdown_menu.more")}
               />
             </div>
           ))}

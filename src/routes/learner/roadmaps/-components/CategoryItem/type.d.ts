@@ -1,6 +1,11 @@
+import type { TIconName } from "@/components/Icon";
+import type { TCategoryKey } from "../../-constants";
+
 export type TCategoryItem = {
-  icon: string;
-  label: string;
+  icon: TIconName;
+  labelKey: string;
+  key: TCategoryKey;
+  selected: boolean;
   onClick: () => void;
 };
 

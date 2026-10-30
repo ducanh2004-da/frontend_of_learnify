@@ -1,0 +1,161 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+@use "@styles/theme" as *;
+
+.course-completion-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.course-completion-modal {
+  background-color: $white;
+  border-radius: $br-xxl;
+  padding: toRem(40) toRem(48);
+  max-width: toRem(420);
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: toRem(16);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  [data-theme="dark"] & {
+    background-color: $neutral-800;
+  }
+
+  &__diamond-wrap {
+    position: relative;
+    width: toRem(80);
+    height: toRem(80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__diamond {
+    color: $mode-navy;
+    filter: drop-shadow(0 0 12px rgba($navy-600, 0.5));
+    animation: diamond-glow 2s ease-in-out infinite;
+  }
+
+  &__sparkles {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__sparkle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: toRem(6);
+    height: toRem(6);
+    border-radius: 50%;
+    background-color: $mode-yellow;
+    animation: sparkle-burst 2s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.15s);
+    opacity: 0;
+  }
+
+  &__title {
+    font-size: $fs-heading3;
+    font-weight: $fw-bold;
+    color: $neutral-900;
+    margin: 0;
+
+    [data-theme="dark"] & {
+      color: $neutral-100;
+    }
+  }
+
+  &__subtitle {
+    font-size: $fs-paragraph;
+    color: $neutral-500;
+    margin: 0;
+    line-height: 1.5;
+
+    [data-theme="dark"] & {
+      color: $neutral-300;
+    }
+  }
+
+  &__reward {
+    display: inline-flex;
+    align-items: center;
+    gap: toRem(8);
+    background: linear-gradient(135deg, $mode-yellow, $orange-500);
+    color: $white;
+    padding: toRem(10) toRem(24);
+    border-radius: $br-xl;
+    font-size: $fs-paragraph;
+    font-weight: $fw-bold;
+    margin: toRem(8) 0;
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  &__btn {
+    padding: toRem(12) toRem(36);
+    background-color: $mode-navy;
+    color: $white;
+    border: none;
+    border-radius: $br-sm;
+    font-size: $fs-paragraph;
+    font-weight: $fw-semibold;
+    cursor: pointer;
+    @include transition;
+    transition-property: background-color, transform;
+
+    &:hover {
+      background-color: $navy-700;
+      transform: translateY(toRem(-1));
+    }
+
+    &:active {
+      transform: translateY(0);
+      background-color: $navy-800;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+}
+
+@keyframes diamond-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgba($navy-600, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba($navy-600, 0.8));
+  }
+}
+
+@keyframes sparkle-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}

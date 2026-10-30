@@ -3,7 +3,7 @@
 @use "@styles/mixins" as *;
 @use "@styles/functions" as *;
 
-.left-nav-top-item {
+.left-nav-item {
   width: toRem(67.5);
 
   .link-box {
@@ -26,6 +26,7 @@
 
     small {
       color: $mode-neutral;
+      text-align: center;
       transition-property: color font-weight;
       @include transition;
     }

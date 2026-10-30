@@ -1,0 +1,56 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.landing-values {
+  @include transition;
+  background-color: $neutral-100;
+  padding: toRem(80) 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: toRem(24);
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(12);
+    padding: toRem(32);
+    border-radius: $br-xl;
+    background: to-rgba($black, 0.025);
+    border: toRem(1) solid to-rgba($black, 0.1);
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    h5 {
+      color: $black;
+    }
+
+    p {
+      color: to-rgba($black, 0.75);
+      line-height: 1.5;
+      font-size: $fs-small;
+    }
+  }
+}
+
+@include break(md) {
+  .landing-values__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include break(sm) {
+  .landing-values {
+    padding: toRem(64) 0;
+  }
+
+  .landing-values__grid {
+    grid-template-columns: 1fr;
+  }
+}

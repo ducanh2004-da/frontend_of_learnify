@@ -51,7 +51,17 @@ deploy:
 		echo "Error: remote 'vps' not found. Run 'make vps-init' first."; \
 		exit 1; \
 	fi
-	docker build -t learnify-app:latest .
+	docker build \
+		--build-arg VITE_GRAPHQL_ENDPOINT \
+		--build-arg VITE_GOOGLE_CLIENT_ID \
+		--build-arg VITE_ELEVENLABS_API_KEY \
+		--build-arg VITE_ELEVENLABS_VOICE_ID \
+		--build-arg VITE_ELENVENLABS_MODEL_ID \
+		--build-arg VITE_ELEVENLABS_OUTPUT_FORMAT \
+		--build-arg VITE_ELENVENLABS_ENABLE_TIMESTAMPS \
+		--build-arg VITE_EDGETTS_VOICE_ID \
+		--build-arg VITE_MODEL_CDN_URL \
+		-t learnify-app:latest .
 	docker save learnify-app:latest | gzip | ssh $(VPS_HOST) "gunzip | docker load"
 	git push vps HEAD:staging
 

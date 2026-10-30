@@ -4,19 +4,25 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        VITE_GRAPHQL_ENDPOINT: "${VITE_GRAPHQL_ENDPOINT}"
-        VITE_GOOGLE_CLIENT_ID: "${VITE_GOOGLE_CLIENT_ID}"
-        VITE_ELEVENLABS_API_KEY: "${VITE_ELEVENLABS_API_KEY}"
-        VITE_ELEVENLABS_VOICE_ID: "${VITE_ELEVENLABS_VOICE_ID}"
-        VITE_ELENVENLABS_MODEL_ID: "${VITE_ELENVENLABS_MODEL_ID}"
-        VITE_ELEVENLABS_OUTPUT_FORMAT: "${VITE_ELEVENLABS_OUTPUT_FORMAT}"
-        VITE_ELENVENLABS_ENABLE_TIMESTAMPS: "${VITE_ELENVENLABS_ENABLE_TIMESTAMPS}"
-        VITE_EDGETTS_VOICE_ID: "${VITE_EDGETTS_VOICE_ID}"
+        - VITE_GRAPHQL_ENDPOINT
+        - VITE_GOOGLE_CLIENT_ID
+        - VITE_ELEVENLABS_API_KEY
+        - VITE_ELEVENLABS_VOICE_ID
+        - VITE_ELENVENLABS_MODEL_ID
+        - VITE_ELEVENLABS_OUTPUT_FORMAT
+        - VITE_ELENVENLABS_ENABLE_TIMESTAMPS
+        - VITE_EDGETTS_VOICE_ID
     env_file:
       - .env.production
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "node", "-e", "var h=require('http');h.get('http://localhost:3000',function(r){process.exit(r.statusCode<400?0:1)}).on('error',function(){process.exit(1)})"]
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "var h=require('http');h.get('http://localhost:3000',function(r){process.exit(r.statusCode<400?0:1)}).on('error',function(){process.exit(1)})",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -31,7 +37,6 @@ services:
       - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./dist/client:/app/dist/client:ro
       - ./certbot/www:/var/www/certbot:ro
       - ./certbot/conf:/etc/letsencrypt:ro
     depends_on:

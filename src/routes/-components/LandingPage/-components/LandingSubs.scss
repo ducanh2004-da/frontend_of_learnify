@@ -1,0 +1,91 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.landing-subs {
+  @include transition;
+  background-color: $green-100;
+  padding: toRem(80) 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: toRem(24);
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(20);
+    padding: toRem(40) toRem(32);
+    background: to-rgba($black, 0.025);
+    border: toRem(1) solid to-rgba($black, 0.1);
+    border-radius: $br-xl;
+
+    &-header {
+      display: flex;
+      align-items: center;
+      gap: toRem(12);
+      color: $accent-emerald;
+
+      h4 {
+        color: $black;
+      }
+    }
+
+    &-price {
+      font-size: $fs-heading5;
+      color: $black;
+
+      strong {
+        font-weight: $fw-bold;
+        color: $accent-emerald;
+      }
+    }
+
+    &-subtitle {
+      color: to-rgba($black, 0.75);
+      line-height: 1.5;
+    }
+
+    &-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: toRem(12);
+      padding: 0;
+
+      li {
+        display: flex;
+        align-items: flex-start;
+        gap: toRem(8);
+        color: to-rgba($black, 0.75);
+        font-size: $fs-paragraph;
+        line-height: 1.4;
+
+        svg {
+          color: $accent-emerald;
+          flex-shrink: 0;
+          margin-top: toRem(2);
+        }
+
+        strong {
+          font-weight: $fw-semibold;
+        }
+      }
+    }
+  }
+}
+
+@include break(md) {
+  .landing-subs__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include break(sm) {
+  .landing-subs {
+    padding: toRem(64) 0;
+  }
+}

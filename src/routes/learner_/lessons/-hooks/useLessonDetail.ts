@@ -1,10 +1,11 @@
 import { useMemo, useEffect } from "react";
-import { useLesson } from "@/hooks/useLesson";
+import { useLesson, type TLessonData } from "@/hooks/useLesson";
 import useLessonFlow from "@/hooks/useLessonFlow";
+import { useLessonProgress } from "@/hooks/useLessonProgress";
 import { useLayout } from "@/contexts/LayoutContext";
 
 export type TLessonDetail = {
-  data: ReturnType<typeof useLesson>["data"];
+  data: TLessonData | undefined;
   isLoading: boolean;
   state: ReturnType<typeof useLessonFlow>["state"];
   sections:
@@ -17,15 +18,29 @@ export type TLessonDetail = {
   skipToQA: () => void;
   skipToQuiz: () => void;
   completeLesson: () => void;
+  reset: () => void;
+  progressPercentage: number;
+  handleComplete: () => void;
+  isCourseCompleted: boolean;
 };
 
-const useLessonDetail = (lessonId: string): TLessonDetail => {
-  const { data, isLoading } = useLesson(lessonId);
-  const { state, startLesson, skipToQA, skipToQuiz, completeLesson } =
+const useLessonDetail = (
+  lessonId: string,
+  initialData?: TLessonData
+): TLessonDetail => {
+  const { data, isLoading } = useLesson(lessonId, initialData);
+  const resolvedData = data || (initialData?.lesson ? initialData : undefined);
+  const resolvedLoading = isLoading && !resolvedData?.lesson;
+
+  const { state, startLesson, skipToQA, skipToQuiz, completeLesson, reset } =
     useLessonFlow();
+  const courseId = resolvedData?.lesson?.courseId;
+  const { progressPercentage, handleComplete, isCourseCompleted } =
+    useLessonProgress(state, lessonId, courseId);
   const { setLayoutConfigState } = useLayout();
 
-  const title = data?.course?.courseName || data?.lesson?.lessonName;
+  const title =
+    resolvedData?.course?.courseName || resolvedData?.lesson?.lessonName;
 
   useEffect(() => {
     if (title) {
@@ -34,28 +49,32 @@ const useLessonDetail = (lessonId: string): TLessonDetail => {
   }, [title, setLayoutConfigState]);
 
   const sections = useMemo(() => {
-    if (!data?.sections) return undefined;
-    const refs = data.sections
+    if (!resolvedData?.sections) return undefined;
+    const refs = resolvedData.sections
       .filter((s) => s.content)
       .map((s) => ({ value: s.id, label: s.content! }));
-    const docs = data.sections
+    const docs = resolvedData.sections
       .filter((s) => s.urlPdf)
       .map((s) => ({
         value: s.id,
         label: s.urlPdf.split("/").pop() || "Document",
       }));
     return { references: refs, documents: docs };
-  }, [data]);
+  }, [resolvedData]);
 
   return {
-    data,
-    isLoading,
+    data: resolvedData,
+    isLoading: resolvedLoading,
     state,
     sections,
     startLesson,
     skipToQA,
     skipToQuiz,
     completeLesson,
+    reset,
+    progressPercentage,
+    handleComplete,
+    isCourseCompleted,
   };
 };
 

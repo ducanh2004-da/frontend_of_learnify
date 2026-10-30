@@ -1,0 +1,390 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+@mixin btn-secondary-states {
+  &:hover {
+    border-color: $black;
+  }
+
+  &:active {
+    border-color: $black;
+    background-color: $neutral-250;
+  }
+}
+
+@mixin btn-corner($base, $corners) {
+  border-radius: $base;
+
+  @each $property, $value in $corners {
+    border-#{$property}-radius: $value;
+  }
+}
+
+.text-button {
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  color: $black;
+  @include transition;
+  transition-property:
+    color, background-color, border-color, border-radius,
+    font-variation-settings;
+  transition-duration: 500ms;
+  border-style: solid;
+  border-color: transparent;
+
+  &:hover {
+    border-radius: $br-xs;
+  }
+
+  svg {
+    @include transition;
+    transition-property: color;
+    color: inherit;
+  }
+
+  span {
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &.disabled,
+  &.loading {
+    color: $white;
+  }
+
+  &.disabled {
+    background-color: $neutral-400;
+  }
+
+  &.loading {
+    cursor: not-allowed;
+    opacity: 0.8;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .text-button_spinner {
+    width: toRem(20);
+    height: toRem(20);
+    border: toRem(2) solid rgba(255, 255, 255, 0.3);
+    border-top-color: $white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  &.large {
+    padding: toRem(10) toRem(30);
+    gap: toRem(10);
+    border-width: toRem(2);
+
+    .icon {
+      font-size: toRem(30);
+    }
+
+    .text {
+      font-size: $fs-heading6;
+      font-weight: $fw-semibold;
+      line-height: 125%;
+    }
+  }
+
+  &.medium {
+    padding: toRem(10) toRem(25);
+    gap: toRem(10);
+    border-width: toRem(2);
+
+    .icon {
+      font-size: toRem(25);
+    }
+
+    .text {
+      font-size: $fs-paragraph;
+      font-weight: $fw-semibold;
+      line-height: 125%;
+    }
+  }
+
+  &.small {
+    padding: toRem(7.5) toRem(15);
+    gap: toRem(10);
+    border-width: toRem(2);
+
+    .icon {
+      font-size: toRem(20);
+    }
+
+    .text {
+      font-size: $fs-paragraph;
+      font-weight: $fw-medium;
+      line-height: 125%;
+    }
+  }
+
+  &.tiny {
+    padding: toRem(5) toRem(10);
+    border-width: toRem(1);
+    gap: toRem(5);
+
+    .icon {
+      font-size: toRem(15);
+    }
+
+    .text {
+      font-size: $fs-smaller;
+      font-weight: $fw-regular;
+    }
+  }
+
+  &.primary {
+    background-color: $mode-green;
+    color: $neutral-100;
+
+    &:hover {
+      background-color: $green-600;
+      color: $neutral-200;
+    }
+
+    &:active {
+      background-color: $green-400;
+      color: $neutral-900;
+    }
+  }
+
+  &.secondary {
+    color: $neutral-800;
+    @include btn-secondary-states;
+  }
+
+  &.outlined {
+    background-color: transparent;
+    border-color: $neutral-800;
+    color: $neutral-800;
+    @include btn-secondary-states;
+  }
+
+  &.special.typeSpecial {
+    $special-groups: (
+      (lesson roadmap lab course check certificate) $navy-250 $neutral-800,
+      (private public) $mode-neutral $white,
+      (starter pro career) $orange-pastel-200 $neutral-800
+    );
+
+    @each $subtypes, $bg, $color in $special-groups {
+      @each $subtype in $subtypes {
+        &-#{$subtype} {
+          background-color: $bg;
+          color: $color;
+        }
+      }
+    }
+  }
+
+  &.typeSecondary {
+    $type-secondary-variants: (
+      (neutral, $mode-neutral, null, $neutral-900, $neutral-100),
+      (yellow, $mode-yellow, $neutral-900, $yellow-800, $neutral-100),
+      (orange, $mode-orange, $neutral-900, $orange-800, $neutral-100),
+      (salmon, $mode-salmon, $neutral-900, $salmon-800, $neutral-100),
+      (darkGreen, $mode-dark-green, null, $dark-green-800, $neutral-100),
+      (navy, $mode-navy, $neutral-100, $navy-800, $neutral-100),
+      (brown, $mode-brown, null, $brown-800, $neutral-100),
+      (green, $mode-green, $neutral-100, $green-800, $neutral-100),
+      (pastelNeutral, $neutral-pastel-200, null, $neutral-900, $neutral-100),
+      (
+        pastelYellow,
+        $yellow-pastel-200,
+        $neutral-900,
+        $yellow-800,
+        $neutral-100
+      ),
+      (
+        pastelOrange,
+        $orange-pastel-200,
+        $neutral-900,
+        $orange-800,
+        $neutral-100
+      ),
+      (
+        pastelSalmon,
+        $salmon-pastel-200,
+        $neutral-900,
+        $salmon-800,
+        $neutral-100
+      ),
+      (
+        pastelDarkGreen,
+        $dark-green-pastel-200,
+        null,
+        $dark-green-800,
+        $neutral-100
+      ),
+      (pastelNavy, $navy-pastel-200, $neutral-900, $navy-800, $neutral-100),
+      (pastelBrown, $brown-pastel-200, null, $brown-800, $neutral-100),
+      (pastelGreen, $green-pastel-200, null, $green-800, $neutral-100)
+    );
+
+    @each $name, $bg, $color, $darkBg, $darkColor in $type-secondary-variants {
+      &-#{"" + $name} {
+        background-color: $bg;
+
+        @if $color {
+          color: $color;
+        }
+
+        [data-theme="dark"] & {
+          background-color: $darkBg;
+
+          @if $darkColor {
+            color: $darkColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+.corner {
+  &-exceptLowerLeft {
+    @include btn-corner(
+      $br-rounded,
+      (
+        top-left: $br-xtl,
+        bottom-left: $br-lg,
+      )
+    );
+  }
+
+  &-exceptLowerRight {
+    @include btn-corner(
+      $br-rounded,
+      (
+        top-right: $br-xtl,
+        bottom-right: $br-lg,
+      )
+    );
+  }
+
+  &-exceptUpperLeft {
+    @include btn-corner(
+      $br-rounded,
+      (
+        bottom-left: $br-xtl,
+        top-left: $br-lg,
+      )
+    );
+  }
+
+  &-exceptUpperRight {
+    @include btn-corner(
+      $br-rounded,
+      (
+        bottom-right: $br-xtl,
+        top-right: $br-lg,
+      )
+    );
+  }
+
+  &-exceptLeft {
+    @include btn-corner(
+      $br-xtl,
+      (
+        top-left: $br-lg,
+        bottom-left: $br-lg,
+      )
+    );
+  }
+
+  &-exceptRight {
+    @include btn-corner(
+      $br-xtl,
+      (
+        top-right: $br-lg,
+        bottom-right: $br-lg,
+      )
+    );
+  }
+
+  &-exceptUpper {
+    @include btn-corner(
+      $br-xtl,
+      (
+        top-left: $br-lg,
+        top-right: $br-lg,
+      )
+    );
+  }
+
+  &-exceptLower {
+    @include btn-corner(
+      $br-xtl,
+      (
+        bottom-left: $br-lg,
+        bottom-right: $br-lg,
+      )
+    );
+  }
+
+  &-onlyUpperLeft {
+    @include btn-corner(
+      $br-lg,
+      (
+        top-left: $br-xtl,
+      )
+    );
+  }
+
+  &-onlyUpperRight {
+    @include btn-corner(
+      $br-lg,
+      (
+        top-right: $br-xtl,
+      )
+    );
+  }
+
+  &-onlyLowerLeft {
+    @include btn-corner(
+      $br-lg,
+      (
+        bottom-left: $br-xtl,
+      )
+    );
+  }
+
+  &-onlyLowerRight {
+    @include btn-corner(
+      $br-lg,
+      (
+        bottom-right: $br-xtl,
+      )
+    );
+  }
+
+  &-rounded {
+    border-radius: $br-xl;
+  }
+
+  &-roundedSquare {
+    border-radius: $br-sm;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

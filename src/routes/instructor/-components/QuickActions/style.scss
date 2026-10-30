@@ -1,0 +1,62 @@
+@use "@styles/functions" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(12);
+
+  &__title {
+    font-size: toRem(16);
+    color: $neutral-900;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(8);
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: toRem(10);
+    padding: toRem(12) toRem(16);
+    border-radius: $br-sm;
+    border: toRem(1) solid $neutral-250;
+    background: $white;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-size: toRem(13);
+    font-weight: 500;
+    @include transition;
+
+    &:hover {
+      border-color: currentColor;
+    }
+
+    &--green {
+      color: $green-700;
+      &:hover {
+        background: $green-100;
+      }
+    }
+
+    &--blue {
+      color: $accent-blue-celeste;
+      &:hover {
+        background: to-rgba($accent-blue-celeste, 0.08);
+      }
+    }
+
+    &--purple {
+      color: $mode-purple;
+      &:hover {
+        background: to-rgba($mode-purple, 0.08);
+      }
+    }
+  }
+}

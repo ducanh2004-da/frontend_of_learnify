@@ -1,29 +1,32 @@
+import { useTranslation } from "react-i18next";
 import { useRouter } from "@tanstack/react-router";
 import ErrorScene from "@/components/ErrorScene";
 import TextButton from "@/components/TextButton";
 
 const LessonError = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   return (
     <ErrorScene>
       <ErrorScene.Header>
-        <ErrorScene.Title errorCode={500}>Server Error</ErrorScene.Title>
+        <ErrorScene.Title errorCode={500}>
+          {t("lesson_error.server_error")}
+        </ErrorScene.Title>
         <ErrorScene.Description>
-          Something went wrong while loading this course. The server encountered
-          an issue.
+          {t("lesson_error.load_error")}
         </ErrorScene.Description>
       </ErrorScene.Header>
       <ErrorScene.Content>
         <div className="error-scene__control">
           <TextButton
-            text="Try Again"
+            text={t("errors.try_again")}
             onClick={() => router.invalidate()}
             className="error-scene__btn"
             size="medium"
             icon="refresh"
           />
           <TextButton
-            text="Go Back"
+            text={t("errors.go_back")}
             onClick={() => window.history.back()}
             className="error-scene__btn error-scene__btn--secondary"
             size="medium"

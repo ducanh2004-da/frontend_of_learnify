@@ -1,33 +1,44 @@
-import { useState } from "react";
-import classnames from "classnames";
-import { useNavigate, useRouterState } from "@tanstack/react-router";
 import Icon from "@/components/Icon";
-import { useQuery } from "@tanstack/react-query";
 import IconButton from "@/components/IconButton";
-import { COLORS } from "@/styles/colors";
-import { graphqlClient } from "@/lib/graphql";
 import {
+  GET_COURSE_BY_ID,
   GET_LESSON_BY_ID,
   GET_LESSONS_BY_COURSE_ID_QUERY,
-  GET_COURSE_BY_ID,
 } from "@/graphql/course";
-import type { TCourseControllerProps } from "./type";
+import { graphqlClient } from "@/lib/graphql";
+import { COLORS } from "@/styles/colors";
+import { useQuery } from "@tanstack/react-query";
+import { useRouterState } from "@tanstack/react-router";
+import classnames from "classnames";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./style.scss";
+import type { TCourseControllerProps } from "./type";
 
 type LessonMeta = { id: string; lessonName: string; courseId: string };
 type LessonList = { id: string; lessonName: string }[];
 
 const CourseController = ({ className }: TCourseControllerProps) => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
   const lessonId = useRouterState({
     select: (s) => {
       const m = s.matches.find(
-        (m) => m.routeId === "/learner_/lessons/$lessonId"
+        (m) => m.routeId === "/learner_/lessons/$lessonId/"
       );
       return (m?.params as { lessonId?: string })?.lessonId;
     },
   });
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1280px)");
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
+      if (e.matches) setIsExpanded(false);
+    };
+    handler(mediaQuery);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
 
   const { data: lessonData, isLoading: loadingLesson } = useQuery({
     queryKey: ["lesson-meta", lessonId],
@@ -68,7 +79,9 @@ const CourseController = ({ className }: TCourseControllerProps) => {
   });
 
   const courseName =
-    courseData?.courseName || lessonData?.lessonName || "Course";
+    courseData?.courseName ||
+    lessonData?.lessonName ||
+    t("course_controller.course_fallback");
   const loading =
     isExpanded && (loadingLesson || (!!courseId && loadingLessons));
 
@@ -79,6 +92,7 @@ const CourseController = ({ className }: TCourseControllerProps) => {
         { expanded: isExpanded },
         className
       )}
+      data-lenis-prevent
     >
       {isExpanded ? (
         <div className="course-controller_expanded">
@@ -93,13 +107,13 @@ const CourseController = ({ className }: TCourseControllerProps) => {
               shape="circle"
               type="custom"
               color={COLORS.neutral900}
-              tooltip="Close"
+              tooltip={t("course_controller.close")}
             />
           </div>
           <div className="course-controller_lessons">
             {loading ? (
               <div className="course-controller_loading">
-                Loading lessons...
+                {t("course_controller.loading_lessons")}
               </div>
             ) : (
               courseLessons?.map((lesson) => {
@@ -110,12 +124,9 @@ const CourseController = ({ className }: TCourseControllerProps) => {
                     className={classnames("course-controller_lesson", {
                       active: isActive,
                     })}
-                    onClick={() =>
-                      navigate({
-                        to: "/learner/lessons/$lessonId",
-                        params: { lessonId: lesson.id },
-                      })
-                    }
+                    onClick={() => {
+                      window.location.href = `/learner/lessons/${lesson.id}`;
+                    }}
                   >
                     <Icon
                       name={isActive ? "play_circle" : "radio_button_unchecked"}
@@ -142,7 +153,7 @@ const CourseController = ({ className }: TCourseControllerProps) => {
             shape="circle"
             type="custom"
             color={COLORS.neutral900}
-            tooltip="Open course menu"
+            tooltip={t("course_controller.open_menu")}
           />
         </div>
       )}

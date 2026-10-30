@@ -7,16 +7,17 @@
   display: flex;
   place-items: center;
   justify-content: center;
-  background-color: inherit;
+  background-color: var(--ib-bg, transparent);
   border: none;
   aspect-ratio: 1 / 1;
   @include transition;
-  transition-property: background-color, border-radius;
+  transition-property: background-color, border-radius, color;
 
   svg {
     @include transition;
     transition-property: color;
     aspect-ratio: 1 / 1;
+    color: var(--ib-color, currentColor);
   }
 
   &.medium {
@@ -67,70 +68,70 @@
   }
 
   &.primary {
-    background-color: $mode-green;
+    background-color: var(--ib-bg, $mode-green);
 
     svg {
-      color: $white;
+      color: var(--ib-color, $white);
     }
 
     &:hover {
-      background-color: $green-600;
+      background-color: var(--ib-bg, $green-600);
 
       svg {
-        color: $neutral-100;
+        color: var(--ib-color, $neutral-100);
       }
     }
 
     &:active {
-      background-color: $green-500;
+      background-color: var(--ib-bg, $green-500);
 
       svg {
-        color: $neutral-900;
+        color: var(--ib-color, $neutral-900);
       }
     }
   }
 
   &.secondary {
-    background-color: transparent;
+    background-color: var(--ib-bg, transparent);
 
     svg {
-      color: $mode-green;
+      color: var(--ib-color, $mode-green);
     }
 
     &:hover {
       svg {
-        color: $green-600;
+        color: var(--ib-color, $green-600);
       }
     }
 
     &:active {
       svg {
-        color: $green-500;
+        color: var(--ib-color, $green-500);
       }
     }
   }
 
   &.outlined {
-    background-color: inherit;
-    border: toRem(2) solid $mode-green;
+    background-color: var(--ib-bg, inherit);
+    border: toRem(2) solid var(--ib-color, $mode-green);
 
     svg {
-      color: $mode-green;
+      color: var(--ib-color, $mode-green);
     }
 
     &:hover {
-      border-color: $green-600;
+      border-color: var(--ib-color, $green-600);
 
       svg {
-        color: $green-600;
+        color: var(--ib-color, $green-600);
       }
     }
 
     &:active {
-      border-color: $green-500;
+      border-color: var(--ib-color, $green-500);
 
       svg {
-        color: $green-500;
+        color: var(--ib-color, $green-500);
       }
     }
   }

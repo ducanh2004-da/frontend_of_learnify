@@ -1,0 +1,43 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(16);
+  padding: toRem(14) toRem(20);
+  background-color: $white;
+  border-radius: $br-lg;
+  border-top: toRem(1) solid $neutral-100;
+
+  &__info {
+    font-size: $fs-small;
+    color: $neutral-500;
+    white-space: nowrap;
+
+    strong {
+      color: $neutral-800;
+      font-weight: $fw-semibold;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: toRem(4);
+  }
+
+  &__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: toRem(34);
+    height: toRem(34);
+    color: $neutral-400;
+    font-size: $fs-small;
+    cursor: default;
+  }
+}

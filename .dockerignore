@@ -1,44 +1,12 @@
-# Version control
+node_modules
 .git
 .gitignore
-
-# Dependencies — these get installed inside Docker (pnpm install)
-node_modules
-
-# Build outputs — rebuilt inside Docker via `vite build`
 dist
-
-# Environment files — never ship these to production
 .env
 .env.*
-!.env.production.example
-
-# Development artifacts
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Editor directories
+*.md
 .vscode
 .idea
-*.swp
-*.swo
-
-# OS files
+.cache
+*.log
 .DS_Store
-Thumbs.db
-
-# TypeScript incremental build cache
-tsconfig.tsbuildinfo
-
-# SSR build type checking — not needed in image
-*.tsbuildinfo
-
-# Certificate artifacts
-*.pem
-*.key
-
-# Temporary build directories
-.tmp/
-.cache/

@@ -1,0 +1,387 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.manage-courses {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - toRem(77) - toRem(100));
+  margin-top: toRem(-50);
+
+  &__add-btn {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+    width: 100%;
+    padding: toRem(12) toRem(16);
+    margin-bottom: toRem(8);
+    border-radius: toRem(8);
+    border: toRem(1) dashed $green-600;
+    background: $green-100;
+    color: $green-800;
+    font-weight: 600;
+    font-size: toRem(14);
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+      background: $green-100;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: toRem(20);
+    padding: toRem(12) toRem(16);
+    border-radius: toRem(8);
+    border-width: toRem(1);
+    border-style: solid;
+    border-color: $neutral-250;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+      background: $neutral-200;
+    }
+
+    &-icon {
+      color: $black;
+    }
+
+    &--active {
+      background: $green-200;
+      border-color: $green-700;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(10);
+    }
+
+    &-name {
+      font-weight: 600;
+      font-size: toRem(14);
+      color: $neutral-900;
+    }
+
+    &-status {
+      font-size: toRem(11);
+      font-weight: 600;
+      padding: toRem(4) toRem(8);
+      border-width: toRem(1);
+      border-style: solid;
+      border-radius: $br-sm;
+      width: fit-content;
+
+      &--published {
+        color: $accent-emerald;
+        border-color: $accent-emerald;
+      }
+
+      &--pending {
+        color: $mode-yellow;
+        border-color: $mode-yellow;
+      }
+
+      &--rejected {
+        color: $accent-blaze;
+        border-color: $accent-blaze;
+      }
+    }
+  }
+
+  &__lesson-item {
+    display: flex;
+    align-items: center;
+    gap: toRem(20);
+    padding: toRem(12) toRem(16);
+    border-radius: toRem(6);
+    border-width: toRem(1);
+    border-style: solid;
+    border-color: $neutral-250;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+      background: $neutral-200;
+    }
+
+    &--active {
+      background: $green-200;
+      border-color: $green-700;
+    }
+
+    &-icon,
+    &-name,
+    &-info {
+      color: $black;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(10);
+    }
+
+    &-date {
+      font-size: toRem(11);
+      color: $neutral-400;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+  }
+
+  &__form-label {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+    font-size: toRem(14);
+    font-weight: 500;
+    color: $neutral-800;
+  }
+
+  &__form-input,
+  &__form-textarea {
+    padding: toRem(10) toRem(12);
+    border: toRem(1) solid $neutral-250;
+    border-radius: toRem(8);
+    font-size: toRem(14);
+    color: $neutral-900;
+    background: $white;
+    outline: none;
+    @include transition;
+
+    &:focus {
+      border-color: $green-600;
+    }
+
+    &--error {
+      border-color: $accent-blaze;
+    }
+  }
+
+  &__form-textarea {
+    min-height: toRem(100);
+    resize: vertical;
+
+    &--error {
+      border-color: $accent-blaze;
+    }
+  }
+
+  &__form-error {
+    font-size: toRem(12);
+    color: $accent-blaze;
+    margin-top: toRem(2);
+  }
+
+  &__form-hint {
+    font-size: toRem(11);
+    color: $neutral-400;
+    margin-top: toRem(2);
+  }
+
+  &__price-wrapper {
+    display: flex;
+    align-items: center;
+    border: toRem(1) solid $neutral-250;
+    border-radius: toRem(8);
+    overflow: hidden;
+
+    &:focus-within {
+      border-color: $green-600;
+    }
+  }
+
+  &__price-currency {
+    padding: 0 toRem(12);
+    font-size: toRem(14);
+    font-weight: 600;
+    color: $neutral-500;
+    background: $neutral-150;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+
+  &__price-wrapper &__form-input {
+    border: none;
+    flex: 1;
+
+    &:focus {
+      border: none;
+    }
+  }
+
+  &__form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: toRem(12);
+    margin-top: toRem(8);
+  }
+
+  &__form-cancel,
+  &__form-submit {
+    padding: toRem(10) toRem(24);
+    border-radius: toRem(8);
+    font-size: toRem(14);
+    font-weight: 600;
+    cursor: pointer;
+    @include transition;
+  }
+
+  &__form-cancel {
+    background: $neutral-200;
+    color: $neutral-700;
+    border: none;
+
+    &:hover {
+      background: $neutral-250;
+    }
+  }
+
+  &__form-submit {
+    background: $green-600;
+    color: $white;
+    border: none;
+
+    &:hover {
+      background: $green-700;
+    }
+
+    &:disabled {
+      background: $neutral-300;
+      cursor: not-allowed;
+    }
+
+    &--danger {
+      background: $accent-blaze;
+
+      &:hover {
+        background: to-rgba($accent-blaze, 0.8);
+      }
+
+      &:disabled {
+        background: $neutral-300;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__item-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: $neutral-400;
+    cursor: pointer;
+    padding: toRem(4);
+    border-radius: toRem(4);
+    @include transition;
+
+    &:hover {
+      color: $accent-blaze;
+      background: to-rgba($accent-blaze, 0.1);
+    }
+  }
+
+  &__confirm {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+
+    p {
+      font-size: toRem(14);
+      color: $neutral-700;
+      line-height: 1.5;
+    }
+  }
+
+  &__file-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: toRem(6);
+    padding: toRem(24);
+    border: toRem(2) dashed $neutral-300;
+    border-radius: toRem(8);
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+      border-color: $green-600;
+      background: $green-100;
+    }
+
+    &--error {
+      border-color: $accent-blaze;
+    }
+
+    &--dragging {
+      border-color: $green-600;
+      background: $green-100;
+      border-style: solid;
+    }
+  }
+
+  &__file-hidden {
+    display: none;
+  }
+
+  &__file-list {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+    margin-top: toRem(8);
+  }
+
+  &__file-item {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+    padding: toRem(8) toRem(10);
+    border-radius: toRem(6);
+    background: $neutral-150;
+    font-size: toRem(13);
+  }
+
+  &__file-name {
+    flex: 1;
+    color: $neutral-800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__file-size {
+    color: $neutral-400;
+    font-size: toRem(11);
+    white-space: nowrap;
+  }
+
+  &__file-remove {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: $neutral-400;
+    cursor: pointer;
+    padding: toRem(2);
+    border-radius: toRem(3);
+    @include transition;
+
+    &:hover {
+      color: $accent-blaze;
+      background: rgba(239, 68, 68, 0.1);
+    }
+  }
+}

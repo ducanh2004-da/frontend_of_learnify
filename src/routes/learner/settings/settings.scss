@@ -1,0 +1,73 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/functions" as *;
+
+.settings-page {
+  max-width: toRem(600);
+  margin: 0 auto;
+  padding: toRem(32) toRem(16);
+
+  &_title {
+    font-size: toRem(28);
+    font-weight: $fw-medium;
+    color: $neutral-900;
+    margin: 0 0 toRem(24);
+  }
+
+  &_section {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(4);
+    background: $white;
+    border: 1px solid $neutral-200;
+    border-radius: toRem(12);
+    padding: toRem(8);
+  }
+
+  &_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: toRem(12) toRem(12);
+    border-radius: toRem(8);
+
+    &:hover {
+      background: $neutral-100;
+    }
+
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: toRem(10);
+
+      .icon {
+        font-size: toRem(20);
+        color: $neutral-600;
+      }
+
+      span {
+        font-size: toRem(14);
+        color: $neutral-800;
+      }
+    }
+  }
+
+  &_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: toRem(6) toRem(16);
+    background: $neutral-200;
+    border: 1px solid $neutral-300;
+    border-radius: toRem(8);
+    font-size: toRem(13);
+    font-weight: $fw-semibold;
+    color: $neutral-800;
+    cursor: pointer;
+    transition: background-color 200ms;
+
+    &:hover {
+      background: $neutral-300;
+    }
+  }
+}

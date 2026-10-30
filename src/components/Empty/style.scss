@@ -17,7 +17,7 @@
   text-align: center;
   text-wrap: balance;
 
-  @include break(s) {
+  @include break(sm) {
     padding: toRem(24);
   }
 

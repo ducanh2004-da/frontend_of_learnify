@@ -1,0 +1,85 @@
+@use "@styles/colors" as *;
+@use "@styles/functions" as *;
+
+.course-detail {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(16);
+  height: 100%;
+
+  &__title {
+    font-size: toRem(24);
+    line-height: toRem(30);
+    color: $neutral-900;
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    padding: toRem(4) toRem(12);
+    border-radius: toRem(20);
+    font-size: toRem(12);
+    font-weight: 600;
+    width: fit-content;
+
+    &--published {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    &--pending {
+      background: #fef9c3;
+      color: #854d0e;
+    }
+
+    &--rejected {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+  }
+
+  &__abstract {
+    color: $neutral-600;
+    line-height: 1.6;
+  }
+
+  &__meta {
+    display: flex;
+    gap: toRem(24);
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(4);
+    }
+
+    &-label {
+      font-size: toRem(12);
+      color: $neutral-400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    &-value {
+      font-size: toRem(14);
+      color: $neutral-700;
+    }
+  }
+
+  &__learnings {
+    h5 {
+      margin-bottom: toRem(8);
+      color: $neutral-800;
+    }
+
+    ul {
+      padding-left: toRem(20);
+    }
+
+    li {
+      color: $neutral-600;
+      font-size: toRem(14);
+      line-height: 1.6;
+    }
+  }
+}

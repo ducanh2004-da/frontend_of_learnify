@@ -1,100 +1,162 @@
 import { GraphQLClient } from "graphql-request";
 import { useAuthStore } from "@/store/authStore";
-import { REFRESH_TOKEN_MUTATION } from "@/graphql/mutations";
 import { toast } from "sonner";
-import { logger } from "@/utils/logger";
 import { logoutFn } from "@/server/auth";
 
-const GRAPHQL_ENDPOINT =
-  import.meta.env.VITE_GRAPHQL_ENDPOINT ||
-  "https://learnify-be.onrender.com/graphql";
+const DEFAULT_BACKEND_GRAPHQL_URL = "https://learnify-be.onrender.com/graphql";
 
-let refreshPromise: Promise<boolean> | null = null;
+const getDirectBackendGraphqlUrl = (): string => {
+  const candidates = [
+    typeof process !== "undefined" ? process.env.BACKEND_URL : undefined,
+    import.meta.env.VITE_BACKEND_URL,
+    import.meta.env.VITE_GRAPHQL_ENDPOINT,
+  ];
 
-async function isGraphqlUnauthorized(res: Response) {
-  try {
-    const clone = res.clone();
-    const body = await clone.json();
-    const matched = body?.errors?.filter(
-      (e: { extensions?: { code?: string }; message?: string }) =>
-        e?.extensions?.code === "UNAUTHENTICATED" ||
-        e?.extensions?.code === "UnauthorizedException" ||
-        e?.message?.includes("Unauthorized") ||
-        e?.message?.includes("No token provided") ||
-        e?.message?.includes("Invalid token")
-    );
-    if (matched?.length) {
-      logger.debug(
-        "GraphQL unauthorized detected:",
-        matched.map(
-          (e: { extensions?: { code?: string }; message?: string }) => ({
-            code: e.extensions?.code,
-            message: e.message,
-          })
-        )
-      );
-      return true;
+  for (const candidate of candidates) {
+    if (
+      candidate &&
+      (candidate.startsWith("http://") || candidate.startsWith("https://"))
+    ) {
+      return candidate;
     }
-    return false;
-  } catch {
-    return false;
   }
-}
+
+  return DEFAULT_BACKEND_GRAPHQL_URL;
+};
+
+const shouldUseReverseProxy = (): boolean => {
+  if (typeof window === "undefined") return false;
+  if (import.meta.env.VITE_DISABLE_PROXY === "true") return false;
+  if (import.meta.env.VITE_GRAPHQL_ENDPOINT?.startsWith("/")) return true;
+  return import.meta.env.PROD;
+};
+
+export const getGraphqlEndpoint = (): string => {
+  if (shouldUseReverseProxy() && typeof window !== "undefined") {
+    const proxyPath = import.meta.env.VITE_GRAPHQL_ENDPOINT?.startsWith("/")
+      ? import.meta.env.VITE_GRAPHQL_ENDPOINT
+      : "/backend-graphql";
+    return new URL(proxyPath, window.location.origin).toString();
+  }
+  return getDirectBackendGraphqlUrl();
+};
+
+export const getCsrfEndpoint = (): string => {
+  if (shouldUseReverseProxy() && typeof window !== "undefined") {
+    return new URL("/csrf-token", window.location.origin).toString();
+  }
+  return new URL("/csrf-token", getDirectBackendGraphqlUrl()).toString();
+};
+
+export const GRAPHQL_ENDPOINT = getGraphqlEndpoint();
+
+const CSRF_HEADER = "x-csrf-token";
+const AUTH_ERROR_CODES = ["UnauthorizedException", "UNAUTHENTICATED"];
+const CSRF_ERROR_CODE = "CSRF_TOKEN_INVALID";
+
+type TGraphQLErrorBody = {
+  errors?: Array<{ extensions?: { code?: string } }>;
+};
+
+type TCsrfTokenResponse = {
+  csrfToken?: string;
+  token?: string;
+};
+
+let csrfToken: string | null = null;
+let csrfRequest: Promise<string> | null = null;
+
+/**
+ * Calls `GET /csrf-token` (cookies included) so the backend can set the
+ * double-submit cookie, and caches the returned token for later requests.
+ */
+export const fetchCsrfToken = async (): Promise<string> => {
+  const response = await fetch(getCsrfEndpoint(), {
+    method: "GET",
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch CSRF token (${response.status})`);
+  }
+  const body: TCsrfTokenResponse = await response.json();
+  const token = body.csrfToken ?? body.token;
+  if (!token) throw new Error("CSRF token missing in response");
+  csrfToken = token;
+  return token;
+};
+
+const ensureCsrfToken = (force = false): Promise<string> => {
+  if (!force && csrfToken) return Promise.resolve(csrfToken);
+  if (!csrfRequest) {
+    csrfRequest = fetchCsrfToken().finally(() => {
+      csrfRequest = null;
+    });
+  }
+  return csrfRequest;
+};
+
+const handleAuthError = async () => {
+  if (typeof window === "undefined") return;
+  await logoutFn();
+  useAuthStore.getState().logout();
+  toast.error("Session expired. Please log in again.");
+  window.location.href = "/auth/log-in";
+};
+
+const getErrorCodes = async (response: Response): Promise<string[]> => {
+  try {
+    const body: TGraphQLErrorBody = await response.clone().json();
+    return (body.errors ?? []).flatMap((e) =>
+      e.extensions?.code ? [e.extensions.code] : []
+    );
+  } catch {
+    return [];
+  }
+};
+
+const sendWithCsrf = async (
+  input: RequestInfo | URL,
+  init: RequestInit | undefined,
+  forceRefresh: boolean
+): Promise<Response> => {
+  const headers = new Headers(init?.headers);
+  headers.set(CSRF_HEADER, await ensureCsrfToken(forceRefresh));
+  return fetch(input, { ...init, headers, credentials: "include" });
+};
 
 const customFetch = async (
   input: RequestInfo | URL,
   init?: RequestInit
 ): Promise<Response> => {
-  const fetchInit = { ...init, credentials: "include" as RequestCredentials };
+  // The CSRF cookie lives in the browser; SSR requests call the backend directly.
+  if (typeof window === "undefined") {
+    return fetch(getDirectBackendGraphqlUrl(), {
+      ...init,
+      credentials: "include",
+    });
+  }
 
-  let response = await fetch(input, fetchInit);
+  const targetUrl = getGraphqlEndpoint();
+  let response = await sendWithCsrf(targetUrl, init, false);
+  let codes = await getErrorCodes(response);
 
-  const isUnauthorized =
-    response.status === 401 || (await isGraphqlUnauthorized(response));
+  if (response.status === 403 || codes.includes(CSRF_ERROR_CODE)) {
+    response = await sendWithCsrf(targetUrl, init, true);
+    codes = await getErrorCodes(response);
+  }
 
-  if (isUnauthorized) {
-    let currentRefreshPromise = refreshPromise;
-    if (!currentRefreshPromise) {
-      currentRefreshPromise = (async () => {
-        try {
-          const refreshRes = await fetch(GRAPHQL_ENDPOINT, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({ query: REFRESH_TOKEN_MUTATION }),
-          });
-
-          const refreshData = await refreshRes.json();
-          if (refreshData?.data?.refresh?.success) {
-            return true;
-          }
-          return false;
-        } catch {
-          return false;
-        } finally {
-          refreshPromise = null;
-        }
-      })();
-      refreshPromise = currentRefreshPromise;
-    }
-    const refreshSuccess = await currentRefreshPromise;
-    if (refreshSuccess) {
-      response = await fetch(input, fetchInit);
-    } else {
-      await logoutFn();
-      if (typeof window !== "undefined") {
-        logger.debug("Refresh failed, clearing session & redirecting");
-        useAuthStore.getState().logout();
-        toast.error("Session expired. Please log in again.");
-        window.location.href = "/learner/log-in";
-      }
-      return Promise.reject(new Error("Session expired. Please log in again."));
-    }
+  if (
+    response.status === 401 ||
+    codes.some((c) => AUTH_ERROR_CODES.includes(c))
+  ) {
+    await handleAuthError();
+    return Promise.reject(new Error("Session expired"));
   }
 
   return response;
 };
 
 export const graphqlClient = new GraphQLClient(GRAPHQL_ENDPOINT, {
+  credentials: "include",
   fetch: customFetch,
 });

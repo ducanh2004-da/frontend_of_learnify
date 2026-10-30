@@ -1,0 +1,150 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.reviewer-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(32);
+  padding: toRem(32) toRem(24);
+
+  &__hero {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(8);
+  }
+
+  &__title {
+    font-size: $fs-heading3;
+    color: $neutral-900;
+  }
+
+  &__subtitle {
+    font-size: $fs-paragraph;
+    color: $neutral-500;
+  }
+
+  &__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: toRem(200);
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(32);
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(32);
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(toRem(200), 1fr));
+    gap: toRem(16);
+  }
+
+  &__stat-card {
+    display: flex;
+    align-items: center;
+    gap: toRem(16);
+    padding: toRem(20);
+    border-radius: $br-sm;
+    background-color: $white;
+    border: toRem(1) solid $neutral-200;
+
+    &--pending {
+      border-color: #fef08a;
+    }
+
+    &--published {
+      border-color: $green-pastel-200;
+    }
+
+    &--rejected {
+      border-color: $salmon-pastel-200;
+    }
+  }
+
+  &__stat-icon {
+    flex-shrink: 0;
+    color: $neutral-500;
+  }
+
+  &__stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(2);
+  }
+
+  &__stat-value {
+    font-size: $fs-heading4;
+    font-weight: $fw-semibold;
+    color: $neutral-900;
+  }
+
+  &__stat-label {
+    font-size: $fs-small;
+    color: $neutral-500;
+  }
+
+  &__section-title {
+    font-size: $fs-heading5;
+    color: $neutral-900;
+    margin-bottom: toRem(4);
+  }
+
+  &__pending-section {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+  }
+
+  &__pending-list {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(8);
+  }
+
+  &__pending-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: toRem(12) toRem(16);
+    border-radius: $br-sm;
+    border: toRem(1) solid $neutral-200;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+
+    &:hover {
+      background-color: $neutral-100;
+    }
+  }
+
+  &__pending-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(4);
+  }
+
+  &__pending-item-name {
+    font-size: $fs-paragraph;
+    color: $neutral-900;
+  }
+
+  &__pending-item-date {
+    font-size: $fs-small;
+    color: $neutral-400;
+  }
+
+  &__empty {
+    font-size: $fs-paragraph;
+    color: $neutral-400;
+  }
+}

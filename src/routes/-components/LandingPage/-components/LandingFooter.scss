@@ -1,0 +1,17 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+
+.landing-footer {
+  @include transition;
+  text-align: center;
+  padding: toRem(32);
+  background-color: $white;
+  border-top: toRem(1) solid to-rgba($black, 0.1);
+
+  p {
+    color: to-rgba($black, 0.6);
+    font-size: $fs-small;
+  }
+}

@@ -1,15 +1,31 @@
 import { Fragment } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
+import classnames from "classnames";
+import Search from "@/components/Search";
 import Logo from "@/components/Logo";
 import Icon from "@/components/Icon";
+import type { TTopNavLeftProps } from "./type";
 import "./style.scss";
 
-type TTopNavLeftProps = {
-  fullWidth?: boolean;
-  pathname: string[];
-  lastPathname?: string;
-  pathnameWithoutLast: string[];
-  customTitle?: string;
+const PATH_LABELS: Record<string, string> = {
+  courses: "Courses",
+  lessons: "Lessons",
+  roadmaps: "Roadmaps",
+  friends: "Friends",
+  about: "About",
+  dashboard: "Dashboard",
+  search: "Search",
+  user: "Profile",
+  learner: "Home",
+};
+
+const resolveLabel = (
+  segment: string,
+  isLast: boolean,
+  customTitle?: string
+) => {
+  if (isLast && customTitle) return customTitle;
+  return PATH_LABELS[segment] || segment;
 };
 
 const LogoWrapper = () => (
@@ -26,7 +42,26 @@ const TopNavLeft = (props: TTopNavLeftProps) => {
     pathnameWithoutLast,
     fullWidth = false,
     customTitle,
+    showSearch,
+    onSearchClose,
   } = props;
+  const navigate = useNavigate();
+
+  const handleSearch = (query: string) => {
+    navigate({ to: "/learner/search", search: { q: query } });
+    onSearchClose();
+  };
+
+  if (showSearch) {
+    return (
+      <div className="top-nav-left">
+        <Search
+          onSearch={handleSearch}
+          placeholder="Search courses, lessons..."
+        />
+      </div>
+    );
+  }
 
   const content =
     pathname.length >= 4 ? (
@@ -40,11 +75,19 @@ const TopNavLeft = (props: TTopNavLeftProps) => {
           <button
             className="more medium"
             title={pathnameWithoutLast.join(" / ")}
+            aria-label="Show more breadcrumbs"
           >
             ...
           </button>
           <Icon name="keyboard_arrow_right" />
-          <button className="medium">{customTitle || lastPathname}</button>
+          <Link to="/learner" className="medium">
+            {customTitle ||
+              resolveLabel(
+                lastPathname || pathname[pathname.length - 1] || "",
+                true,
+                customTitle
+              )}
+          </Link>
         </section>
       </>
     ) : pathname.length >= 2 ? (
@@ -53,20 +96,24 @@ const TopNavLeft = (props: TTopNavLeftProps) => {
         <Link to="/learner">
           <Icon name="home" fill size={24} />
         </Link>
-        {pathname.map((item, index) => (
-          <Fragment key={item}>
-            <Icon name="keyboard_arrow_right" />
-            <Link
-              href={`/learner/${pathname.slice(0, index + 1).join("/")}`}
-              to="/learner"
-              className="medium"
-            >
-              {customTitle && index === pathname.length - 1
-                ? customTitle
-                : item}
-            </Link>
-          </Fragment>
-        ))}
+        {pathname.map((item, index) => {
+          const isLast = index === pathname.length - 1;
+          const href = `/learner/${pathname.slice(0, index + 1).join("/")}`;
+          return (
+            <Fragment key={item}>
+              <Icon name="keyboard_arrow_right" />
+              <Link
+                href={href}
+                to="/learner"
+                className={classnames("medium", {
+                  "breadcrumb-last": isLast,
+                })}
+              >
+                {resolveLabel(item, isLast, customTitle)}
+              </Link>
+            </Fragment>
+          );
+        })}
       </>
     ) : null;
 

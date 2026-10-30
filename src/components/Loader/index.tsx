@@ -17,14 +17,14 @@ const Loader = (props: TLoaderProps) => {
   useEffect(() => {
     if (!ready) return;
     // Match bar-1's 0.5s stagger so logo fade ends when last bar does
-    const timer = setTimeout(() => setLogoReady(true), 500);
+    const timer = setTimeout(() => setLogoReady(true), 300);
     return () => clearTimeout(timer);
   }, [ready]);
 
   if (disabled) return null;
 
   return (
-    <section className="loader-container">
+    <section className="loader-container" data-lenis-prevent>
       <ScreenLoader
         onPhase1Complete={onPhase1Complete}
         ready={ready}

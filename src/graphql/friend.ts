@@ -77,6 +77,13 @@ export const SEND_FRIEND_REQUEST = `
       isSuccess
       message
       count
+      users {
+        id
+        username
+        email
+        avatar
+        role
+      }
     }
   }
 `;

@@ -1,24 +1,48 @@
-import "./style.scss";
+import { useTranslation } from "react-i18next";
 import TextButton from "@/components/TextButton";
-import { MOCK_PROGRESS } from "@/mock";
+import type { TSpecial } from "@/types/global";
+import "./style.scss";
 
-const DashboardProgressWidget = () => {
+type TProgressPill = {
+  typeSpecial: TSpecial;
+  value: number;
+};
+
+type TDashboardProgressWidgetProps = {
+  completedCourses: number;
+  completedLessons: number;
+};
+
+const DashboardProgressWidget = ({
+  completedCourses,
+  completedLessons,
+}: TDashboardProgressWidgetProps) => {
+  const { t } = useTranslation();
+
+  const pills: TProgressPill[] = [
+    { typeSpecial: "roadmap", value: 0 },
+    { typeSpecial: "certificate", value: completedCourses },
+    { typeSpecial: "course", value: completedCourses },
+    { typeSpecial: "lesson", value: completedLessons },
+    { typeSpecial: "lab", value: 0 },
+  ];
+
   return (
     <div className="progress-widget">
-      <div className="progress-widget-header">
-        <h3>Progress</h3>
+      <div className="progress-widget__header">
+        <h3>{t("dashboard.progress")}</h3>
       </div>
-      <div className="progress-widget-grid">
-        {MOCK_PROGRESS.map((progress, index) => (
-          <div key={index} className="progress-widget-grid-pill">
+      <div className="progress-widget__grid">
+        {pills.map((pill, index) => (
+          <div key={index} className="progress-widget__grid-pill">
             <TextButton
               onClick={() => {}}
               text="text"
               size="tiny"
               type="special"
-              typeSpecial={progress.typeSpecial}
+              typeSpecial={pill.typeSpecial}
             />
-            <span className="num">{progress.value}</span>
+            <span className="num">{pill.value}</span>
           </div>
         ))}
       </div>

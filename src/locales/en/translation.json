@@ -1,0 +1,939 @@
+{
+  "sidebar": {
+    "search": "Search",
+    "learnify": "Learnify",
+    "dashboard": "Dashboard",
+    "courses": "Courses",
+    "roadmaps": "Roadmaps",
+    "friends": "Friends",
+    "about": "About",
+    "manage_courses": "Manage Courses",
+    "course_builder": "AI Course Builder",
+    "add_course": "Add Course",
+    "add_lesson": "Add Lesson"
+  },
+  "common": {
+    "change_language": "Change language",
+    "toggle_dark_mode": "Toggle dark mode",
+    "language": "Language",
+    "switch_to_learner": "Switch to Learner",
+    "switch_to_instructor": "Switch to Instructor",
+    "switch_to_reviewer": "Switch to Reviewer",
+    "switch_to_admin": "Switch to Admin",
+    "switch_portal": "Switch Portal",
+    "menu": "Menu",
+    "close_menu": "Close menu",
+    "cancel": "Cancel",
+    "create": "Create",
+    "delete": "Delete",
+    "creating": "Creating...",
+    "deleting": "Deleting..."
+  },
+  "home": {
+    "title": "Unlock your <Beauty>Potential</Beauty> for tomorrow, today",
+    "subtitle": "Discover expert-led course with personalized guidance from our interactive 3D AI Teachers",
+    "search_suggestions": [
+      "AI Propmt",
+      "Web Development",
+      "3D Modeling",
+      "Data Science",
+      "Transform Learning"
+    ]
+  },
+  "dashboard": {
+    "banner_title": "Plan your learning journey",
+    "banner_description": "Start now to set your priorities and progress toward your goals with a clear, structured plan.",
+    "explore_courses": "Explore courses",
+    "current_streak": "Current<br/>streak",
+    "day_labels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "achievements": "Achievements",
+    "badge_path_enroll": "Path Enroll",
+    "badge_first_lab": "First Lab",
+    "more": "More →",
+    "progress": "Progress",
+    "welcome_title": "Welcome back, <Beauty>{{name}}</Beauty>",
+    "welcome_subtitle": "Manage your courses, track progress, and engage with your students.",
+    "total_courses": "Total Courses",
+    "total_lessons": "Total Lessons",
+    "published": "Published",
+    "pending": "Pending",
+    "rejected": "Rejected",
+    "recent_courses": "Recent Courses",
+    "no_courses": "No courses yet. Create your first course!",
+    "quick_actions": "Quick Actions",
+    "create_course": "Create Course",
+    "manage_courses": "Manage Courses",
+    "switch_learner": "View as Learner",
+    "pending_reviews": "Pending Reviews"
+  },
+  "friends": {
+    "tabs": {
+      "leaderboard": "Leaderboard",
+      "friends": "Friends",
+      "requests": "Requests"
+    },
+    "no_items": "No items found.",
+    "placeholder_heading": "It's empty here",
+    "placeholder_text": "Click on any user to have a quick peak profile",
+    "empty_state": {
+      "heading": "Sign in to see your friends",
+      "description": "Connect with classmates and track their progress together. Sign in to start building your learning community.",
+      "login": "Log in"
+    },
+    "detail": {
+      "add_friend": "Add Friend",
+      "sending": "Sending...",
+      "pending": "Pending",
+      "request_sent": "Request Sent",
+      "friend": "Friend",
+      "friends": "Friends",
+      "badges": "Badges",
+      "followers": "Followers",
+      "streak_days": "Streak Days",
+      "courses": "Courses",
+      "achievements": "Achievements",
+      "path_enroll": "Path Enroll",
+      "first_lab": "First Lab"
+    },
+    "alerts": {
+      "accepted": "Accepted successfully!",
+      "declined": "Declined successfully!",
+      "sent": "Friend request sent successfully!"
+    }
+  },
+  "errors": {
+    "server_error": "Server Error",
+    "load_generic": "Something went wrong while loading this page. Please try again.",
+    "load_courses": "Unable to load courses at this time. This could be a network issue or a server problem. Please try again.",
+    "load_friends": "Unable to load friends at this time. This could be a network issue or a server problem. Please try again.",
+    "load_roadmap": "Unable to load roadmap at this time. This could be a network issue or a server problem. Please try again.",
+    "try_again": "Try Again",
+    "go_back": "Go Back",
+    "session_expired": "Session expired. Please log in again.",
+    "throttler_title": "Too Many Requests",
+    "throttler_advice": "You are sending too many requests. Please wait a moment and try again. This limit resets automatically every 10 seconds.",
+    "validation_title": "Invalid Input",
+    "validation_advice": "The data you submitted is not valid. Please check your input and try again.",
+    "not_found_title": "Resource Not Found",
+    "not_found_advice": "The requested resource could not be found. It may have been moved or deleted.",
+    "forbidden_title": "Access Denied",
+    "forbidden_advice": "You do not have permission to access this resource. Please contact support if you believe this is a mistake.",
+    "bad_request_title": "Bad Request",
+    "bad_request_advice": "The server could not process your request. Please try again or contact support.",
+    "server_advice": "An internal server error occurred. Our team has been notified. Please try again later."
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back to Learnify",
+      "or": "or",
+      "new_to_learnify": "New to Learnify?",
+      "sign_up": "Sign up",
+      "forgot_password": "Forget your password?",
+      "recovery_here": "Recovery here",
+      "email_label": "Email",
+      "email_placeholder": "name@learnify-email.com",
+      "password_label": "Password",
+      "password_placeholder": "learnifypassword",
+      "submit": "Log in",
+      "submitting": "Logging in..."
+    },
+    "signup": {
+      "title": "Sign up to Learnify",
+      "or": "or sign up with",
+      "already_using": "Already using Learnify?",
+      "log_in": "Log in",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email_label": "Email address",
+      "email_placeholder": "name@learnify-email.com",
+      "password_label": "Password",
+      "password_placeholder": "Password",
+      "confirm_password_label": "Confirm password",
+      "confirm_password_placeholder": "Confirm Password",
+      "continue": "Continue",
+      "back": "Back",
+      "submit": "Sign up",
+      "submitting": "Signing up...",
+      "verification_title": "Check your inbox!",
+      "verification_description": "We've sent a verification link to",
+      "verification_subtext": "Please check your email and click the link to activate your account. Don't forget to check your spam folder!",
+      "resend": "Resend email",
+      "resending": "Resending..."
+    },
+    "forgot_password": {
+      "title": "Forgot your password?",
+      "description": "No worries, we'll send you reset instructions. Enter your email address below.",
+      "email_label": "Email address",
+      "email_placeholder": "Enter your email",
+      "submit": "Send reset code",
+      "remember_password": "Remember your password?",
+      "log_in": "Log in",
+      "verify_title": "Verify your email",
+      "verify_description": "We've sent a 6-digit code to your email. Enter it below to continue resetting your password.",
+      "digit_aria": "Digit {{n}} of 6",
+      "verify_code": "Verify code",
+      "resend_link": "Not received any mail?",
+      "resend_here": "Resend here",
+      "back": "Back"
+    }
+  },
+  "courses": {
+    "title": "Explore our <Beauty>Best courses</Beauty> only for you",
+    "description": "Your home for building AI skills and more. Get hands on with Learnify, dive into in-depth courses, and learn directly from the experts. When ready, prove your new skills with career-boosting credentials.",
+    "filter_btn": "Filter",
+    "filter_type": "Course Type",
+    "filter_free": "Free",
+    "filter_paid": "Paid",
+    "filter_duration_label": "Duration",
+    "filter_duration_30": "30 mins",
+    "filter_duration_45": "45 mins",
+    "filter_duration_60": "60 mins",
+    "filter_duration_120": "2 hours",
+    "filter_duration_180": "3 hours +",
+    "filter_clear": "Clear Filters",
+    "results": "{{count}} results",
+    "results_filtered": "{{filtered}} of {{total}} results",
+    "name": "Course Name",
+    "name_placeholder": "Enter course name",
+    "name_required": "Course name is required",
+    "price": "Course Price",
+    "free_hint": "Price is 0 — course will be free",
+    "created": "Created",
+    "status": "Status",
+    "status_all": "All",
+    "status_published": "Published",
+    "status_pending": "Pending",
+    "status_rejected": "Rejected",
+    "description_placeholder": "Enter course description",
+    "description_required": "Course description is required",
+    "delete_title": "Delete Course",
+    "delete_confirm": "Are you sure you want to delete this course?",
+    "delete_lesson_title": "Delete Lesson",
+    "delete_lesson_confirm": "Are you sure you want to delete this lesson?",
+    "lesson_title": "Lesson Title",
+    "lesson_title_placeholder": "Enter lesson title",
+    "lesson_title_required": "Lesson title is required",
+    "lesson_description": "Lesson Description",
+    "lesson_desc_placeholder": "Enter lesson description",
+    "lesson_desc_required": "Lesson description is required",
+    "files": "Files",
+    "files_click": "Click to upload files",
+    "files_hint": "{{maxFiles}} files max, {{maxSize}} each (.pdf, .ppt, .pptx)",
+    "files_required": "Please upload at least one file",
+    "files_max_count": "Maximum {{count}} files allowed",
+    "files_type_error": "Only .pdf, .ppt, .pptx files are allowed",
+    "files_size_error": "{{name}} exceeds {{size}} limit",
+    "select_course_to_review": "Select a course to review",
+    "select_course": "Select a course",
+    "select_lesson": "Select a lesson",
+    "no_lessons": "No lessons",
+    "create": "Create Course",
+    "creating": "Creating...",
+    "toast": {
+      "course_created": "Course created successfully!",
+      "course_deleted": "Course deleted successfully!",
+      "lesson_created": "Lesson created successfully!",
+      "lesson_deleted": "Lesson deleted successfully!",
+      "file_uploaded": "File uploaded successfully!",
+      "course_published": "Course published successfully!",
+      "course_rejected": "Course rejected successfully!",
+      "create_failed": "Failed to create course: {{message}}",
+      "delete_failed": "Failed to delete course: {{message}}",
+      "lesson_create_failed": "Failed to create lesson: {{message}}",
+      "lesson_delete_failed": "Failed to delete lesson: {{message}}",
+      "file_upload_failed": "Failed to upload file: {{message}}",
+      "publish_failed": "Failed to publish course: {{message}}",
+      "reject_failed": "Failed to reject course: {{message}}"
+    }
+  },
+  "course_detail": {
+    "enroll": "Enroll Course",
+    "processing": "Processing...",
+    "show_feedback": "Show feedback",
+    "hide_feedback": "Hide feedback",
+    "send_feedback": "Send feedback",
+    "no_reviews": "No reviews yet. Be the first to rate this course!",
+    "your_review": "Your Review",
+    "edit_review": "Edit",
+    "empty_title": "No products found",
+    "empty_description": "No products match your search",
+    "empty_create": "Create a course",
+    "toast_login_enroll": "Please log in to enroll in this course",
+    "toast_enroll_first": "You need to enroll in the course before accessing lessons!",
+    "toast_unlock_lesson": "Complete the previous lesson to unlock this one!",
+    "toast_login_feedback": "Please log in to leave feedback",
+    "no_description": "No description",
+    "badge_text": "text",
+    "start": "Start",
+    "continue": "Continue",
+    "completed": "Completed",
+    "private_course": "This course is not available",
+    "not_published": "This course has not been published yet",
+    "server_error": "Server Error",
+    "load_error": "Something went wrong while loading this course. The server encountered an issue. Please try again or come back later.",
+    "buy": "Buy Course",
+    "payment_error": "Unable to create payment session. Please try again!"
+  },
+  "payment": {
+    "success_title": "Payment Successful!",
+    "success_desc": "Your payment has been confirmed. You can now start learning!",
+    "success_order_label": "Order code:",
+    "success_cta": "Start Learning",
+    "processing_title": "Processing...",
+    "processing_desc": "Please do not close the browser while we process your enrollment.",
+    "cancel_title": "Payment Cancelled",
+    "cancel_desc": "Your transaction has been cancelled. You can try again or go back.",
+    "cancel_order_label": "Order code:",
+    "cancel_status_label": "Status:",
+    "cancel_status_value": "Cancelled",
+    "cancel_retry": "Retry Payment",
+    "cancel_go_back": "Go Back",
+    "cancel_go_home": "Go Home",
+    "cancel_support": "Having trouble with payment?",
+    "cancel_support_link": "Contact Support"
+  },
+  "roadmaps": {
+    "headline": "Shape <Beauty>your future</Beauty> by yourself",
+    "description": "Roadmaps are collections of learnings designed to build deep skills in a particular area. Whether you're looking to earn achievements, build a collection of skills badges, or prepare for a certification, there are paths right for you. When you're done, share your accomplishments on social media and hiring platforms like Linkedin and Credly!",
+    "search_placeholder": "Search roadmaps...",
+    "categories": {
+      "ai_llm": "AI / LLM",
+      "calculus": "Calculus",
+      "program": "Program",
+      "data": "Data",
+      "design": "Design",
+      "language": "Language"
+    }
+  },
+  "about": {
+    "page_title": "Learnify",
+    "tagline": "Smart learning. Real skills. Ready careers.",
+    "hero_paragraph_1": "Learnify is an educational platform that highlights the future and craft of learning—from foundational concepts to hands-on practice to career-ready mastery. By showcasing the innovative technology and the 3D AI Lecturers behind our courses, we hope to demystify how modern education is built and deepen your connection with your own potential. Our approach begins with curiosity: we want to give you a window into the way interactive learning actually works.",
+    "hero_paragraph_2": "What do we mean when we talk about learning at Learnify? It's our 3D AI Lecturer, your personal guide to mastering complex topics. It's our hands-on labs, the interactive environments that turn theory into real-world practice. It's industry-recognized credentials, accessible skill-building, and continuous mentorship. In short: learning is everywhere—and it's always evolving. Education is never done.",
+    "hero_paragraph_3": "Keep in touch with Learnify on Fanpage, YouTube, and hello@learnify.com.",
+    "hero_alt": "Learnify abstract visual",
+    "direction_title": "Designed for humans.",
+    "direction_subtitle": "Powered by technology.",
+    "direction_text": "Learnify was born from a simple belief: learning should be personal, engaging, and accessible to everyone. We combine expert-curated content with AI-driven guidance to create an experience that adapts to your unique pace and goals.",
+    "vision_heading": "Our Vision",
+    "vision_text": "From interactive mind-maps to motivational streaks, every feature is designed to help you build lasting knowledge—not just pass the next exam.",
+    "team_heading": "Our Team",
+    "team_subtitle": "Meet the Crew"
+  },
+  "comment_form": {
+    "rating_label": "Rate this course",
+    "star_aria": "{{star}} star",
+    "star_aria_plural": "{{star}} stars",
+    "review_label": "Your review",
+    "placeholder": "Share your thoughts about this course...",
+    "cancel": "Cancel",
+    "submit": "Submit Review",
+    "toast_no_rating": "Please select a rating!",
+    "toast_no_review": "Please enter your review!"
+  },
+  "logo": {
+    "text": "Learnify",
+    "tooltip": "Go to home"
+  },
+  "search": {
+    "placeholder": "Search for courses...",
+    "aria_label": "Search",
+    "label": "Search for courses",
+    "submit_aria": "Search",
+    "clear_tooltip": "Clear search",
+    "results_for": "Showing results for \"{{query}}\"",
+    "section_courses": "Courses",
+    "section_roadmaps": "Roadmaps",
+    "section_lessons": "Lessons",
+    "found_courses_zero": "No courses found",
+    "found_courses_one": "{{count}} course found",
+    "found_courses_other": "{{count}} courses found",
+    "found_roadmaps_one": "{{count}} roadmap found",
+    "found_roadmaps_other": "{{count}} roadmaps found",
+    "found_lessons_one": "{{count}} lesson found",
+    "found_lessons_other": "{{count}} lessons found",
+    "no_results": "No results found",
+    "no_results_desc": "Try a different search term or browse our catalog."
+  },
+  "footer": {
+    "banner_alt": "footer-banner",
+    "brand": "Learnify",
+    "made_by": "Made by ",
+    "tanstack_link": "Tanstack Start",
+    "navigation": "Navigation",
+    "courses": "Courses",
+    "roadmaps": "Roadmaps",
+    "friends": "Friends",
+    "about": "About",
+    "copyright": "©{{year}} Learnify. All right reserved.",
+    "socials": "Socials",
+    "ig": "IG",
+    "dr": "DR",
+    "fb": "FB",
+    "x": "X",
+    "privacy_policy": "Privacy Policy",
+    "scroll_to_top": "Scroll to top"
+  },
+  "tetris_loader": {
+    "loading": "Loading..."
+  },
+  "account_menu": {
+    "profile": "Profile",
+    "subscription": "Subscription",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "profile": {
+    "server_error": "Server Error",
+    "load_error": "Something went wrong while loading this profile. Please try again or come back later.",
+    "failed_fetch": "Failed to fetch user profile",
+    "head_title": "User Profile",
+    "avatar_alt": "Avatar",
+    "diamonds": "Diamonds",
+    "followers": "Followers",
+    "streak": "Streak",
+    "personal_info": "Personal Information",
+    "username_label": "Username",
+    "email_label": "Email",
+    "phone_label": "Phone Number",
+    "my_courses": "My Courses",
+    "completed": "Completed",
+    "in_progress": "In Progress"
+  },
+  "editable_field": {
+    "edit": "Edit {{fieldName}}"
+  },
+  "lesson_error": {
+    "server_error": "Server Error",
+    "load_error": "Something went wrong while loading this course. The server encountered an issue."
+  },
+  "lesson_welcome": {
+    "lesson_fallback": "Lesson",
+    "sections_to_cover": "{{count}} sections to cover",
+    "start_lesson": "Start Lesson"
+  },
+  "lesson_complete": {
+    "title": "Lesson Complete!",
+    "description": "You have finished this lesson. Great work!",
+    "back_to_dashboard": "Back to Dashboard",
+    "back_to_course": "Back to Course",
+    "next_lesson": "Next Lesson"
+  },
+  "chat_message_wrapper": {
+    "preparing_lesson": "Preparing your lesson...",
+    "start_conversation": "Start a conversation with your AI tutor",
+    "placeholder_qa": "Ask your AI tutor anything..."
+  },
+  "course_context": {
+    "references": "References",
+    "documents": "Documents",
+    "notes": "Notes"
+  },
+  "dropdown_menu": {
+    "more": "more"
+  },
+  "chat_header": {
+    "new_conversation": "New Conversation",
+    "change_topic": "Change topic",
+    "skip_qa": "Skip to Q&A",
+    "skip_quiz": "Skip to Quiz",
+    "complete_lesson": "Complete lesson",
+    "report_issue": "Report issue",
+    "flagged": "Issue reported successfully!"
+  },
+  "chat_input": {
+    "placeholder": "Type your message...",
+    "attach_file": "Attach file",
+    "attach_file_tooltip": "Attach File",
+    "message_input": "Message input",
+    "voice_input": "Voice input",
+    "voice_input_tooltip": "Voice Input",
+    "send_message": "Send message",
+    "send_message_tooltip": "Send Message"
+  },
+  "course_controller": {
+    "course_fallback": "Course",
+    "close": "Close",
+    "loading_lessons": "Loading lessons...",
+    "open_menu": "Open course menu"
+  },
+  "quiz_panel": {
+    "results_header": "Quiz Results",
+    "question_label": "Q{{number}}. {{question}}",
+    "correct_answer": "Correct answer: ",
+    "complete": "Complete",
+    "progress": "Question {{current}} of {{total}}",
+    "type_multiple_choice": "Multiple Choice",
+    "type_multiple_answer": "Multiple Answer",
+    "type_true_false": "True or False",
+    "type_matching": "Matching",
+    "select_description": "Select a description",
+    "correct_indicator": "✓",
+    "wrong_indicator": "✗ ({{correct}})",
+    "explanation": "Explanation:",
+    "submit_answer": "Submit Answer",
+    "see_results": "See Results",
+    "next_question": "Next Question"
+  },
+  "subscriptions": {
+    "heading": "Choose the <Beauty>perfect</Beauty> plan for your goals",
+    "subtitle": "Master new skills and earn industry-recognized certificates through hands-on learning—guided by our expert 3D AI Lecturers. No prior experience needed.",
+    "starter": {
+      "title": "Starter",
+      "price": "<0>Free</0>",
+      "subtitle": "Start learning with basic access to hands-on labs and earn your first skill badges.",
+      "descriptions": [
+        "<0>35 free</0> credits every month",
+        "<0>10 questions</0> for 3D AI Lecturers per month",
+        "Access to foundational courses and limited labs"
+      ]
+    },
+    "pro": {
+      "title": "Pro",
+      "price": "<0>$49</0> / month",
+      "subtitle": "Unlock unlimited hands-on learning from beginner to advanced levels.",
+      "descriptions": [
+        "<0>Unlimited</0> access to thousands of courses and labs",
+        "Full access to the Learnify content library",
+        "<0>Included everything in Start plan</0>"
+      ]
+    },
+    "career": {
+      "title": "Career",
+      "price": "<0>$99</0> / month",
+      "subtitle": "Launch your career in high-paying fields with the skills employers are looking for.",
+      "descriptions": [
+        "Validated by <0>top employers</0>",
+        "<0>Unlimited questions</0> for 3D AI Lecturers",
+        "Access to <0>professional certification programs</0>"
+      ]
+    },
+    "select": "Select",
+    "free-trial": "Start free trial",
+    "learn_more": "Learn more"
+  },
+  "chat": {
+    "thinking": {
+      "the_teacher_is_thinking": "The teacher is thinking...",
+      "processing_your_question": "Processing your question...",
+      "let_me_check": "Let me check...",
+      "searching_knowledge_base": "Searching knowledge base...",
+      "analyzing_your_query": "Analyzing your query..."
+    }
+  },
+  "landing": {
+    "hero": {
+      "headline_line1": "Smart Learning.",
+      "headline_line2": "Real Skills.",
+      "headline_line3": "Ready Careers.",
+      "subtitle": "AI-Powered 3D lecturers guide you through hands-on labs. Built for learners, instructors, and academic institutions ready to transform education.",
+      "learner_cta": "I'm a Learner",
+      "instructor_cta": "I'm an Instructor"
+    },
+    "stats": {
+      "title": "Trusted by <Beauty>Thousands</Beauty>"
+    },
+    "how": {
+      "title": "How It <Beauty>Works</Beauty>",
+      "steps": {
+        "browse": {
+          "title": "Browse Courses",
+          "desc": "Explore thousands of courses across every field — from AI to design."
+        },
+        "enroll": {
+          "title": "Enroll & Start",
+          "desc": "Pick a course, enroll in one click, and jump into your first lesson."
+        },
+        "learn": {
+          "title": "Learn with 3D AI",
+          "desc": "Interactive 3D AI Lecturers guide you through hands-on labs."
+        },
+        "certificate": {
+          "title": "Earn Certificates",
+          "desc": "Complete courses, earn credentials, and showcase your skills."
+        }
+      }
+    },
+    "audience": {
+      "title": "Built for <Beauty>Everyone</Beauty>",
+      "learners": {
+        "title": "For Learners",
+        "desc": "Master skills through AI-guided 3D lectures and interactive labs. Learn at your own pace with personalized feedback.",
+        "cta": "Start Learning"
+      },
+      "instructors": {
+        "title": "For Instructors",
+        "desc": "Create courses, manage students, and track progress with powerful analytics. Bring your curriculum to life with 3D content.",
+        "cta": "Start Teaching"
+      },
+      "institutions": {
+        "title": "For Institutions",
+        "desc": "Deploy Learnify across your university, school, or training center. Custom branding, dedicated support, and bulk pricing.",
+        "cta": "Learn More"
+      }
+    },
+    "subs": {
+      "title": "Choose Your <Beauty>Plan</Beauty>",
+      "select": "Select",
+      "starter": {
+        "title": "Starter",
+        "subtitle": "Start learning with basic access to hands-on labs and earn your first skill badges.",
+        "price": "<strong>Free</strong>",
+        "desc0": "<strong>35 free</strong> credits every month",
+        "desc1": "<strong>10 questions</strong> for 3D AI Lecturers per month",
+        "desc2": "Access to foundational courses and limited labs"
+      },
+      "pro": {
+        "title": "Pro",
+        "subtitle": "Unlock unlimited hands-on learning from beginner to advanced levels.",
+        "price": "<strong>$49</strong> / month",
+        "desc0": "<strong>Unlimited</strong> access to thousands of courses and labs",
+        "desc1": "Full access to the Learnify content library",
+        "desc2": "<strong>Included everything in Free plan</strong>"
+      },
+      "career": {
+        "title": "Career",
+        "subtitle": "Launch your career in high-paying fields with the skills employers are looking for.",
+        "price": "<strong>$99</strong> / month",
+        "desc0": "Validated by <strong>top employers</strong>",
+        "desc1": "<strong>Unlimited questions</strong> for 3D AI Lecturers",
+        "desc2": "Access to <strong>professional certification programs</strong>"
+      }
+    },
+    "values": {
+      "title": "Our <Beauty>Values</Beauty>"
+    }
+  },
+  "about_us": {
+    "title": "About <Beauty>Learnify</Beauty>",
+    "description": "An educational platform that highlights the future and craft of learning — from foundational concepts to hands-on practice to career-ready mastery.",
+    "mission_title": "Our Mission",
+    "vision_title": "Our Vision",
+    "values_title": "Our <Beauty>Values</Beauty>",
+    "team_title": "Meet the <Beauty>Team</Beauty>",
+    "mission_text": "To democratize education by combining cutting-edge AI technology with immersive 3D learning experiences, making world-class education accessible to everyone, everywhere.",
+    "vision_text": "A world where anyone can learn any skill through personalized, AI-guided instruction — breaking down barriers of cost, location, and traditional teaching limitations.",
+    "values": {
+      "learner_first": {
+        "title": "Learner First",
+        "desc": "Every decision we make starts with the learner's experience in mind."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "desc": "We embrace AI and modern tech to make education more effective."
+      },
+      "accessibility": {
+        "title": "Accessibility",
+        "desc": "Quality learning should be available to everyone, everywhere."
+      },
+      "community": {
+        "title": "Community",
+        "desc": "Growing together through collaboration, sharing, and support."
+      }
+    },
+    "stats": {
+      "trusted_learners": {
+        "label": "Trusted Learners"
+      },
+      "courses": {
+        "label": "Courses"
+      },
+      "members": {
+        "label": "Members"
+      },
+      "trusted_partners": {
+        "label": "Trusted Partners"
+      }
+    },
+    "team": {
+      "sarah": {
+        "role": "CEO & Co-Founder",
+        "bio": "Former educator turned entrepreneur. Passionate about democratizing access to world-class education."
+      },
+      "marcus": {
+        "role": "CTO & Co-Founder",
+        "bio": "AI researcher and full-stack engineer. Building the future of interactive learning experiences."
+      },
+      "aisha": {
+        "role": "Head of Product",
+        "bio": "Product leader with a background in instructional design. Focused on learner-centered design."
+      },
+      "david": {
+        "role": "Lead 3D Engineer",
+        "bio": "Graphics programmer and Three.js expert. Crafting immersive educational environments."
+      }
+    }
+  },
+  "contact_info": {
+    "general": {
+      "label": "General Inquiries",
+      "value": "hello@learnify.com"
+    },
+    "support": {
+      "label": "Support",
+      "value": "support@learnify.com"
+    },
+    "partnerships": {
+      "label": "Partnerships",
+      "value": "partners@learnify.com"
+    },
+    "office": {
+      "label": "Office",
+      "value": "123 Education Lane, Tech City, TC 90210"
+    }
+  },
+  "social_links": {
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "youtube": "YouTube"
+  },
+  "blogs": {
+    "title": "Learnify <Beauty>Blogs</Beauty>",
+    "description": "Insights, tutorials, and updates from the Learnify team on AI-powered education, 3D learning, and career development.",
+    "posts": {
+      "future-of-ai-education": {
+        "title": "The Future of AI in Education",
+        "excerpt": "How 3D AI lecturers are transforming the way we learn and retain knowledge through immersive, interactive experiences.",
+        "category": "AI & Tech",
+        "readTime": "5 min read"
+      },
+      "career-ready-skills": {
+        "title": "Building Career-Ready Skills",
+        "excerpt": "Why hands-on labs and interactive learning lead to better job outcomes and faster skill acquisition.",
+        "category": "Career",
+        "readTime": "4 min read"
+      },
+      "introducing-learnify-pro": {
+        "title": "Introducing Learnify Pro",
+        "excerpt": "Unlimited courses, labs, and AI-guided mentorship for serious learners ready to accelerate their growth.",
+        "category": "Product",
+        "readTime": "3 min read"
+      },
+      "3d-learning-science": {
+        "title": "The Science Behind 3D Learning",
+        "excerpt": "Research shows that spatial and interactive learning environments improve retention by up to 40%.",
+        "category": "Research",
+        "readTime": "6 min read"
+      },
+      "instructor-toolkit": {
+        "title": "The Modern Instructor's Toolkit",
+        "excerpt": "How educators are leveraging AI-powered analytics and 3D content to create more engaging classrooms.",
+        "category": "Teaching",
+        "readTime": "5 min read"
+      },
+      "institution-partnerships": {
+        "title": "Scaling Education for Institutions",
+        "excerpt": "How universities and training centers are deploying Learnify to reach more students with less overhead.",
+        "category": "Institutions",
+        "readTime": "4 min read"
+      }
+    }
+  },
+  "contact": {
+    "title": "Get in <Beauty>Touch</Beauty>",
+    "description": "Have questions, feedback, or partnership inquiries? We'd love to hear from you.",
+    "follow_us": "Follow Us"
+  },
+  "pill_top_nav": {
+    "home": "Home",
+    "resources": "Resources",
+    "about_us": "About Us",
+    "contact": "Contact",
+    "blogs": {
+      "title": "Blogs",
+      "desc": "Insights, tutorials, and updates from the Learnify team."
+    },
+    "courses": {
+      "title": "Courses",
+      "desc": "Browse thousands of expert-led courses across every field."
+    },
+    "roadmaps": {
+      "title": "Roadmaps",
+      "desc": "Structured learning paths from beginner to career-ready."
+    },
+    "log_in": "Log in",
+    "sign_up": "Sign Up",
+    "diamond_tooltip": "View Shop",
+    "streak_tooltip": "View Streak"
+  },
+  "notification": {
+    "title": "Notifications",
+    "no_notifications": "No notifications yet"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "language": "Language",
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "admin": {
+    "dashboard": {
+      "load_error": "Failed to load dashboard data."
+    },
+    "welcome": {
+      "greeting_morning": "Good morning",
+      "greeting_afternoon": "Good afternoon",
+      "greeting_evening": "Good evening",
+      "subtitle": "Here's what's happening on your platform today"
+    },
+    "stats": {
+      "total_users": "Total Users",
+      "today_subscriber": "Today's Subscribers",
+      "revenue": "Revenue",
+      "system_bugs": "System Bugs",
+      "trend": "+8.2% from last month"
+    },
+    "chart": {
+      "title": "User Activity within 7 days",
+      "aria_label": "User activity line chart"
+    },
+    "recent_users": {
+      "title": "Recent Users",
+      "empty": "No recent users.",
+      "just_now": "Just now",
+      "min_ago_one": "{{count}} min ago",
+      "min_ago_other": "{{count}} mins ago",
+      "hr_ago_one": "{{count}} hr ago",
+      "hr_ago_other": "{{count}} hrs ago",
+      "days_ago_one": "{{count}} day ago",
+      "days_ago_other": "{{count}} days ago"
+    },
+    "system_activity": {
+      "title": "System Activity"
+    },
+    "search": {
+      "placeholder": "Search by name, email or role...",
+      "clear_tooltip": "Clear search query"
+    },
+    "users": {
+      "title": "User Management",
+      "table": {
+        "id": "ID",
+        "user": "User",
+        "email": "Email",
+        "role": "Role",
+        "joined": "Joined",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "empty": "No users found",
+        "edit_tooltip": "Edit this user's details",
+        "delete_tooltip": "Remove this user permanently"
+      },
+      "modal": {
+        "create_title": "Create New User",
+        "edit_title": "Edit User",
+        "username": "Username",
+        "username_placeholder": "e.g. john_doe",
+        "email": "Email",
+        "email_placeholder": "user@example.com",
+        "phone": "Phone Number",
+        "phone_placeholder": "+84 000 000 000",
+        "password": "Password",
+        "password_placeholder": "Minimum 8 characters",
+        "role": "Role",
+        "cancel": "Cancel",
+        "save": "Save Changes",
+        "create": "Create User",
+        "saving": "Saving...",
+        "close_tooltip": "Close modal",
+        "cancel_tooltip": "Discard changes",
+        "submit_create_tooltip": "Create new user account",
+        "submit_edit_tooltip": "Save changes to user"
+      },
+      "delete_confirm": "Are you sure you want to permanently delete this user?"
+    },
+    "pagination": {
+      "showing": "Showing <strong>{{start}}–{{end}}</strong> of <strong>{{total}}</strong>",
+      "prev_tooltip": "Go to previous page",
+      "next_tooltip": "Go to next page",
+      "page_tooltip": "Go to page {{page}}"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "user_management": "User Management",
+      "settings": "Settings",
+      "policy": "Policy",
+      "add_user": "Add User"
+    },
+    "header": {
+      "search_placeholder": "Search users, settings..."
+    },
+    "page_header": {
+      "add_user": "Add User",
+      "add_user_tooltip": "Create a new user account"
+    },
+    "toast": {
+      "user_created": "User created successfully!",
+      "user_updated": "User updated successfully!",
+      "user_deleted": "User deleted successfully!",
+      "create_failed": "Failed to create user: {{message}}",
+      "update_failed": "Failed to update user: {{message}}",
+      "delete_failed": "Failed to delete user: {{message}}"
+    }
+  },
+  "card": {
+    "duration_one": "{{count}} min",
+    "duration_other": "{{count}} mins"
+  },
+  "card_footer_tooltip": {
+    "locked": "This course is locked. Please complete the previous courses to unlock it.",
+    "completed": "You have completed this course.",
+    "default": "Click to enter the course."
+  },
+  "special": {
+    "lesson": "Lesson",
+    "lab": "Lab",
+    "check": "Check",
+    "course": "Course",
+    "roadmap": "Roadmap",
+    "certificate": "Certificate",
+    "public": "Public",
+    "private": "Private",
+    "starter": "Starter",
+    "pro": "Pro",
+    "career": "Career"
+  },
+  "special_tooltip": {
+    "lesson": "A single focused lesson covering one learning objective.",
+    "lab": "Hands-on interactive environment for practice.",
+    "check": "Quick knowledge check with instant feedback.",
+    "course": "Curated collection of lessons on a broader subject.",
+    "roadmap": "Visual guide showing the recommended learning path.",
+    "certificate": "Digital credential earned upon completion.",
+    "public": "Foundational lessons accessible to everyone.",
+    "private": "Restricted content requiring prerequisites.",
+    "starter": "Basic access with hands-on labs and skill badges.",
+    "pro": "Unlimited hands-on learning from beginner to advanced.",
+    "career": "Launch your career with employer-ready skills."
+  },
+  "reviewer": {
+    "back_to_list": "Back to List",
+    "already_decided": "This course has already been {{status}}.",
+    "approve": "Approve Course",
+    "reject": "Reject Course",
+    "what_students_learn": "What students will learn",
+    "by_creator": "By {{name}}",
+    "submitted": "Submitted {{date}}"
+  },
+  "shop": {
+    "title": "Learnify Shop",
+    "coming_soon": "Shop will be updated soon!",
+    "message": "Good luck on your lessons and archive as much as you can before the shop is completed! There will be many thing that worth with your effort!",
+    "back": "Back to Dashboard"
+  },
+  "streak": {
+    "title": "Learning Streak",
+    "coming_soon": "Streak Protections & Boosts — Coming Soon!",
+    "message": "Your daily streak will unlock powerful tools to supercharge your learning: streak freezes to protect your progress on busy days, XP boosts to accelerate your course completion, and exclusive bonus rewards for maintaining long streaks. Stay consistent and reap the benefits!",
+    "back": "Back to Dashboard"
+  },
+  "course_completion": {
+    "title": "Course Completed!",
+    "subtitle": "Congratulations on finishing this course!",
+    "diamonds_earned": "You earned +10 diamonds",
+    "continue": "Continue"
+  }
+}

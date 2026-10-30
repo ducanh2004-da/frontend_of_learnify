@@ -50,7 +50,7 @@ export default tseslint.config(
         { argsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/no-explicit-any": "warn",
-      quotes: ["error", "double"],
+      quotes: ["error", "double", { avoidEscape: true }],
       "@typescript-eslint/consistent-type-imports": "error",
       "no-console": ["warn", { allow: ["info", "warn", "error", "debug"] }],
     },

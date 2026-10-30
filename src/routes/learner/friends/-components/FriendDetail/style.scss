@@ -5,15 +5,15 @@
 
 .friend-detail {
   font-family: "Google Sans Flex", sans-serif;
-  max-width: toRem(680);
+  width: 100%;
   margin: 0 auto;
 
-  &-header {
+  &__header {
     position: relative;
     margin-bottom: toRem(30);
   }
 
-  &-bg {
+  &__bg {
     width: 100%;
     height: toRem(280);
     object-fit: cover;
@@ -24,13 +24,13 @@
     }
   }
 
-  &-avatar-wrapper {
+  &__avatar-wrapper {
     position: absolute;
     bottom: toRem(-40);
     right: toRem(32);
   }
 
-  &-avatar {
+  &__avatar {
     width: toRem(120);
     height: 10%;
     border-radius: $br-xl;
@@ -39,22 +39,22 @@
     background-color: $neutral-100;
   }
 
-  &-body {
+  &__body {
     padding: 0 toRem(8);
   }
 
-  &-name {
+  &__name {
     color: $neutral-800;
   }
 
-  &-meta {
+  &__meta {
     font-size: toRem(16);
     line-height: toRem(20);
     color: $neutral-500;
     margin: 0 0 toRem(24) 0;
   }
 
-  &-add-btn {
+  &__add-btn {
     margin-top: toRem(12);
     padding: toRem(8) toRem(24);
     background-color: $green-600;
@@ -63,14 +63,30 @@
     border: none;
     cursor: pointer;
     font-weight: 600;
+    transition: all 0.2s ease-in-out;
 
     &:disabled {
       cursor: not-allowed;
       opacity: 0.7;
     }
+
+    &--pending {
+      background-color: $neutral-300;
+      color: $neutral-700;
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
+
+    &--friend {
+      background-color: $neutral-200;
+      color: $neutral-700;
+      border: toRem(1) solid $neutral-300;
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
   }
 
-  &-stats {
+  &__stats {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,14 +100,14 @@
     }
   }
 
-  &-stat-item {
+  &__stat-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  &-stat-value {
+  &__stat-value {
     font-size: toRem(20);
     line-height: toRem(25);
     font-weight: 700;
@@ -99,17 +115,17 @@
     margin-bottom: toRem(6);
   }
 
-  &-stat-label {
+  &__stat-label {
     font-size: toRem(16);
     line-height: toRem(20);
     color: $mode-neutral;
   }
 
-  &-achievements {
+  &__achievements {
     margin-top: toRem(40);
   }
 
-  &-achievements-title {
+  &__achievements-title {
     font-size: toRem(25);
     line-height: toRem(31);
     font-weight: 700;
@@ -118,35 +134,35 @@
   }
 }
 
-@include break(s) {
-  .friend-detail-bg {
+@include break(sm) {
+  .friend-detail__bg {
     height: toRem(180);
   }
 
-  .friend-detail-avatar-wrapper {
+  .friend-detail__avatar-wrapper {
     right: auto;
     left: 50%;
     transform: translateX(-50%);
   }
 
-  .friend-detail-avatar {
+  .friend-detail__avatar {
     width: toRem(90);
     height: toRem(90);
   }
 
-  .friend-detail-name {
+  .friend-detail__name {
     font-size: toRem(28);
     line-height: toRem(34);
     text-align: center;
     margin-top: toRem(40);
   }
 
-  .friend-detail-meta {
+  .friend-detail__meta {
     text-align: center;
     font-size: toRem(14);
   }
 
-  .friend-detail-stats {
+  .friend-detail__stats {
     flex-wrap: wrap;
     gap: toRem(16);
     justify-content: center;

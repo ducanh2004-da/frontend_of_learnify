@@ -1,0 +1,78 @@
+@use "@styles/colors" as *;
+@use "@styles/functions" as *;
+@use "@styles/mixins" as *;
+@use "@styles/variables" as *;
+
+.lesson-detail {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(16);
+  padding: toRem(20);
+  height: 100%;
+  overflow-y: auto;
+
+  &__header {
+    padding-bottom: toRem(12);
+    border-bottom: toRem(1) solid $neutral-250;
+
+    h4 {
+      font-size: toRem(18);
+      color: $neutral-900;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+
+    &-label {
+      font-size: toRem(11);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: $neutral-400;
+    }
+
+    &-content {
+      font-size: toRem(14);
+      line-height: 1.6;
+      color: $neutral-700;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+    padding-top: toRem(12);
+    border-top: toRem(1) solid $neutral-250;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: toRem(6);
+      font-size: toRem(12);
+      color: $neutral-400;
+
+      .material-symbols-outlined {
+        font-size: toRem(14);
+      }
+    }
+  }
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: $neutral-400;
+    font-size: toRem(14);
+  }
+}

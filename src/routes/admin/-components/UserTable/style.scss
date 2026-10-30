@@ -1,0 +1,187 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.admin-user-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+
+  &__wrapper {
+    width: 100%;
+    background-color: $white;
+    border-radius: $br-lg;
+    @include box-shadow(0, 2, 16, 0);
+    overflow: hidden;
+    overflow-x: auto;
+  }
+
+  &__thead {
+    background-color: $neutral-100;
+    border-bottom: toRem(2) solid $neutral-200;
+  }
+
+  &__th {
+    padding: toRem(13) toRem(16);
+    font-size: $fs-small;
+    font-weight: $fw-semibold;
+    color: $neutral-500;
+    text-align: left;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    &--checkbox {
+      width: toRem(48);
+      padding-left: toRem(20);
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  &__row {
+    border-bottom: toRem(1) solid $neutral-100;
+    @include transition;
+    transition-property: background-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: $neutral-100;
+    }
+
+    &--selected {
+      background-color: $navy-pastel-100;
+
+      &:hover {
+        background-color: $navy-pastel-100;
+      }
+    }
+  }
+
+  &__cell {
+    padding: toRem(14) toRem(16);
+    font-size: $fs-paragraph;
+    color: $neutral-700;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    &--checkbox {
+      padding-left: toRem(20);
+      width: toRem(48);
+    }
+
+    &--id {
+      width: toRem(100);
+    }
+
+    &--email {
+      color: $neutral-500;
+    }
+
+    &--actions {
+      text-align: right;
+    }
+  }
+
+  &__checkbox {
+    width: toRem(16);
+    height: toRem(16);
+    cursor: pointer;
+    accent-color: $navy-600;
+  }
+
+  &__id {
+    font-family: monospace;
+    font-size: $fs-small;
+    background-color: $neutral-200;
+    padding: toRem(2) toRem(6);
+    border-radius: $br-xs;
+    color: $neutral-600;
+    font-weight: $fw-medium;
+  }
+
+  &__user-info {
+    display: flex;
+    align-items: center;
+    gap: toRem(10);
+  }
+
+  &__avatar {
+    width: toRem(36);
+    height: toRem(36);
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: toRem(2) solid $neutral-200;
+  }
+
+  &__avatar-placeholder {
+    width: toRem(36);
+    height: toRem(36);
+    border-radius: 50%;
+    background: linear-gradient(135deg, $navy-400, $navy-700);
+    color: $white;
+    font-size: $fs-small;
+    font-weight: $fw-bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__username {
+    font-weight: $fw-semibold;
+    color: $neutral-900;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: toRem(6);
+  }
+
+  &__empty {
+    text-align: center;
+    padding: toRem(60) toRem(16);
+    color: $neutral-400;
+
+    p {
+      margin: toRem(12) 0 0;
+      font-size: $fs-paragraph;
+      font-weight: $fw-medium;
+    }
+  }
+
+  &__skeleton-row {
+    border-bottom: toRem(1) solid $neutral-100;
+  }
+
+  &__skeleton {
+    height: toRem(16);
+    border-radius: $br-xs;
+    background: linear-gradient(
+      90deg,
+      $neutral-200 25%,
+      $neutral-100 50%,
+      $neutral-200 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.4s ease infinite;
+  }
+
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+}

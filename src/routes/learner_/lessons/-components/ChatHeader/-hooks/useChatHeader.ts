@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useLayoutEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { prepareWithSegments, walkLineRanges } from "@chenglou/pretext";
 
 type TInputChangeEvent = React.ChangeEvent<HTMLInputElement>;
@@ -19,8 +20,9 @@ interface IUseChatHeaderReturn {
 export const useChatHeader = (
   props: IUseChatHeaderProps
 ): IUseChatHeaderReturn => {
+  const { t } = useTranslation();
   const {
-    placeholder = "New Conversation",
+    placeholder = t("chat_header.new_conversation"),
     initialValue = "",
     onUpdate,
   } = props;

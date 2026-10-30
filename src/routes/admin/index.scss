@@ -1,0 +1,22 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(24);
+  width: 100%;
+
+  &__bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: toRem(20);
+    align-items: start;
+
+    @include break(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

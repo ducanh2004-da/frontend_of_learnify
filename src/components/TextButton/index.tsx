@@ -1,7 +1,8 @@
+import "./text-button.scss";
+
 import type { TTextButtonProps } from "./type";
 import Icon from "./components/Icon";
 import { useButton } from "./hooks/useButton";
-import "./style.scss";
 import { COLORS } from "@/styles/colors";
 
 const TextButton = (props: TTextButtonProps) => {

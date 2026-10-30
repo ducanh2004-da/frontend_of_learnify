@@ -1,0 +1,151 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+@mixin page-marketing($class) {
+  .#{$class} {
+    min-height: 100dvh;
+    @include transition;
+    width: 100dvw;
+    background-color: $white;
+  }
+
+  .#{$class}__content {
+    flex-direction: column;
+    padding: 10dvh 10dvw;
+  }
+
+  .#{$class}__hero {
+    @include transition;
+    @include flex-gap(20);
+    place-items: center;
+    place-content: center;
+    min-height: 50dvh;
+    background-color: $neutral-100;
+    border-radius: $br-xl;
+    position: relative;
+
+    h1 {
+      color: $black;
+      line-height: 1.15;
+    }
+
+    p {
+      color: to-rgba($black, 0.75);
+      line-height: 1.6;
+    }
+  }
+
+  .#{$class}__hero-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: toRem(20);
+  }
+
+  .#{$class}__section {
+    padding: toRem(80) toRem(32);
+    margin: 0 auto;
+    width: 100%;
+
+    h2 {
+      text-align: center;
+      margin-bottom: toRem(48);
+      color: $black;
+    }
+
+    &--values,
+    &--social {
+      width: 100%;
+    }
+  }
+
+  .#{$class}__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: toRem(24);
+
+    &--2col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &--4col {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .#{$class}__card {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(12);
+    padding: toRem(32);
+    background: to-rgba($black, 0.05);
+    border: toRem(1) solid to-rgba($black, 0.1);
+    border-radius: $br-xl;
+    @include transition;
+    transition-property: transform, box-shadow;
+
+    &:hover {
+      transform: translateY(toRem(-4));
+      box-shadow: 0 toRem(8) toRem(24) to-rgba($white, 0.3);
+    }
+
+    &--featured {
+      background: to-rgba($black, 0.08);
+      border-color: to-rgba($black, 0.15);
+    }
+
+    h3,
+    h4 {
+      color: $black;
+    }
+
+    p {
+      color: to-rgba($black, 0.75);
+      line-height: 1.5;
+    }
+  }
+
+  .#{$class}__card-icon {
+    color: $accent-minty;
+    margin-bottom: toRem(4);
+  }
+
+  .#{$class}__card-date {
+    font-size: $fs-small;
+    color: to-rgba($black, 0.5);
+    font-weight: $fw-medium;
+  }
+
+  @include break(md) {
+    .#{$class}__grid {
+      grid-template-columns: repeat(2, 1fr);
+
+      &--4col {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+
+  @include break(sm) {
+    .#{$class}__grid {
+      grid-template-columns: 1fr;
+
+      &--2col,
+      &--4col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .#{$class}__hero {
+      min-height: 40dvh;
+      padding: toRem(64) toRem(20);
+    }
+
+    .#{$class}__section {
+      padding: toRem(64) toRem(20);
+    }
+  }
+}

@@ -1,8 +1,9 @@
 export type TCommentItem = {
-  id: number;
+  id?: string;
   userName: string;
   time: string;
   content: string;
+  rating: number;
 };
 
 export type TCommentItemProps = TCommentItem;

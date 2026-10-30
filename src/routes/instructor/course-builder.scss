@@ -1,0 +1,625 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.course-builder-page {
+  padding: toRem(32) toRem(24);
+  max-width: toRem(960);
+  margin: 0 auto;
+  position: relative;
+  min-height: calc(100vh - toRem(180));
+  display: flex;
+  flex-direction: column;
+  gap: toRem(32);
+
+  .cb-header {
+    text-align: center;
+    margin-bottom: toRem(8);
+
+    &__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: toRem(6);
+      padding: toRem(4) toRem(12);
+      border-radius: toRem(999);
+      background-color: $green-100;
+      color: $mode-green;
+      font-size: $fs-small;
+      font-weight: $fw-semibold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: toRem(12);
+    }
+
+    &__title {
+      font-size: toRem(32);
+      font-weight: $fw-bold;
+      color: $black;
+      margin: 0 0 toRem(8) 0;
+      line-height: 1.25;
+    }
+
+    &__subtitle {
+      font-size: $fs-paragraph;
+      color: $neutral-500;
+      margin: 0;
+      max-width: toRem(600);
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+  }
+
+  // Stepper Component
+  .cb-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: toRem(16);
+    position: relative;
+    padding: 0 toRem(16);
+
+    &__step {
+      display: flex;
+      align-items: center;
+      gap: toRem(10);
+      cursor: default;
+
+      &--active,
+      &--completed {
+        .cb-stepper__circle {
+          background-color: $mode-green;
+          color: $white;
+          border-color: $mode-green;
+          box-shadow: 0 0 0 toRem(4) rgba(66, 179, 137, 0.2);
+        }
+        .cb-stepper__label {
+          color: $black;
+          font-weight: $fw-semibold;
+        }
+      }
+
+      &--completed {
+        .cb-stepper__circle {
+          background-color: $green-600;
+          border-color: $green-600;
+        }
+      }
+    }
+
+    &__circle {
+      width: toRem(36);
+      height: toRem(36);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: toRem(2) solid $neutral-200;
+      background-color: $white;
+      color: $neutral-400;
+      font-weight: $fw-semibold;
+      font-size: $fs-paragraph;
+      transition: all 0.25s ease;
+    }
+
+    &__label {
+      font-size: $fs-paragraph;
+      color: $neutral-400;
+      transition: color 0.25s ease;
+      white-space: nowrap;
+    }
+
+    &__line {
+      width: toRem(60);
+      height: toRem(2);
+      background-color: $neutral-200;
+      transition: background-color 0.25s ease;
+
+      &--completed {
+        background-color: $mode-green;
+      }
+    }
+  }
+
+  // Content Card
+  .cb-card {
+    background-color: $white;
+    border-radius: $br-xxl;
+    padding: toRem(32);
+    border: toRem(1) solid $navy-pastel-200;
+    @include box-shadow(0, 10, 25, -5);
+    position: relative;
+
+    &__title {
+      font-size: toRem(22);
+      font-weight: $fw-semibold;
+      color: $black;
+      margin: 0 0 toRem(6) 0;
+    }
+
+    &__desc {
+      font-size: $fs-paragraph;
+      color: $neutral-500;
+      margin: 0 0 toRem(24) 0;
+      line-height: 1.5;
+    }
+  }
+
+  // Active Course Banner (Step 2 info)
+  .cb-course-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $green-100;
+    border: toRem(1) solid $green-200;
+    border-radius: $br-xl;
+    padding: toRem(16) toRem(20);
+    margin-bottom: toRem(24);
+
+    &__info {
+      display: flex;
+      align-items: center;
+      gap: toRem(14);
+    }
+
+    &__icon {
+      width: toRem(40);
+      height: toRem(40);
+      border-radius: 50%;
+      background-color: $mode-green;
+      color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__text {
+      h4 {
+        margin: 0;
+        font-size: $fs-heading5;
+        font-weight: $fw-semibold;
+        color: $neutral-900;
+      }
+      p {
+        margin: toRem(2) 0 0 0;
+        font-size: $fs-small;
+        color: $neutral-600;
+      }
+    }
+
+    &__tag {
+      font-size: toRem(12);
+      font-weight: $fw-semibold;
+      background-color: rgba(66, 179, 137, 0.15);
+      color: $mode-green;
+      padding: toRem(4) toRem(10);
+      border-radius: toRem(999);
+    }
+  }
+
+  // Form Controls
+  .cb-form {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(20);
+
+    &__group {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(6);
+    }
+
+    &__label {
+      font-size: $fs-paragraph;
+      font-weight: $fw-medium;
+      color: $neutral-800;
+
+      span.required {
+        color: $salmon-400;
+        margin-left: toRem(2);
+      }
+    }
+
+    &__input,
+    &__textarea {
+      width: 100%;
+      padding: toRem(12) toRem(16);
+      border: toRem(1) solid $neutral-200;
+      border-radius: $br-lg;
+      font-size: $fs-paragraph;
+      color: $neutral-900;
+      background-color: $white;
+      font-family: inherit;
+      box-sizing: border-box;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $mode-green;
+        box-shadow: 0 0 0 toRem(3) rgba(66, 179, 137, 0.15);
+      }
+
+      &::placeholder {
+        color: $neutral-300;
+      }
+    }
+
+    &__textarea {
+      resize: vertical;
+      min-height: toRem(100);
+      line-height: 1.5;
+    }
+
+    &__hint {
+      font-size: $fs-small;
+      color: $neutral-400;
+      margin: 0;
+    }
+  }
+
+  // PDF Dropzone
+  .cb-dropzone {
+    border: toRem(2) dashed $neutral-300;
+    border-radius: $br-xl;
+    padding: toRem(40) toRem(24);
+    text-align: center;
+    background-color: $neutral-100;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: toRem(12);
+
+    &:hover,
+    &--drag-over {
+      border-color: $mode-green;
+      background-color: $green-100;
+    }
+
+    &__icon {
+      width: toRem(56);
+      height: toRem(56);
+      border-radius: 50%;
+      background-color: rgba(66, 179, 137, 0.12);
+      color: $mode-green;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: toRem(28);
+    }
+
+    &__title {
+      font-size: $fs-heading5;
+      font-weight: $fw-semibold;
+      color: $neutral-800;
+      margin: 0;
+    }
+
+    &__subtitle {
+      font-size: $fs-small;
+      color: $neutral-500;
+      margin: 0;
+    }
+
+    &__file-input {
+      display: none;
+    }
+  }
+
+  // File Preview
+  .cb-file-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $white;
+    border: toRem(1) solid $green-200;
+    border-radius: $br-xl;
+    padding: toRem(16) toRem(20);
+    box-shadow: 0 toRem(4) toRem(12) rgba(0, 0, 0, 0.05);
+
+    &__meta {
+      display: flex;
+      align-items: center;
+      gap: toRem(14);
+    }
+
+    &__icon {
+      width: toRem(44);
+      height: toRem(44);
+      border-radius: $br-lg;
+      background-color: $salmon-100;
+      color: $salmon-400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: toRem(24);
+    }
+
+    &__details {
+      h5 {
+        margin: 0;
+        font-size: $fs-paragraph;
+        font-weight: $fw-semibold;
+        color: $neutral-900;
+        max-width: toRem(380);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      p {
+        margin: toRem(2) 0 0 0;
+        font-size: $fs-small;
+        color: $neutral-400;
+      }
+    }
+
+    &__remove {
+      background: transparent;
+      border: none;
+      color: $neutral-400;
+      cursor: pointer;
+      padding: toRem(8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: $neutral-200;
+        color: $salmon-400;
+      }
+    }
+  }
+
+  // Buttons
+  .cb-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: toRem(12);
+    margin-top: toRem(8);
+  }
+
+  .cb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: toRem(8);
+    padding: toRem(12) toRem(24);
+    border-radius: toRem(999);
+    font-size: $fs-paragraph;
+    font-weight: $fw-semibold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    text-decoration: none;
+
+    &--primary {
+      background-color: $mode-green;
+      color: $white;
+
+      &:hover:not(:disabled) {
+        background-color: $green-600;
+        transform: translateY(-1px);
+        box-shadow: 0 toRem(4) toRem(12) rgba(66, 179, 137, 0.3);
+      }
+    }
+
+    &--secondary {
+      background-color: $neutral-200;
+      color: $neutral-700;
+
+      &:hover:not(:disabled) {
+        background-color: $neutral-300;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+
+  // Full Blocking Overlay (Critical for long Gemini PDF generation)
+  .cb-blocking-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: rgba(20, 24, 30, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: toRem(20);
+
+    &__box {
+      background-color: $white;
+      border-radius: $br-xxl;
+      padding: toRem(40) toRem(32);
+      max-width: toRem(480);
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: toRem(16);
+      box-shadow: 0 toRem(20) toRem(40) rgba(0, 0, 0, 0.3);
+      animation: cbFadeIn 0.3s ease;
+    }
+
+    &__spinner {
+      width: toRem(64);
+      height: toRem(64);
+      border: toRem(4) solid $green-200;
+      border-top-color: $mode-green;
+      border-radius: 50%;
+      animation: cbSpin 1s linear infinite;
+    }
+
+    &__title {
+      font-size: toRem(20);
+      font-weight: $fw-bold;
+      color: $black;
+      margin: 0;
+    }
+
+    &__desc {
+      font-size: $fs-paragraph;
+      color: $neutral-600;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    &__progress-bar {
+      width: 100%;
+      height: toRem(6);
+      background-color: $neutral-200;
+      border-radius: toRem(999);
+      overflow: hidden;
+      margin-top: toRem(8);
+
+      &-inner {
+        height: 100%;
+        background-color: $mode-green;
+        border-radius: toRem(999);
+        animation: cbIndeterminate 2.5s ease-in-out infinite;
+      }
+    }
+
+    &__warning {
+      font-size: $fs-small;
+      color: $mode-orange;
+      font-weight: $fw-medium;
+      display: flex;
+      align-items: center;
+      gap: toRem(6);
+      margin: 0;
+    }
+  }
+
+  // Step 3 Completion State
+  .cb-success {
+    text-align: center;
+    padding: toRem(32) toRem(16);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: toRem(16);
+
+    &__icon {
+      width: toRem(72);
+      height: toRem(72);
+      border-radius: 50%;
+      background-color: $green-100;
+      color: $mode-green;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: toRem(40);
+    }
+
+    &__title {
+      font-size: toRem(26);
+      font-weight: $fw-bold;
+      color: $black;
+      margin: 0;
+    }
+
+    &__desc {
+      font-size: $fs-heading5;
+      color: $neutral-600;
+      margin: 0;
+      max-width: toRem(520);
+      line-height: 1.5;
+    }
+
+    &__card {
+      background-color: $neutral-100;
+      border-radius: $br-xl;
+      padding: toRem(20) toRem(28);
+      width: 100%;
+      max-width: toRem(440);
+      text-align: left;
+      border: toRem(1) solid $neutral-200;
+      display: flex;
+      flex-direction: column;
+      gap: toRem(8);
+
+      p {
+        margin: 0;
+        font-size: $fs-paragraph;
+        color: $neutral-700;
+
+        strong {
+          color: $black;
+        }
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      align-items: center;
+      gap: toRem(16);
+      margin-top: toRem(12);
+    }
+  }
+}
+
+// Keyframe Animations
+@keyframes cbSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cbFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cbIndeterminate {
+  0% {
+    width: 0%;
+    margin-left: 0%;
+  }
+  50% {
+    width: 70%;
+    margin-left: 30%;
+  }
+  100% {
+    width: 0%;
+    margin-left: 100%;
+  }
+}
+
+@include break(md) {
+  .course-builder-page {
+    padding: toRem(16);
+
+    .cb-stepper {
+      &__label {
+        display: none;
+      }
+      &__line {
+        width: toRem(30);
+      }
+    }
+
+    .cb-card {
+      padding: toRem(20);
+    }
+  }
+}

@@ -6,15 +6,24 @@ export type TSessionData = {
   loggedInAt?: number;
 };
 
+const FALLBACK_SESSION_SECRET =
+  "learnify-fe-default-session-secret-key-min-32-chars!";
+
 export function useAppSession() {
+  const envSecret = process.env.SESSION_SECRET;
+  const password =
+    envSecret && envSecret.length >= 32 ? envSecret : FALLBACK_SESSION_SECRET;
+
   return useSession<TSessionData>({
     name: "learnify-fe-session",
-    password: process.env.SESSION_SECRET!,
+    password,
     cookie: {
-      secure: import.meta.env.PROD,
+      secure:
+        process.env.SECURE_COOKIE === "true" ||
+        (import.meta.env.PROD && process.env.SECURE_COOKIE !== "false"),
       sameSite: "lax",
       httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60,
+      maxAge: 45 * 60,
       path: "/",
     },
   });

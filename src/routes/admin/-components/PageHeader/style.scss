@@ -1,0 +1,34 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.admin-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: toRem(16);
+
+  &__text {
+    display: flex;
+    align-items: baseline;
+    gap: toRem(10);
+  }
+
+  &__title {
+    font-size: $fs-heading4;
+    font-weight: $fw-bold;
+    color: $neutral-900;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  &__count {
+    font-size: $fs-small;
+    font-weight: $fw-medium;
+    color: $neutral-500;
+    background-color: $neutral-200;
+    padding: toRem(2) toRem(8);
+    border-radius: $br-xl;
+  }
+}

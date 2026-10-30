@@ -1,0 +1,67 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.user-modal {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(16);
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+  }
+
+  &__label {
+    font-size: $fs-small;
+    font-weight: $fw-semibold;
+    color: $neutral-700;
+    letter-spacing: 0.01em;
+
+    span {
+      color: $salmon-600;
+    }
+  }
+
+  &__input,
+  &__select {
+    width: 100%;
+    padding: toRem(10) toRem(14);
+    border: toRem(1) solid $neutral-300;
+    border-radius: $br-xs;
+    font-size: $fs-paragraph;
+    color: $neutral-800;
+    background-color: $white;
+    outline: none;
+    @include transition;
+    transition-property: border-color, box-shadow;
+    appearance: none;
+
+    &::placeholder {
+      color: $neutral-400;
+    }
+
+    &:focus {
+      border-color: $navy-500;
+      box-shadow: 0 0 0 toRem(3) rgba(67, 97, 238, 0.15);
+    }
+  }
+
+  &__select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b7280'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right toRem(10) center;
+    background-size: toRem(20);
+    padding-right: toRem(36);
+    cursor: pointer;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: toRem(10);
+    padding-top: toRem(4);
+  }
+}

@@ -1,0 +1,39 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.landing-stats {
+  @include transition;
+  background-color: $neutral-100;
+  padding: toRem(80) 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: toRem(24);
+  }
+}
+
+.landing-stat {
+  border-radius: $br-xl;
+  overflow: hidden;
+  background: to-rgba($white, 0.05);
+  border: toRem(1) solid to-rgba($white, 0.1);
+}
+
+@include break(md) {
+  .landing-stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include break(sm) {
+  .landing-stats__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-stats {
+    padding: toRem(64) 0;
+  }
+}

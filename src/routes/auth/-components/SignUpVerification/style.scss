@@ -1,0 +1,98 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+
+.sign-up-verification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  width: 100%;
+  padding: 40px 20px;
+
+  animation: fadeSlideUp 0.4s ease-out;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    background-color: $green-100;
+    border-radius: 50%;
+    margin-bottom: 8px;
+
+    span {
+      font-size: 44px;
+      color: $green-600;
+    }
+  }
+
+  h3 {
+    font-size: 28px;
+    color: $neutral-800;
+    margin: 0;
+  }
+
+  &__desc {
+    font-size: 16px;
+    color: $neutral-600;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  &__email-highlight {
+    color: $green-600;
+    font-weight: $fw-bold;
+  }
+
+  &__subtext {
+    font-size: 14px;
+    color: $neutral-500;
+    line-height: 1.5;
+    max-width: 80%;
+    margin: 0;
+  }
+
+  &__continue-btn {
+    background-color: $green-600;
+    color: $white;
+    padding: 16px 24px;
+    border-radius: $br-rounded;
+    width: 100%;
+    max-width: 320px;
+    border: none;
+    cursor: pointer;
+    margin-top: 12px;
+    @include transition;
+
+    &:focus {
+      border-radius: $br-sm;
+      outline: none;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $green-500;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

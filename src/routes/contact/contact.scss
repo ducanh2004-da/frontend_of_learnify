@@ -1,0 +1,58 @@
+@use "@styles/page-marketing" as *;
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+@include page-marketing("contact");
+
+.contact__card-link {
+  color: $accent-emerald;
+  text-decoration: none;
+  @include transition;
+
+  &:hover {
+    color: $white;
+    text-decoration: underline;
+  }
+}
+
+.contact__socials {
+  display: flex;
+  justify-content: center;
+  gap: toRem(24);
+  flex-wrap: wrap;
+}
+
+.contact__social {
+  display: flex;
+  align-items: center;
+  gap: toRem(8);
+  padding: toRem(12) toRem(24);
+  background: to-rgba($black, 0.025);
+  border: toRem(1) solid to-rgba($black, 0.1);
+  border-radius: $br-xl;
+  color: to-rgba($black, 0.75);
+  text-decoration: none;
+  @include transition;
+
+  &:hover {
+    background: to-rgba($white, 0.1);
+    color: $black;
+    transform: translateY(toRem(-2));
+  }
+
+  svg {
+    color: $accent-emerald;
+  }
+}
+
+@include break(sm) {
+  .contact__socials {
+    gap: toRem(12);
+  }
+
+  .contact__social {
+    padding: toRem(10) toRem(16);
+  }
+}

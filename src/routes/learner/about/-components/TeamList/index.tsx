@@ -1,6 +1,6 @@
 import { teamMembers } from "@/mock";
 import "./style.scss";
-import MemberItem from "@/routes/learner/about/-components/MemberItem";
+import MemberItem from "@learner/about/-components/MemberItem";
 
 const TeamList = () => {
   return (

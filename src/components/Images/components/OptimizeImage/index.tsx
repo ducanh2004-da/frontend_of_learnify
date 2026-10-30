@@ -8,6 +8,7 @@ type TOptimizeImageProps = {
   alt: string;
   folder?: string;
   className?: string;
+  priority?: boolean;
 };
 
 const OptimizeImage = ({
@@ -15,6 +16,7 @@ const OptimizeImage = ({
   alt,
   folder,
   className,
+  priority = false,
 }: TOptimizeImageProps) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [currentSrc, setCurrentSrc] = useState<string>(src);
@@ -55,8 +57,9 @@ const OptimizeImage = ({
           src={imageKitURL}
           layout="fullWidth"
           alt={alt}
-          loading="lazy"
-          decoding="async"
+          loading={priority ? "eager" : "lazy"}
+          decoding={priority ? "sync" : "async"}
+          fetchpriority={priority ? "high" : undefined}
           onLoad={() => setIsLoaded(true)}
           className={classnames(
             "optimize-image-element",

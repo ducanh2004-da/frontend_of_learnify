@@ -1,15 +1,15 @@
 import "./style.scss";
 import classNames from "classnames";
 import { useState, useMemo, type ButtonHTMLAttributes } from "react";
-import Icon from "@/components/Icon";
+import Icon, { type TIconName } from "@/components/Icon";
 
 type TconButtonProp = {
-  icon: string;
+  icon: TIconName;
   onClick?: () => void;
   type?: "primary" | "special" | "secondary" | "outlined" | "custom";
   state?: "default" | "hover" | "clicked" | "clickedHover";
   shape?: "square" | "circle";
-  specialIcon?: string;
+  specialIcon?: TIconName;
   size?: "tiny" | "small" | "medium" | "large";
   color?: string;
   backgroundColor?: string;
@@ -21,6 +21,7 @@ type TconButtonProp = {
   buttonType?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   disabled?: boolean;
   loading?: boolean;
+  [x: string]: unknown;
 };
 
 const IconButton = (props: TconButtonProp) => {
@@ -42,6 +43,7 @@ const IconButton = (props: TconButtonProp) => {
     buttonType = "button",
     disabled = false,
     loading = false,
+    ...rest
   } = props;
 
   const [clicked, setClicked] = useState(false);
@@ -68,12 +70,15 @@ const IconButton = (props: TconButtonProp) => {
 
   return (
     <button
+      {...rest}
       className={buttonClassName}
-      style={{
-        ...style,
-        backgroundColor,
-        color,
-      }}
+      style={
+        {
+          ...style,
+          "--ib-bg": backgroundColor,
+          "--ib-color": color,
+        } as React.CSSProperties
+      }
       onClick={handleClick}
       title={tooltip}
       aria-label={ariaLabel || tooltip}
@@ -83,7 +88,7 @@ const IconButton = (props: TconButtonProp) => {
       {loading ? (
         <div className="icon-button_spinner" />
       ) : (
-        <Icon name={iconVal} fill={fill} style={{ color }} />
+        <Icon name={iconVal} fill={fill} />
       )}
     </button>
   );

@@ -1,0 +1,36 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.sign-up {
+  &__back {
+    display: flex;
+    place-items: center;
+    gap: toRem(5);
+    background: none;
+    border: none;
+    padding: toRem(8) 0;
+    color: $neutral-600;
+    cursor: pointer;
+
+    span {
+      font-size: toRem(20);
+    }
+
+    &:hover {
+      color: $neutral-800;
+    }
+  }
+
+  &__error {
+    color: $orange-500;
+    font-size: toRem(12);
+    margin-top: toRem(4);
+    padding-left: toRem(4);
+  }
+
+  &__api-error {
+    text-align: center;
+  }
+}

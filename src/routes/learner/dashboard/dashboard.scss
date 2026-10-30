@@ -1,0 +1,72 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+  gap: toRem(30);
+  background-color: $green-100;
+  min-height: 100vh;
+  align-items: start;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(30);
+    min-width: 0;
+  }
+
+  &__main-courses {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: toRem(15);
+
+    .dashboard__row-divider {
+      grid-column: 1 / -1;
+      width: 100%;
+      border: none;
+      border-bottom: toRem(3) solid $neutral-200;
+      margin: toRem(10) 0;
+    }
+  }
+
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(20);
+    min-width: 0;
+  }
+
+  &__sidebar-widget {
+    background-color: $white;
+    border-radius: $br-xl;
+    padding: toRem(24);
+    @include box-shadow(0, 4, 6, -1);
+  }
+}
+
+@include break(md) {
+  .dashboard {
+    grid-template-columns: 1fr;
+
+    &__main-courses {
+      grid-template-columns: repeat(2, 1fr);
+
+      .dashboard__row-divider {
+        display: none;
+      }
+    }
+  }
+}
+
+@include break(sm) {
+  .dashboard {
+    padding: toRem(15);
+
+    &__main-courses {
+      grid-template-columns: 1fr;
+    }
+  }
+}

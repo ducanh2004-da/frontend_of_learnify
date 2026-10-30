@@ -17,5 +17,7 @@ async function googleLoginRequest(idToken: string) {
 }
 
 export function useGoogleLogin() {
-  return useMutation({ mutationFn: googleLoginRequest });
+  return useMutation({
+    mutationFn: googleLoginRequest,
+  });
 }

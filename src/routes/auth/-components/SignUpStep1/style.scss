@@ -1,0 +1,25 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.sign-up {
+  &__name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: toRem(20);
+  }
+
+  &__error {
+    color: $orange-500;
+    font-size: toRem(12);
+    margin-top: toRem(4);
+    padding-left: toRem(4);
+  }
+
+  @include break(sm) {
+    &__name-row {
+      flex-direction: column;
+    }
+  }
+}

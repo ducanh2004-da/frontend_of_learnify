@@ -3,6 +3,8 @@ import type { TIconProps } from "./type";
 import { iconPaths } from "./icons";
 import "./style.scss";
 
+export type { TIconName } from "./icons";
+
 const Icon = (props: TIconProps) => {
   const { name, fill = false, size = "1em", className, style } = props;
 

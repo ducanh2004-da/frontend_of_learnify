@@ -1,0 +1,18 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.left-nav-top {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  row-gap: toRem(40);
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    row-gap: toRem(20);
+  }
+}

@@ -1,0 +1,938 @@
+{
+  "sidebar": {
+    "search": "Tìm kiếm",
+    "learnify": "Learnify",
+    "dashboard": "Bảng điều khiển",
+    "courses": "Khóa học",
+    "roadmaps": "Lộ trình",
+    "friends": "Bạn bè",
+    "about": "Giới thiệu",
+    "manage_courses": "Quản lý khóa học",
+    "course_builder": "Tạo khoá học AI",
+    "add_course": "Thêm khóa học",
+    "add_lesson": "Thêm bài học"
+  },
+  "common": {
+    "change_language": "Đổi ngôn ngữ",
+    "toggle_dark_mode": "Chuyển giao diện",
+    "language": "Ngôn ngữ",
+    "switch_to_learner": "Chuyển sang Học viên",
+    "switch_to_instructor": "Chuyển sang Giảng viên",
+    "switch_to_reviewer": "Chuyển sang Người đánh giá",
+    "switch_to_admin": "Chuyển sang Quản trị viên",
+    "switch_portal": "Chuyển cổng",
+    "menu": "Menu",
+    "close_menu": "Đóng menu",
+    "cancel": "Hủy",
+    "create": "Tạo",
+    "delete": "Xóa",
+    "creating": "Đang tạo...",
+    "deleting": "Đang xóa..."
+  },
+  "home": {
+    "title": "Khai phá <Beauty>Tiềm năng</Beauty> cho tương lai, ngay hôm nay",
+    "subtitle": "Khám phá các khóa học từ chuyên gia với sự hướng dẫn cá nhân hóa từ giáo viên AI 3D tương tác của chúng tôi",
+    "search_suggestions": [
+      "AI Propmt",
+      "Phát triển Web",
+      "Mô hình 3D",
+      "Khoa học Dữ liệu",
+      "Học tập Đột phá"
+    ]
+  },
+  "dashboard": {
+    "banner_title": "Lên kế hoạch học tập của bạn",
+    "banner_description": "Bắt đầu ngay để thiết lập ưu tiên và tiến tới mục tiêu của bạn với một kế hoạch rõ ràng, có cấu trúc.",
+    "explore_courses": "Khám phá khóa học",
+    "current_streak": "Chuỗi<br/>hiện tại",
+    "day_labels": ["T2", "T3", "T4", "T5", "T6", "T7", "CN"],
+    "achievements": "Thành tích",
+    "badge_path_enroll": "Đăng ký lộ trình",
+    "badge_first_lab": "Phòng LAB đầu tiên",
+    "more": "Xem thêm →",
+    "progress": "Tiến độ",
+    "welcome_title": "Chào mừng trở lại, <Beauty>{{name}}</Beauty>",
+    "welcome_subtitle": "Quản lý khóa học, theo dõi tiến độ và tương tác với học viên của bạn.",
+    "total_courses": "Tổng khóa học",
+    "total_lessons": "Tổng bài học",
+    "published": "Đã xuất bản",
+    "pending": "Chờ duyệt",
+    "rejected": "Từ chối",
+    "recent_courses": "Khóa học gần đây",
+    "no_courses": "Chưa có khóa học nào. Hãy tạo khóa học đầu tiên!",
+    "quick_actions": "Thao tác nhanh",
+    "create_course": "Tạo khóa học",
+    "manage_courses": "Quản lý khóa học",
+    "switch_learner": "Xem với tư cách Học viên",
+    "pending_reviews": "Chờ xem xét"
+  },
+  "friends": {
+    "tabs": {
+      "leaderboard": "Bảng xếp hạng",
+      "friends": "Bạn bè",
+      "requests": "Lời mời"
+    },
+    "no_items": "Không có mục nào.",
+    "placeholder_heading": "Trống rỗng",
+    "placeholder_text": "Nhấp vào bất kỳ người dùng nào để xem nhanh hồ sơ",
+    "empty_state": {
+      "heading": "Đăng nhập để xem bạn bè của bạn",
+      "description": "Kết nối với bạn cùng lớp và theo dõi tiến trình của họ cùng nhau. Đăng nhập để bắt đầu xây dựng cộng đồng học tập của bạn.",
+      "login": "Đăng nhập"
+    },
+    "detail": {
+      "add_friend": "Thêm bạn",
+      "sending": "Đang gửi...",
+      "pending": "Đang chờ",
+      "request_sent": "Đã gửi lời mời",
+      "friend": "Bạn bè",
+      "friends": "Bạn bè",
+      "badges": "Huy hiệu",
+      "followers": "Người theo dõi",
+      "streak_days": "Ngày liên tiếp",
+      "courses": "Khóa học",
+      "achievements": "Thành tích",
+      "path_enroll": "Đăng ký lộ trình",
+      "first_lab": "Phòng LAB đầu tiên"
+    },
+    "alerts": {
+      "accepted": "Đã chấp nhận!",
+      "declined": "Đã từ chối!",
+      "sent": "Đã gửi lời mời kết bạn!"
+    }
+  },
+  "errors": {
+    "server_error": "Lỗi máy chủ",
+    "load_generic": "Đã xảy ra lỗi khi tải trang này. Vui lòng thử lại.",
+    "load_courses": "Không thể tải khóa học lúc này. Đây có thể là sự cố mạng hoặc máy chủ. Vui lòng thử lại.",
+    "load_friends": "Không thể tải danh sách bạn bè lúc này. Đây có thể là sự cố mạng hoặc máy chủ. Vui lòng thử lại.",
+    "load_roadmap": "Không thể tải lộ trình học lúc này. Đây có thể là sự cố mạng hoặc máy chủ. Vui lòng thử lại.",
+    "try_again": "Thử lại",
+    "go_back": "Quay lại",
+    "session_expired": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "throttler_title": "Quá nhiều yêu cầu",
+    "throttler_advice": "Bạn đang gửi quá nhiều yêu cầu. Vui lòng chờ một lát và thử lại. Giới hạn này tự động đặt lại sau mỗi 10 giây.",
+    "validation_title": "Dữ liệu không hợp lệ",
+    "validation_advice": "Dữ liệu bạn gửi không hợp lệ. Vui lòng kiểm tra lại thông tin và thử lại.",
+    "not_found_title": "Không tìm thấy tài nguyên",
+    "not_found_advice": "Không tìm thấy tài nguyên yêu cầu. Có thể tài nguyên đã bị di chuyển hoặc xóa.",
+    "forbidden_title": "Truy cập bị từ chối",
+    "forbidden_advice": "Bạn không có quyền truy cập tài nguyên này. Vui lòng liên hệ hỗ trợ nếu bạn cho rằng đây là nhầm lẫn.",
+    "bad_request_title": "Yêu cầu không hợp lệ",
+    "bad_request_advice": "Máy chủ không thể xử lý yêu cầu của bạn. Vui lòng thử lại hoặc liên hệ hỗ trợ.",
+    "server_advice": "Đã xảy ra lỗi máy chủ. Nhóm kỹ thuật đã được thông báo. Vui lòng thử lại sau."
+  },
+  "auth": {
+    "login": {
+      "title": "Chào mừng trở lại Learnify",
+      "or": "hoặc",
+      "new_to_learnify": "Mới dùng Learnify?",
+      "sign_up": "Đăng ký",
+      "forgot_password": "Quên mật khẩu?",
+      "recovery_here": "Khôi phục tại đây",
+      "email_label": "Email",
+      "email_placeholder": "ten@learnify-email.com",
+      "password_label": "Mật khẩu",
+      "password_placeholder": "matkhaulearnify",
+      "submit": "Đăng nhập",
+      "submitting": "Đang đăng nhập..."
+    },
+    "signup": {
+      "title": "Đăng ký Learnify",
+      "or": "hoặc đăng ký với",
+      "already_using": "Đã dùng Learnify?",
+      "log_in": "Đăng nhập",
+      "first_name": "Tên",
+      "last_name": "Họ",
+      "email_label": "Địa chỉ email",
+      "email_placeholder": "ten@learnify-email.com",
+      "password_label": "Mật khẩu",
+      "password_placeholder": "Mật khẩu",
+      "confirm_password_label": "Xác nhận mật khẩu",
+      "confirm_password_placeholder": "Xác nhận mật khẩu",
+      "continue": "Tiếp tục",
+      "back": "Quay lại",
+      "submit": "Đăng ký",
+      "submitting": "Đang đăng ký...",
+      "verification_title": "Kiểm tra hộp thư của bạn!",
+      "verification_description": "Chúng tôi đã gửi liên kết xác thực đến",
+      "verification_subtext": "Vui lòng kiểm tra email và nhấp vào liên kết để kích hoạt tài khoản. Đừng quên kiểm tra thư mục spam!",
+      "resend": "Gửi lại email",
+      "resending": "Đang gửi lại..."
+    },
+    "forgot_password": {
+      "title": "Quên mật khẩu?",
+      "description": "Đừng lo, chúng tôi sẽ gửi hướng dẫn đặt lại mật khẩu. Nhập địa chỉ email của bạn bên dưới.",
+      "email_label": "Địa chỉ email",
+      "email_placeholder": "Nhập email của bạn",
+      "submit": "Gửi mã đặt lại",
+      "remember_password": "Nhớ mật khẩu?",
+      "log_in": "Đăng nhập",
+      "verify_title": "Xác thực email của bạn",
+      "verify_description": "Chúng tôi đã gửi mã 6 chữ số đến email của bạn. Nhập mã bên dưới để tiếp tục đặt lại mật khẩu.",
+      "digit_aria": "Chữ số {{n}} / 6",
+      "verify_code": "Xác thực mã",
+      "resend_link": "Chưa nhận được thư?",
+      "resend_here": "Gửi lại tại đây",
+      "back": "Quay lại"
+    }
+  },
+  "courses": {
+    "title": "Khám phá <Beauty>Khóa học tốt nhất</Beauty> dành riêng cho bạn",
+    "description": "Mô tả khóa học",
+    "filter_btn": "Bộ lọc",
+    "filter_type": "Loại khóa học",
+    "filter_free": "Miễn phí",
+    "filter_paid": "Trả phí",
+    "filter_duration_label": "Thời lượng",
+    "filter_duration_30": "30 phút",
+    "filter_duration_45": "45 phút",
+    "filter_duration_60": "60 phút",
+    "filter_duration_120": "2 giờ",
+    "filter_duration_180": "3 giờ +",
+    "filter_clear": "Xóa bộ lọc",
+    "results": "{{count}} kết quả",
+    "results_filtered": "{{filtered}}/{{total}} kết quả",
+    "name": "Tên khóa học",
+    "name_placeholder": "Nhập tên khóa học",
+    "name_required": "Vui lòng nhập tên khóa học",
+    "price": "Giá khóa học",
+    "free_hint": "Giá là 0 — khóa học sẽ miễn phí",
+    "created": "Ngày tạo",
+    "status": "Trạng thái",
+    "status_all": "Tất cả",
+    "status_published": "Đã xuất bản",
+    "status_pending": "Chờ duyệt",
+    "status_rejected": "Từ chối",
+    "description_placeholder": "Nhập mô tả khóa học",
+    "description_required": "Vui lòng nhập mô tả khóa học",
+    "delete_title": "Xóa khóa học",
+    "delete_confirm": "Bạn có chắc chắn muốn xóa khóa học này?",
+    "delete_lesson_title": "Xóa bài học",
+    "delete_lesson_confirm": "Bạn có chắc muốn xóa bài học này?",
+    "lesson_title": "Tiêu đề bài học",
+    "lesson_title_placeholder": "Nhập tiêu đề bài học",
+    "lesson_title_required": "Vui lòng nhập tiêu đề bài học",
+    "lesson_description": "Mô tả bài học",
+    "lesson_desc_placeholder": "Nhập mô tả bài học",
+    "lesson_desc_required": "Vui lòng nhập mô tả bài học",
+    "files": "Tệp tin",
+    "files_click": "Nhấp để tải lên tệp",
+    "files_hint": "Tối đa {{maxFiles}} tệp, mỗi tệp {{maxSize}} (.pdf, .ppt, .pptx)",
+    "files_required": "Vui lòng tải lên ít nhất một tệp",
+    "files_max_count": "Chỉ được phép tối đa {{count}} tệp",
+    "files_type_error": "Chỉ chấp nhận tệp .pdf, .ppt, .pptx",
+    "files_size_error": "{{name}} vượt quá giới hạn {{size}}",
+    "select_course_to_review": "Chọn một khóa học để xem xét",
+    "select_course": "Chọn một khóa học",
+    "select_lesson": "Chọn một bài học",
+    "no_lessons": "Không có bài học",
+    "create": "Tạo khóa học",
+    "creating": "Đang tạo...",
+    "toast": {
+      "course_created": "Tạo khóa học thành công!",
+      "course_deleted": "Xóa khóa học thành công!",
+      "lesson_created": "Tạo bài học thành công!",
+      "lesson_deleted": "Xóa bài học thành công!",
+      "file_uploaded": "Tải file lên thành công!",
+      "course_published": "Xuất bản khóa học thành công!",
+      "course_rejected": "Từ chối khóa học thành công!",
+      "create_failed": "Không thể tạo khóa học: {{message}}",
+      "delete_failed": "Không thể xóa khóa học: {{message}}",
+      "lesson_create_failed": "Không thể tạo bài học: {{message}}",
+      "lesson_delete_failed": "Không thể xóa bài học: {{message}}",
+      "file_upload_failed": "Không thể tải file: {{message}}",
+      "publish_failed": "Không thể xuất bản khóa học: {{message}}",
+      "reject_failed": "Không thể từ chối khóa học: {{message}}"
+    }
+  },
+  "course_detail": {
+    "enroll": "Đăng ký khóa học",
+    "processing": "Đang xử lý...",
+    "show_feedback": "Xem đánh giá",
+    "hide_feedback": "Ẩn đánh giá",
+    "send_feedback": "Gửi đánh giá",
+    "no_reviews": "Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá khóa học này!",
+    "your_review": "Đánh giá của bạn",
+    "edit_review": "Chỉnh sửa",
+    "empty_title": "Không tìm thấy khóa học",
+    "empty_description": "Không có khóa học nào phù hợp với tìm kiếm của bạn",
+    "empty_create": "Tạo khóa học",
+    "toast_login_enroll": "Vui lòng đăng nhập để đăng ký khóa học này",
+    "toast_enroll_first": "Bạn cần đăng ký khóa học trước khi truy cập bài học!",
+    "toast_unlock_lesson": "Hoàn thành bài học trước để mở khóa bài này!",
+    "toast_login_feedback": "Vui lòng đăng nhập để gửi đánh giá",
+    "no_description": "Không có mô tả",
+    "badge_text": "văn bản",
+    "start": "Bắt đầu",
+    "continue": "Tiếp tục",
+    "completed": "Hoàn thành",
+    "private_course": "Khóa học này không khả dụng",
+    "not_published": "Khóa học này chưa được xuất bản",
+    "server_error": "Lỗi máy chủ",
+    "load_error": "Đã xảy ra lỗi khi tải khóa học này. Máy chủ gặp sự cố. Vui lòng thử lại sau.",
+    "buy": "Mua khóa học",
+    "payment_error": "Không thể tạo phiên thanh toán. Vui lòng thử lại!"
+  },
+  "payment": {
+    "success_title": "Thanh toán thành công!",
+    "success_desc": "Thanh toán của bạn đã được xác nhận. Bạn có thể bắt đầu học ngay!",
+    "success_order_label": "Mã đơn hàng:",
+    "success_cta": "Vào học ngay",
+    "processing_title": "Đang xử lý...",
+    "processing_desc": "Vui lòng không đóng trình duyệt trong khi hệ thống đang ghi danh.",
+    "cancel_title": "Thanh toán đã bị hủy",
+    "cancel_desc": "Giao dịch của bạn đã bị hủy. Bạn có thể thử lại hoặc quay lại.",
+    "cancel_order_label": "Mã đơn hàng:",
+    "cancel_status_label": "Trạng thái:",
+    "cancel_status_value": "Đã hủy",
+    "cancel_retry": "Thử lại thanh toán",
+    "cancel_go_back": "Quay lại",
+    "cancel_go_home": "Về trang chủ",
+    "cancel_support": "Bạn gặp vấn đề khi thanh toán?",
+    "cancel_support_link": "Liên hệ hỗ trợ"
+  },
+  "roadmaps": {
+    "headline": "Định hình <Beauty>tương lai của bạn</Beauty> theo cách của riêng bạn",
+    "description": "Lộ trình là tập hợp các bài học được thiết kế để xây dựng kỹ năng chuyên sâu trong một lĩnh vực cụ thể. Dù bạn muốn đạt được thành tích, xây dựng bộ sưu tập huy hiệu kỹ năng hay chuẩn bị cho chứng chỉ, luôn có lộ trình phù hợp với bạn. Khi hoàn thành, hãy chia sẻ thành tựu của bạn trên mạng xã hội và các nền tảng tuyển dụng như Linkedin và Credly!",
+    "categories": {
+      "ai_llm": "AI / LLM",
+      "calculus": "Giải tích",
+      "program": "Lập trình",
+      "data": "Dữ liệu",
+      "design": "Thiết kế",
+      "language": "Ngôn ngữ"
+    }
+  },
+  "about": {
+    "page_title": "Learnify",
+    "tagline": "Học thông minh. Kỹ năng thực. Sẵn sàng cho sự nghiệp.",
+    "hero_paragraph_1": "Learnify là nền tảng giáo dục đề cao tương lai và nghệ thuật học tập—từ khái niệm nền tảng đến thực hành thực tế và làm chủ kỹ năng sẵn sàng cho sự nghiệp. Bằng cách giới thiệu công nghệ tiên tiến và Giảng viên AI 3D đằng sau các khóa học, chúng tôi hy vọng làm sáng tỏ cách giáo dục hiện đại được xây dựng và kết nối bạn sâu hơn với tiềm năng của chính mình. Cách tiếp cận của chúng tôi bắt đầu từ sự tò mò: chúng tôi muốn cho bạn thấy cách học tập tương tác thực sự vận hành.",
+    "hero_paragraph_2": "Khi chúng tôi nói về việc học tại Learnify, chúng tôi muốn nói gì? Đó là Giảng viên AI 3D của chúng tôi—người hướng dẫn cá nhân giúp bạn làm chủ các chủ đề phức tạp. Đó là các phòng thí nghiệm thực hành—môi trường tương tác biến lý thuyết thành thực hành thực tế. Đó là chứng chỉ được công nhận trong ngành, xây dựng kỹ năng dễ tiếp cận và sự hướng dẫn liên tục. Nói ngắn gọn: học tập ở khắp mọi nơi—và nó luôn phát triển. Giáo dục không bao giờ kết thúc.",
+    "hero_paragraph_3": "Giữ liên lạc với Learnify qua Fanpage, YouTube và hello@learnify.com.",
+    "hero_alt": "Hình ảnh trừu tượng Learnify",
+    "direction_title": "Được thiết kế cho con người.",
+    "direction_subtitle": "Được hỗ trợ bởi công nghệ.",
+    "direction_text": "Learnify ra đời từ một niềm tin đơn giản: học tập nên mang tính cá nhân, hấp dẫn và dễ tiếp cận với mọi người. Chúng tôi kết hợp nội dung được tuyển chọn bởi chuyên gia với sự hướng dẫn của AI để tạo ra trải nghiệm thích ứng với nhịp độ và mục tiêu riêng của bạn.",
+    "vision_heading": "Tầm nhìn của chúng tôi",
+    "vision_text": "Từ sơ đồ tư duy tương tác đến chuỗi học tập tạo động lực, mọi tính năng đều được thiết kế để giúp bạn xây dựng kiến thức lâu dài—không chỉ vượt qua kỳ thi tiếp theo.",
+    "team_heading": "Đội ngũ của chúng tôi",
+    "team_subtitle": "Gặp gỡ đội ngũ"
+  },
+  "comment_form": {
+    "rating_label": "Đánh giá khóa học này",
+    "star_aria": "{{star}} sao",
+    "star_aria_plural": "{{star}} sao",
+    "review_label": "Đánh giá của bạn",
+    "placeholder": "Chia sẻ suy nghĩ của bạn về khóa học này...",
+    "cancel": "Hủy",
+    "submit": "Gửi đánh giá",
+    "toast_no_rating": "Vui lòng chọn số sao!",
+    "toast_no_review": "Vui lòng nhập đánh giá của bạn!"
+  },
+  "logo": {
+    "text": "Learnify",
+    "tooltip": "Về trang chủ"
+  },
+  "search": {
+    "placeholder": "Tìm kiếm khóa học...",
+    "aria_label": "Tìm kiếm",
+    "label": "Tìm kiếm khóa học",
+    "submit_aria": "Tìm kiếm",
+    "clear_tooltip": "Xóa tìm kiếm",
+    "results_for": "Kết quả tìm kiếm cho \"{{query}}\"",
+    "section_courses": "Khóa học",
+    "section_roadmaps": "Lộ trình",
+    "section_lessons": "Bài học",
+    "found_courses_zero": "Không tìm thấy khóa học nào",
+    "found_courses_one": "{{count}} khóa học",
+    "found_courses_other": "{{count}} khóa học",
+    "found_roadmaps_one": "{{count}} lộ trình",
+    "found_roadmaps_other": "{{count}} lộ trình",
+    "found_lessons_one": "{{count}} bài học",
+    "found_lessons_other": "{{count}} bài học",
+    "no_results": "Không tìm thấy kết quả",
+    "no_results_desc": "Hãy thử từ khóa khác hoặc duyệt danh mục."
+  },
+  "footer": {
+    "banner_alt": "footer-banner",
+    "brand": "Learnify",
+    "made_by": "Được tạo bởi ",
+    "tanstack_link": "Tanstack Start",
+    "navigation": "Điều hướng",
+    "courses": "Khóa học",
+    "roadmaps": "Lộ trình",
+    "friends": "Bạn bè",
+    "about": "Giới thiệu",
+    "copyright": "©{{year}} Learnify. Đã đăng ký bản quyền.",
+    "socials": "Mạng xã hội",
+    "ig": "IG",
+    "dr": "DR",
+    "fb": "FB",
+    "x": "X",
+    "privacy_policy": "Chính sách bảo mật",
+    "scroll_to_top": "Cuộn lên đầu"
+  },
+  "tetris_loader": {
+    "loading": "Đang tải..."
+  },
+  "account_menu": {
+    "profile": "Hồ sơ",
+    "subscription": "Gói đăng ký",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất"
+  },
+  "profile": {
+    "server_error": "Lỗi máy chủ",
+    "load_error": "Đã xảy ra lỗi khi tải hồ sơ này. Vui lòng thử lại hoặc quay lại sau.",
+    "failed_fetch": "Không thể tải hồ sơ người dùng",
+    "head_title": "Hồ sơ người dùng",
+    "avatar_alt": "Ảnh đại diện",
+    "diamonds": "Kim cương",
+    "followers": "Người theo dõi",
+    "streak": "Chuỗi ngày",
+    "personal_info": "Thông tin cá nhân",
+    "username_label": "Tên người dùng",
+    "email_label": "Email",
+    "phone_label": "Số điện thoại",
+    "my_courses": "Khóa học của tôi",
+    "completed": "Hoàn thành",
+    "in_progress": "Đang học"
+  },
+  "editable_field": {
+    "edit": "Sửa {{fieldName}}"
+  },
+  "lesson_error": {
+    "server_error": "Lỗi máy chủ",
+    "load_error": "Đã xảy ra lỗi khi tải khóa học này. Máy chủ gặp sự cố."
+  },
+  "lesson_welcome": {
+    "lesson_fallback": "Bài học",
+    "sections_to_cover": "{{count}} phần cần học",
+    "start_lesson": "Bắt đầu bài học"
+  },
+  "lesson_complete": {
+    "title": "Hoàn thành bài học!",
+    "description": "Bạn đã hoàn thành bài học này. Làm tốt lắm!",
+    "back_to_dashboard": "Quay lại Dashboard",
+    "back_to_course": "Quay lại Khóa học",
+    "next_lesson": "Bài học tiếp theo"
+  },
+  "chat_message_wrapper": {
+    "preparing_lesson": "Đang chuẩn bị bài học của bạn...",
+    "start_conversation": "Bắt đầu trò chuyện với gia sư AI của bạn",
+    "placeholder_qa": "Hỏi gia sư AI bất cứ điều gì..."
+  },
+  "course_context": {
+    "references": "Tài liệu tham khảo",
+    "documents": "Tài liệu",
+    "notes": "Ghi chú"
+  },
+  "dropdown_menu": {
+    "more": "thêm"
+  },
+  "chat_header": {
+    "new_conversation": "Cuộc trò chuyện mới",
+    "change_topic": "Đổi chủ đề",
+    "skip_qa": "Chuyển đến Hỏi & Đáp",
+    "skip_quiz": "Chuyển đến Bài kiểm tra",
+    "complete_lesson": "Hoàn thành bài học",
+    "report_issue": "Báo cáo vấn đề",
+    "flagged": "Đã báo cáo vấn đề thành công!"
+  },
+  "chat_input": {
+    "placeholder": "Nhập tin nhắn của bạn...",
+    "attach_file": "Đính kèm tệp",
+    "attach_file_tooltip": "Đính kèm Tệp",
+    "message_input": "Nhập tin nhắn",
+    "voice_input": "Nhập giọng nói",
+    "voice_input_tooltip": "Nhập Giọng nói",
+    "send_message": "Gửi tin nhắn",
+    "send_message_tooltip": "Gửi Tin nhắn"
+  },
+  "course_controller": {
+    "course_fallback": "Khóa học",
+    "close": "Đóng",
+    "loading_lessons": "Đang tải bài học...",
+    "open_menu": "Mở menu khóa học"
+  },
+  "quiz_panel": {
+    "results_header": "Kết quả bài kiểm tra",
+    "question_label": "Q{{number}}. {{question}}",
+    "correct_answer": "Đáp án đúng: ",
+    "complete": "Hoàn thành",
+    "progress": "Câu hỏi {{current}} / {{total}}",
+    "type_multiple_choice": "Nhiều lựa chọn",
+    "type_multiple_answer": "Nhiều đáp án",
+    "type_true_false": "Đúng hoặc Sai",
+    "type_matching": "Ghép đôi",
+    "select_description": "Chọn một mô tả",
+    "correct_indicator": "✓",
+    "wrong_indicator": "✗ ({{correct}})",
+    "explanation": "Giải thích:",
+    "submit_answer": "Gửi câu trả lời",
+    "see_results": "Xem kết quả",
+    "next_question": "Câu hỏi tiếp theo"
+  },
+  "subscriptions": {
+    "heading": "Chọn gói <Beauty>hoàn hảo</Beauty> cho mục tiêu của bạn",
+    "subtitle": "Làm chủ kỹ năng mới và nhận chứng chỉ được công nhận trong ngành thông qua học tập thực hành—với sự hướng dẫn của Giảng viên AI 3D chuyên gia của chúng tôi. Không yêu cầu kinh nghiệm trước.",
+    "starter": {
+      "title": "Starter",
+      "price": "<0>Miễn phí</0>",
+      "subtitle": "Bắt đầu học với quyền truy cập cơ bản vào phòng thực hành và kiếm huy hiệu kỹ năng đầu tiên của bạn.",
+      "descriptions": [
+        "<0>35 tín chỉ</0> miễn phí mỗi tháng",
+        "<0>10 câu hỏi</0> cho Giảng viên AI 3D mỗi tháng",
+        "Truy cập các khóa học nền tảng và phòng thực hành có giới hạn"
+      ]
+    },
+    "pro": {
+      "title": "Pro",
+      "price": "<0>$49</0> / tháng",
+      "subtitle": "Mở khóa quyền truy cập không giới hạn vào học tập thực hành từ cơ bản đến nâng cao.",
+      "descriptions": [
+        "Truy cập <0>không giới hạn</0> vào hàng nghìn khóa học và phòng thực hành",
+        "Toàn quyền truy cập thư viện nội dung Learnify",
+        "<0>Bao gồm mọi thứ trong gói Starter</0>"
+      ]
+    },
+    "career": {
+      "title": "Career",
+      "price": "<0>$99</0> / tháng",
+      "subtitle": "Phát triển sự nghiệp của bạn trong các lĩnh vực lương cao với những kỹ năng mà nhà tuyển dụng đang tìm kiếm.",
+      "descriptions": [
+        "Được xác nhận bởi <0>các nhà tuyển dụng hàng đầu</0>",
+        "<0>Hỏi không giới hạn</0> cho Giảng viên AI 3D",
+        "Truy cập <0>chương trình chứng chỉ chuyên nghiệp</0>"
+      ]
+    },
+    "select": "Chọn",
+    "free-trial": "Thử miễn phí",
+    "learn_more": "Tìm hiểu thêm"
+  },
+  "chat": {
+    "thinking": {
+      "the_teacher_is_thinking": "Trợ giảng đang suy nghĩ...",
+      "processing_your_question": "Đang xử lý câu hỏi của bạn...",
+      "let_me_check": "Để tôi kiểm tra...",
+      "searching_knowledge_base": "Đang tìm kiếm kiến thức...",
+      "analyzing_your_query": "Đang phân tích câu hỏi..."
+    }
+  },
+  "landing": {
+    "hero": {
+      "headline_line1": "Học tập Thông minh.",
+      "headline_line2": "Kỹ năng Thực tế.",
+      "headline_line3": "Sẵn sàng Nghề nghiệp.",
+      "subtitle": "Trợ giảng 3D AI hướng dẫn bạn qua các bài thực hành. Dành cho học viên, giảng viên và các tổ chức giáo dục sẵn sàng chuyển đổi.",
+      "learner_cta": "Tôi là Học viên",
+      "instructor_cta": "Tôi là Giảng viên"
+    },
+    "stats": {
+      "title": "Được tin dùng bởi <Beauty>Hàng nghìn</Beauty>"
+    },
+    "how": {
+      "title": "Cách thức <Beauty>Hoạt động</Beauty>",
+      "steps": {
+        "browse": {
+          "title": "Khám phá Khóa học",
+          "desc": "Khám phá hàng nghìn khóa học trên mọi lĩnh vực — từ AI đến thiết kế."
+        },
+        "enroll": {
+          "title": "Đăng ký & Bắt đầu",
+          "desc": "Chọn một khóa học, đăng ký một cú nhấp và bắt đầu bài học đầu tiên."
+        },
+        "learn": {
+          "title": "Học với 3D AI",
+          "desc": "Trợ giảng 3D AI tương tác hướng dẫn bạn qua các bài thực hành."
+        },
+        "certificate": {
+          "title": "Nhận Chứng chỉ",
+          "desc": "Hoàn thành khóa học, nhận chứng chỉ và thể hiện kỹ năng của bạn."
+        }
+      }
+    },
+    "audience": {
+      "title": "Xây dựng cho <Beauty>Tất cả</Beauty>",
+      "learners": {
+        "title": "Dành cho Học viên",
+        "desc": "Thành thạo kỹ năng qua các bài giảng 3D do AI hướng dẫn và bài thực hành tương tác. Học theo tốc độ của riêng bạn với phản hồi cá nhân hóa.",
+        "cta": "Bắt đầu Học"
+      },
+      "instructors": {
+        "title": "Dành cho Giảng viên",
+        "desc": "Tạo khóa học, quản lý học viên và theo dõi tiến độ với phân tích mạnh mẽ. Đưa chương trình giảng dạy của bạn vào cuộc sống với nội dung 3D.",
+        "cta": "Bắt đầu Giảng dạy"
+      },
+      "institutions": {
+        "title": "Dành cho Tổ chức",
+        "desc": "Triển khai Learnify tại trường đại học, trường học hoặc trung tâm đào tạo của bạn. Thương hiệu tùy chỉnh, hỗ trợ chuyên dụng và giá số lượng lớn.",
+        "cta": "Tìm hiểu Thêm"
+      }
+    },
+    "subs": {
+      "title": "Chọn <Beauty>Gói</Beauty> của bạn",
+      "select": "Chọn",
+      "starter": {
+        "title": "Starter",
+        "subtitle": "Bắt đầu học với quyền truy cập cơ bản vào các phòng thí nghiệm thực hành và nhận huy hiệu kỹ năng đầu tiên.",
+        "price": "<strong>Miễn phí</strong>",
+        "desc0": "<strong>35 tín chỉ</strong> miễn phí mỗi tháng",
+        "desc1": "<strong>10 câu hỏi</strong> cho Giảng viên AI 3D mỗi tháng",
+        "desc2": "Truy cập vào các khóa học nền tảng và phòng thí nghiệm giới hạn"
+      },
+      "pro": {
+        "title": "Pro",
+        "subtitle": "Mở khóa quyền truy cập không giới hạn vào học tập thực hành từ cơ bản đến nâng cao.",
+        "price": "<strong>$49</strong> / tháng",
+        "desc0": "Quyền truy cập <strong>không giới hạn</strong> vào hàng nghìn khóa học và phòng thí nghiệm",
+        "desc1": "Quyền truy cập đầy đủ vào thư viện nội dung Learnify",
+        "desc2": "<strong>Bao gồm mọi thứ trong gói Free</strong>"
+      },
+      "career": {
+        "title": "Career",
+        "subtitle": "Phát triển sự nghiệp của bạn trong các lĩnh vực lương cao với các kỹ năng mà nhà tuyển dụng đang tìm kiếm.",
+        "price": "<strong>$99</strong> / tháng",
+        "desc0": "Được xác nhận bởi <strong>các nhà tuyển dụng hàng đầu</strong>",
+        "desc1": "<strong>Câu hỏi không giới hạn</strong> cho Giảng viên AI 3D",
+        "desc2": "Truy cập vào <strong>các chương trình chứng chỉ chuyên nghiệp</strong>"
+      }
+    },
+    "values": {
+      "title": "<Beauty>Giá trị</Beauty> của chúng tôi"
+    }
+  },
+  "about_us": {
+    "title": "Về <Beauty>Learnify</Beauty>",
+    "description": "Nền tảng giáo dục làm nổi bật tương lai và nghệ thuật của việc học — từ kiến thức nền tảng đến thực hành đến thành thạo nghề nghiệp.",
+    "mission_title": "Sứ mệnh",
+    "vision_title": "Tầm nhìn",
+    "values_title": "<Beauty>Giá trị</Beauty> của chúng tôi",
+    "team_title": "Gặp gỡ <Beauty>Đội ngũ</Beauty>",
+    "mission_text": "Dân chủ hóa giáo dục bằng cách kết hợp công nghệ AI tiên tiến với trải nghiệm học tập 3D sống động, giúp giáo dục đẳng cấp thế giới dễ tiếp cận cho mọi người, mọi nơi.",
+    "vision_text": "Một thế giới nơi bất kỳ ai cũng có thể học bất kỳ kỹ năng nào thông qua hướng dẫn AI cá nhân hóa — phá vỡ rào cản về chi phí, vị trí và hạn chế của giảng dạy truyền thống.",
+    "values": {
+      "learner_first": {
+        "title": "Ưu tiên Học viên",
+        "desc": "Mọi quyết định chúng tôi đưa ra đều bắt đầu từ trải nghiệm của học viên."
+      },
+      "innovation": {
+        "title": "Đổi mới",
+        "desc": "Chúng tôi áp dụng AI và công nghệ hiện đại để giáo dục hiệu quả hơn."
+      },
+      "accessibility": {
+        "title": "Tiếp cận",
+        "desc": "Học tập chất lượng nên có sẵn cho mọi người, mọi nơi."
+      },
+      "community": {
+        "title": "Cộng đồng",
+        "desc": "Cùng nhau phát triển thông qua hợp tác, chia sẻ và hỗ trợ."
+      }
+    },
+    "stats": {
+      "trusted_learners": {
+        "label": "Học viên Tin cậy"
+      },
+      "courses": {
+        "label": "Khóa học"
+      },
+      "members": {
+        "label": "Thành viên"
+      },
+      "trusted_partners": {
+        "label": "Đối tác Tin cậy"
+      }
+    },
+    "team": {
+      "sarah": {
+        "role": "CEO & Đồng Sáng lập",
+        "bio": "Cựu giáo viên trở thành doanh nhân. Đam mê dân chủ hóa tiếp cận giáo dục đẳng cấp thế giới."
+      },
+      "marcus": {
+        "role": "CTO & Đồng Sáng lập",
+        "bio": "Nhà nghiên cứu AI và kỹ sư full-stack. Xây dựng tương lai của trải nghiệm học tập tương tác."
+      },
+      "aisha": {
+        "role": "Trưởng phòng Sản phẩm",
+        "bio": "Lãnh đạo sản phẩm với nền tảng thiết kế giảng dạy. Tập trung vào thiết kế lấy học viên làm trung tâm."
+      },
+      "david": {
+        "role": "Kỹ sư 3D Chính",
+        "bio": "Lập trình viên đồ họa và chuyên gia Three.js. Tạo ra môi trường giáo dục sống động."
+      }
+    }
+  },
+  "contact_info": {
+    "general": {
+      "label": "Yêu cầu Chung",
+      "value": "hello@learnify.com"
+    },
+    "support": {
+      "label": "Hỗ trợ",
+      "value": "support@learnify.com"
+    },
+    "partnerships": {
+      "label": "Hợp tác",
+      "value": "partners@learnify.com"
+    },
+    "office": {
+      "label": "Văn phòng",
+      "value": "123 Education Lane, Tech City, TC 90210"
+    }
+  },
+  "social_links": {
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "youtube": "YouTube"
+  },
+  "blogs": {
+    "title": "Learnify <Beauty>Blogs</Beauty>",
+    "description": "Thông tin, hướng dẫn và cập nhật từ đội ngũ Learnify về giáo dục AI, học tập 3D và phát triển nghề nghiệp.",
+    "posts": {
+      "future-of-ai-education": {
+        "title": "Tương lai của AI trong Giáo dục",
+        "excerpt": "Cách trợ giảng 3D AI đang thay đổi cách chúng ta học và ghi nhớ kiến thức thông qua trải nghiệm tương tác và sống động.",
+        "category": "AI & Công nghệ",
+        "readTime": "5 phút đọc"
+      },
+      "career-ready-skills": {
+        "title": "Xây dựng Kỹ năng Sẵn sàng Nghề nghiệp",
+        "excerpt": "Tại sao bài thực hành và học tập tương tác dẫn đến kết quả công việc tốt hơn và tiếp thu kỹ năng nhanh hơn.",
+        "category": "Nghề nghiệp",
+        "readTime": "4 phút đọc"
+      },
+      "introducing-learnify-pro": {
+        "title": "Giới thiệu Learnify Pro",
+        "excerpt": "Khóa học, bài thực hành và hướng dẫn AI không giới hạn cho học viên nghiêm túc sẵn sàng tăng tốc phát triển.",
+        "category": "Sản phẩm",
+        "readTime": "3 phút đọc"
+      },
+      "3d-learning-science": {
+        "title": "Khoa học đằng sau Học tập 3D",
+        "excerpt": "Nghiên cứu cho thấy môi trường học tập không gian và tương tác cải thiện khả năng ghi nhớ lên đến 40%.",
+        "category": "Nghiên cứu",
+        "readTime": "6 phút đọc"
+      },
+      "instructor-toolkit": {
+        "title": "Bộ công cụ của Giảng viên Hiện đại",
+        "excerpt": "Cách giáo viên đang tận dụng phân tích AI và nội dung 3D để tạo ra lớp học hấp dẫn hơn.",
+        "category": "Giảng dạy",
+        "readTime": "5 phút đọc"
+      },
+      "institution-partnerships": {
+        "title": "Mở rộng Giáo dục cho Tổ chức",
+        "excerpt": "Cách các trường đại học và trung tâm đào tạo đang triển khai Learnify để tiếp cận nhiều học viên hơn với chi phí thấp hơn.",
+        "category": "Tổ chức",
+        "readTime": "4 phút đọc"
+      }
+    }
+  },
+  "contact": {
+    "title": "Liên hệ với <Beauty>Chúng tôi</Beauty>",
+    "description": "Có câu hỏi, phản hồi hoặc yêu cầu hợp tác? Chúng tôi rất mong được lắng nghe từ bạn.",
+    "follow_us": "Theo dõi"
+  },
+  "pill_top_nav": {
+    "home": "Trang chủ",
+    "resources": "Tài nguyên",
+    "about_us": "Về chúng tôi",
+    "contact": "Liên hệ",
+    "blogs": {
+      "title": "Blogs",
+      "desc": "Thông tin, hướng dẫn và cập nhật từ đội ngũ Learnify."
+    },
+    "courses": {
+      "title": "Khóa học",
+      "desc": "Khám phá hàng nghìn khóa học do chuyên gia dẫn dắt trên mọi lĩnh vực."
+    },
+    "roadmaps": {
+      "title": "Lộ trình",
+      "desc": "Lộ trình học tập có cấu trúc từ người mới đến sẵn sàng nghề nghiệp."
+    },
+    "log_in": "Đăng nhập",
+    "sign_up": "Đăng ký",
+    "diamond_tooltip": "Xem Cửa hàng",
+    "streak_tooltip": "Xem Chuỗi học tập"
+  },
+  "notification": {
+    "title": "Thông báo",
+    "no_notifications": "Chưa có thông báo nào"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "theme": "Giao diện",
+    "language": "Ngôn ngữ",
+    "dark": "Tối",
+    "light": "Sáng"
+  },
+  "admin": {
+    "dashboard": {
+      "load_error": "Không thể tải dữ liệu bảng điều khiển."
+    },
+    "welcome": {
+      "greeting_morning": "Chào buổi sáng",
+      "greeting_afternoon": "Chào buổi chiều",
+      "greeting_evening": "Chào buổi tối",
+      "subtitle": "Dưới đây là những gì đang diễn ra trên nền tảng của bạn hôm nay"
+    },
+    "stats": {
+      "total_users": "Tổng người dùng",
+      "today_subscriber": "Người đăng ký hôm nay",
+      "revenue": "Doanh thu",
+      "system_bugs": "Lỗi hệ thống",
+      "trend": "+8.2% so với tháng trước"
+    },
+    "chart": {
+      "title": "Hoạt động người dùng trong 7 ngày",
+      "aria_label": "Biểu đồ đường hoạt động người dùng"
+    },
+    "recent_users": {
+      "title": "Người dùng gần đây",
+      "empty": "Không có người dùng gần đây.",
+      "just_now": "Vừa xong",
+      "min_ago_one": "{{count}} phút trước",
+      "min_ago_other": "{{count}} phút trước",
+      "hr_ago_one": "{{count}} giờ trước",
+      "hr_ago_other": "{{count}} giờ trước",
+      "days_ago_one": "{{count}} ngày trước",
+      "days_ago_other": "{{count}} ngày trước"
+    },
+    "system_activity": {
+      "title": "Hoạt động hệ thống"
+    },
+    "search": {
+      "placeholder": "Tìm kiếm theo tên, email hoặc vai trò...",
+      "clear_tooltip": "Xóa tìm kiếm"
+    },
+    "users": {
+      "title": "Quản lý người dùng",
+      "table": {
+        "id": "ID",
+        "user": "Người dùng",
+        "email": "Email",
+        "role": "Vai trò",
+        "joined": "Tham gia",
+        "actions": "Thao tác",
+        "edit": "Sửa",
+        "delete": "Xóa",
+        "empty": "Không tìm thấy người dùng",
+        "edit_tooltip": "Chỉnh sửa thông tin người dùng",
+        "delete_tooltip": "Xóa vĩnh viễn người dùng này"
+      },
+      "modal": {
+        "create_title": "Tạo người dùng mới",
+        "edit_title": "Chỉnh sửa người dùng",
+        "username": "Tên người dùng",
+        "username_placeholder": "vd: john_doe",
+        "email": "Email",
+        "email_placeholder": "user@example.com",
+        "phone": "Số điện thoại",
+        "phone_placeholder": "+84 000 000 000",
+        "password": "Mật khẩu",
+        "password_placeholder": "Tối thiểu 8 ký tự",
+        "role": "Vai trò",
+        "cancel": "Hủy",
+        "save": "Lưu thay đổi",
+        "create": "Tạo người dùng",
+        "saving": "Đang lưu...",
+        "close_tooltip": "Đóng cửa sổ",
+        "cancel_tooltip": "Hủy thay đổi",
+        "submit_create_tooltip": "Tạo tài khoản người dùng mới",
+        "submit_edit_tooltip": "Lưu thay đổi người dùng"
+      },
+      "delete_confirm": "Bạn có chắc chắn muốn xóa vĩnh viễn người dùng này?"
+    },
+    "pagination": {
+      "showing": "Hiển thị <strong>{{start}}–{{end}}</strong> trên <strong>{{total}}</strong>",
+      "prev_tooltip": "Đến trang trước",
+      "next_tooltip": "Đến trang sau",
+      "page_tooltip": "Đến trang {{page}}"
+    },
+    "sidebar": {
+      "dashboard": "Bảng điều khiển",
+      "user_management": "Quản lý người dùng",
+      "settings": "Cài đặt",
+      "policy": "Chính sách",
+      "add_user": "Thêm người dùng"
+    },
+    "header": {
+      "search_placeholder": "Tìm kiếm người dùng, cài đặt..."
+    },
+    "page_header": {
+      "add_user": "Thêm người dùng",
+      "add_user_tooltip": "Tạo tài khoản người dùng mới"
+    },
+    "toast": {
+      "user_created": "Tạo người dùng thành công!",
+      "user_updated": "Cập nhật người dùng thành công!",
+      "user_deleted": "Xóa người dùng thành công!",
+      "create_failed": "Không thể tạo người dùng: {{message}}",
+      "update_failed": "Không thể cập nhật người dùng: {{message}}",
+      "delete_failed": "Không thể xóa người dùng: {{message}}"
+    }
+  },
+  "card": {
+    "duration_one": "{{count}} phút",
+    "duration_other": "{{count}} phút"
+  },
+  "card_footer_tooltip": {
+    "locked": "Khóa học này đã bị khóa. Vui lòng hoàn thành các khóa học trước để mở khóa.",
+    "completed": "Bạn đã hoàn thành khóa học này.",
+    "default": "Nhấp để vào khóa học."
+  },
+  "special": {
+    "lesson": "Bài học",
+    "lab": "Phòng LAB",
+    "check": "Kiểm tra",
+    "course": "Khóa học",
+    "roadmap": "Lộ trình",
+    "certificate": "Chứng chỉ",
+    "public": "Công khai",
+    "private": "Riêng tư",
+    "starter": "Starter",
+    "pro": "Pro",
+    "career": "Career"
+  },
+  "special_tooltip": {
+    "lesson": "Bài học tập trung vào một mục tiêu học tập.",
+    "lab": "Môi trường thực hành tương tác.",
+    "check": "Kiểm tra nhanh kiến thức với phản hồi tức thì.",
+    "course": "Bộ sưu tập bài học về một chủ đề rộng hơn.",
+    "roadmap": "Hướng dẫn trực quan về lộ trình học tập.",
+    "certificate": "Chứng chỉ số đạt được khi hoàn thành.",
+    "public": "Bài học nền tảng dành cho mọi người.",
+    "private": "Nội dung hạn chế yêu cầu điều kiện trước.",
+    "starter": "Truy cập cơ bản với phòng LAB và huy hiệu.",
+    "pro": "Học tập không giới hạn từ cơ bản đến nâng cao.",
+    "career": "Phát triển sự nghiệp với kỹ năng sẵn sàng làm việc."
+  },
+  "reviewer": {
+    "back_to_list": "Quay lại danh sách",
+    "already_decided": "Khóa học này đã được {{status}}.",
+    "approve": "Phê duyệt khóa học",
+    "reject": "Từ chối khóa học",
+    "what_students_learn": "Học viên sẽ học được gì",
+    "by_creator": "Bởi {{name}}",
+    "submitted": "Đã gửi {{date}}"
+  },
+  "shop": {
+    "title": "Cửa hàng Learnify",
+    "coming_soon": "Cửa hàng sẽ sớm được cập nhật!",
+    "message": "Chúc bạn học tốt và tích lũy thật nhiều trước khi cửa hàng hoàn thiện! Sẽ có nhiều thứ xứng đáng với công sức của bạn!",
+    "back": "Quay lại Bảng điều khiển"
+  },
+  "streak": {
+    "title": "Chuỗi học tập",
+    "coming_soon": "Bảo vệ & Tăng cường Chuỗi — Sắp ra mắt!",
+    "message": "Chuỗi học tập hàng ngày của bạn sẽ mở khóa những công cụ mạnh mẽ: đóng băng chuỗi để bảo vệ tiến độ vào những ngày bận rộn, tăng XP để hoàn thành khóa học nhanh hơn, và phần thưởng độc quyền cho chuỗi dài ngày. Hãy kiên trì và gặt hái thành quả!",
+    "back": "Quay lại Bảng điều khiển"
+  },
+  "course_completion": {
+    "title": "Hoàn thành khóa học!",
+    "subtitle": "Chúc mừng bạn đã hoàn thành khóa học này!",
+    "diamonds_earned": "Bạn nhận được +10 kim cương",
+    "continue": "Tiếp tục"
+  }
+}

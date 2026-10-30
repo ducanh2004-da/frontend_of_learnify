@@ -1,11 +1,13 @@
+import "./style.scss";
+
+import { useLayout } from "@/contexts/LayoutContext";
+import { useScrollTop } from "@/hooks/useScrollTop";
+import { useRouterState } from "@tanstack/react-router";
+import classnames from "classnames";
+import { useCallback } from "react";
 import TopNavLeft from "./components/TopNavLeft";
 import TopNavRight from "./components/TopNavRight";
-import { useRouterState } from "@tanstack/react-router";
 import usePathname from "./hooks/usePathname";
-import { useScrollTop } from "@/hooks/useScrollTop";
-import { useLayout } from "@/contexts/LayoutContext";
-import classnames from "classnames";
-import "./style.scss";
 
 export type TTopNavProps = {
   className?: string;
@@ -21,7 +23,11 @@ const TopNav = (props: TTopNavProps) => {
     pathnames,
   });
   const isTop = useScrollTop();
-  const { customTitle } = useLayout();
+  const { customTitle, showSearch, setLayoutConfigState } = useLayout();
+
+  const handleSearchClose = useCallback(() => {
+    setLayoutConfigState((prev) => ({ ...prev, showSearch: false }));
+  }, [setLayoutConfigState]);
 
   const navClassNames = classnames(
     "top-nav",
@@ -31,13 +37,15 @@ const TopNav = (props: TTopNavProps) => {
   );
 
   return (
-    <nav className={navClassNames}>
+    <nav className={navClassNames} data-lenis-prevent>
       <TopNavLeft
         fullWidth={fullWidth}
         pathname={pathname}
         lastPathname={lastPathname}
         pathnameWithoutLast={pathnameWithoutLast}
         customTitle={customTitle}
+        showSearch={showSearch}
+        onSearchClose={handleSearchClose}
       />
       <TopNavRight />
     </nav>

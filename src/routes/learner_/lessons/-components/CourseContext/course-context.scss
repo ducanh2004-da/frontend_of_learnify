@@ -1,0 +1,55 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.course-context {
+  display: flex;
+  flex-direction: column;
+  background-color: $green-100;
+  border: toRem(2) solid $green-200;
+  padding: toRem(16);
+  gap: toRem(12);
+  border-radius: $br-xl;
+  @include box-shadow(0, 4, 6, -1);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  flex-shrink: 0;
+
+  &_header {
+    display: none;
+  }
+
+  &_toggle {
+    display: none;
+  }
+
+  @include break(sm) {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    border-radius: 0;
+    border: none;
+    padding: toRem(20);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    &_header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &_toggle {
+      display: flex;
+      position: fixed;
+      bottom: toRem(24);
+      right: toRem(24);
+      z-index: 1;
+    }
+  }
+}

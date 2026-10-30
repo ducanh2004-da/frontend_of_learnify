@@ -8,14 +8,15 @@ export type TSessionUser = {
   id: string;
   email: string;
   username?: string;
+  role?: string;
   diamond?: number;
   currentSteak?: number;
+  subscription?: TSubscription["type"];
 };
-import { useAuthStore } from "./store/authStore";
+import type { TSubscription } from "./routes/learner/subscriptions/-types/type";
 
 export function getRouter() {
   const queryClient = new QueryClient();
-  const authStore = useAuthStore.getState();
 
   const router = createRouter({
     routeTree,

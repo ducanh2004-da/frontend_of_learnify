@@ -10,39 +10,14 @@
   gap: toRem(100);
   $grid-template-cols: 1fr 45dvw;
 
-  &-divider {
+  &__divider {
     border: none;
     height: toRem(3);
     background-color: $neutral-200;
     width: 100%;
   }
 
-  .with-bullet {
-    position: relative;
-    padding-left: toRem(40);
-    display: flex;
-    flex-direction: column;
-    gap: toRem(10);
-
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      height: toRem(15);
-      aspect-ratio: 1 / 1;
-      background-color: $neutral-400;
-      border-radius: $br-rounded;
-    }
-
-    &.subtitle,
-    .subtitle {
-      color: $neutral-400;
-    }
-  }
-
-  &-head {
+  &__head {
     gap: toRem(40);
     display: flex;
     place-items: center;
@@ -52,22 +27,26 @@
       flex-direction: column;
       gap: toRem(20);
       width: 100%;
-
-      > .title {
-        font-size: toRem(120);
-        font-weight: 700;
-        color: $mode-green;
-        line-height: toRem(150);
-      }
     }
   }
 
-  &-hero {
+  &__head-title {
+    font-size: toRem(120);
+    font-weight: $fw-bold;
+    color: $mode-green;
+    line-height: toRem(150);
+  }
+
+  &__head-tagline {
+    font-size: $fs-heading2;
+  }
+
+  &__hero {
     display: grid;
     grid-template-columns: 1fr 50dvw;
     gap: toRem(100);
 
-    &-context {
+    &-content {
       display: flex;
       flex-direction: column;
       gap: toRem(20);
@@ -81,16 +60,66 @@
     }
   }
 
-  &-direction,
-  &-vision,
-  &-team {
+  &__hero-text {
+    font-size: $fs-paragraph;
+  }
+
+  &__direction,
+  &__vision,
+  &__team {
     display: grid;
     grid-template-columns: $grid-template-cols;
     gap: toRem(40);
     align-items: start;
   }
 
-  &-stats-section {
+  &__direction-text,
+  &__vision-text {
+    font-size: $fs-heading4;
+  }
+
+  &__team-subtitle {
+    font-size: $fs-heading4;
+    font-weight: $fw-semibold;
+  }
+
+  &__direction-heading,
+  &__vision-heading,
+  &__team-heading {
+    position: relative;
+    padding-left: toRem(40);
+    color: $neutral-400;
+    font-size: $fs-heading3;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: toRem(15);
+      aspect-ratio: 1 / 1;
+      background-color: $neutral-400;
+      border-radius: $br-rounded;
+    }
+  }
+
+  &__direction-heading {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10);
+  }
+
+  &__direction-title {
+    font-size: $fs-heading3;
+  }
+
+  &__direction-subtitle {
+    color: $neutral-400;
+    font-size: $fs-heading3;
+  }
+
+  &__stats {
     display: grid;
     grid-template-columns: repeat(4, minmax(20dvw, 1fr));
     gap: toRem(20);
@@ -99,7 +128,7 @@
 
 @include break(md) {
   .about-page {
-    &-hero {
+    &__hero {
       grid-template-columns: 1fr 25dvw;
 
       img {
@@ -107,22 +136,22 @@
       }
     }
 
-    &-stats-section {
+    &__stats {
       grid-template-columns: repeat(2, minmax(20dvw, 1fr));
       grid-template-rows: repeat(auto-fit, minmax(toRem(100), 1fr));
     }
   }
 }
 
-@include break(s) {
+@include break(sm) {
   .about-page {
-    &-head {
+    &__head {
       svg {
         display: none !important;
       }
     }
 
-    &-hero {
+    &__hero {
       grid-template-columns: 1fr;
 
       img {
@@ -130,15 +159,24 @@
       }
     }
 
-    &-stats-section {
+    &__stats {
       grid-template-columns: 1fr;
       grid-template-rows: repeat(auto-fit, minmax(toRem(100), 1fr));
     }
 
-    &-direction,
-    &-vision,
-    &-team {
+    &__direction,
+    &__vision,
+    &__team {
       grid-template-columns: 1fr;
+    }
+  }
+}
+
+@include break(xs) {
+  .about-page {
+    &__head-title {
+      font-size: 6rem;
+      line-height: 1.25;
     }
   }
 }

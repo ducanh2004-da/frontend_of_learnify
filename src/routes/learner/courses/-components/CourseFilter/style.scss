@@ -1,0 +1,67 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.course-filter {
+  position: relative;
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + toRem(8));
+    left: 0;
+    z-index: 100;
+    min-width: toRem(260);
+    background: $white;
+    border: toRem(1) solid $neutral-200;
+    border-radius: $br-sm;
+    @include box-shadow(0, 4, 20, 0.08);
+    padding: toRem(16);
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(10);
+  }
+
+  &__section-header {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+    font-size: $fs-small;
+    font-weight: $fw-semibold;
+    color: $neutral-600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: toRem(8);
+  }
+
+  &__divider {
+    height: toRem(1);
+    background: $neutral-200;
+  }
+
+  &__clear {
+    all: unset;
+    cursor: pointer;
+    font-size: $fs-small;
+    font-weight: $fw-semibold;
+    color: $navy-500;
+    text-align: center;
+    padding: toRem(4) 0;
+    transition: color 200ms ease;
+
+    &:hover {
+      color: $navy-700;
+    }
+  }
+}

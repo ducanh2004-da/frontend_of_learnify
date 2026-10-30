@@ -10,7 +10,7 @@
   aspect-ratio: 1 / 1;
   place-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 1;
   @include transition;
   display: none;
 
@@ -27,7 +27,7 @@
   }
 }
 
-@include break(s) {
+@include break(sm) {
   .left-nav-controller {
     display: flex;
   }

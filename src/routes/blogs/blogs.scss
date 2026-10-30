@@ -1,0 +1,57 @@
+@use "@styles/page-marketing" as *;
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+@include page-marketing("blogs");
+
+.blogs__card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: toRem(4);
+}
+
+.blogs__card-category {
+  font-size: $fs-smaller;
+  color: $accent-emerald;
+  font-weight: $fw-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blogs__card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: toRem(12);
+  border-top: toRem(1) solid to-rgba($black, 0.1);
+}
+
+.blogs__card-readtime {
+  display: flex;
+  align-items: center;
+  gap: toRem(6);
+  font-size: $fs-small;
+  color: to-rgba($black, 0.5);
+
+  svg {
+    color: to-rgba($black, 0.4);
+  }
+}
+
+.blogs__card-tags {
+  display: flex;
+  gap: toRem(8);
+  flex-wrap: wrap;
+}
+
+.blogs__card-tag {
+  font-size: $fs-smaller;
+  color: to-rgba($black, 0.6);
+  background: to-rgba($black, 0.08);
+  padding: toRem(2) toRem(8);
+  border-radius: $br-sm;
+}

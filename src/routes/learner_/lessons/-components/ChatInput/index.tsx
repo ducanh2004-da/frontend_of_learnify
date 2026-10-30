@@ -1,19 +1,23 @@
 import { memo, useRef, useCallback, useEffect, useState } from "react";
 import classnames from "classnames";
-import type { TChatInputProps } from "./type";
+import { useTranslation } from "react-i18next";
+
 import IconButton from "@/components/IconButton";
+import type { TChatInputProps } from "./type";
+
 import "./style.scss";
 
 const MIN_HEIGHT = 20;
 const MAX_HEIGHT = 200;
 
 const ChatInput = (props: TChatInputProps) => {
+  const { t } = useTranslation();
   const {
     onSendMessage,
     onAttachFile,
     onVoiceInput,
     disabled = false,
-    placeholder = "Type your message...",
+    placeholder = t("chat_input.placeholder"),
     className,
   } = props;
 
@@ -60,11 +64,11 @@ const ChatInput = (props: TChatInputProps) => {
         className={classnames("chat-input-action", { disabled: !onAttachFile })}
         onClick={onAttachFile}
         disabled={!onAttachFile}
-        aria-label="Attach file"
+        aria-label={t("chat_input.attach_file")}
         icon="attach_file"
         type="secondary"
         size="tiny"
-        tooltip="Attach File"
+        tooltip={t("chat_input.attach_file_tooltip")}
       />
       <textarea
         ref={textareaRef}
@@ -76,17 +80,17 @@ const ChatInput = (props: TChatInputProps) => {
           setMessage(e.target.value);
         }}
         onKeyDown={handleKeyDown}
-        aria-label="Message input"
+        aria-label={t("chat_input.message_input")}
         rows={1}
       />
       <IconButton
         className={classnames("chat-input-action", { disabled: !onVoiceInput })}
         onClick={onVoiceInput}
-        aria-label="Voice input"
+        aria-label={t("chat_input.voice_input")}
         icon="mic"
         type="secondary"
         size="tiny"
-        tooltip="Voice Input"
+        tooltip={t("chat_input.voice_input_tooltip")}
         disabled={!onVoiceInput}
       />
       <IconButton
@@ -97,9 +101,9 @@ const ChatInput = (props: TChatInputProps) => {
         type="secondary"
         onClick={handleSend}
         disabled={!message.trim() || disabled}
-        aria-label="Send message"
+        aria-label={t("chat_input.send_message")}
         icon="send"
-        tooltip="Send Message"
+        tooltip={t("chat_input.send_message_tooltip")}
         buttonType="submit"
       />
     </div>

@@ -1,4 +1,4 @@
-import type { TAboutStatProps } from "@/routes/learner/about/-types/about";
+import type { TAboutStatProps } from "@learner/about/-types/about";
 import "./style.scss";
 
 const AboutStat = (props: TAboutStatProps) => {
@@ -6,10 +6,12 @@ const AboutStat = (props: TAboutStatProps) => {
 
   return (
     <div className={`about-stat ${label}`} style={{ backgroundColor: color }}>
-      <h5 className="regular">/{index < 10 ? `0${index}` : index}</h5>
+      <p className="regular about-stat-index">
+        /{index < 10 ? `0${index}` : index}
+      </p>
       <div className="about-stat-context">
-        <h1 className="about-stat-total semibold">{value}</h1>
-        <h6 className="about-stat-type">{label}</h6>
+        <h3 className="about-stat-total semibold">{value}</h3>
+        <p className="about-stat-type">{label}</p>
       </div>
     </div>
   );

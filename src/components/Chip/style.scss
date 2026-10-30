@@ -1,0 +1,46 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: toRem(6);
+  height: toRem(32);
+  padding: 0 toRem(12);
+  border: toRem(1) solid $neutral-300;
+  border-radius: $br-sm;
+  background: $white;
+  color: $neutral-700;
+  font-size: $fs-small;
+  font-weight: $fw-medium;
+  cursor: pointer;
+  white-space: nowrap;
+  @include transition;
+  transition-property: background-color, border-color, color;
+
+  &:hover:not(&--disabled) {
+    background-color: $neutral-100;
+  }
+
+  &--selected {
+    background-color: $navy-500;
+    border-color: $navy-500;
+    color: $white;
+
+    &:hover:not(&--disabled) {
+      background-color: $navy-600;
+      border-color: $navy-600;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &__label {
+    line-height: 1;
+  }
+}

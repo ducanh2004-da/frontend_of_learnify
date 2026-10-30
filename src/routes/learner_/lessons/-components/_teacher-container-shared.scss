@@ -1,0 +1,48 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+%teacher-container-shared {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: $green-100;
+  border: toRem(2) solid $green-200;
+  border-radius: $br-xl;
+  @include box-shadow(0, 4, 6, -1);
+  @include transition;
+  transition-property: bottom right;
+}
+
+%teacher-container-loader-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: toRem(16);
+  background: rgba(26, 26, 26, 0.9);
+  z-index: 1;
+}
+
+%teacher-container-loading-text {
+  color: $white;
+  font-size: $fs-paragraph;
+  font-weight: $fw-medium;
+}
+
+%teacher-container-loading-message {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: $fs-smaller;
+  font-weight: $fw-regular;
+}
+
+%teacher-container-responsive {
+  @include break(sm) {
+    position: absolute;
+    bottom: toRem(20);
+    left: toRem(20);
+  }
+}

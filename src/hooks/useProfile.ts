@@ -109,3 +109,8 @@ export function useUpdateUserProfile() {
     },
   });
 }
+
+export {
+  useIncreaseStreakMutation,
+  useUpdateDiamondsMutation,
+} from "./useGamification";

@@ -5,36 +5,60 @@
 
 .chat-header {
   display: flex;
-  padding: toRem(10) 0;
-  min-width: 10dvw;
+  align-items: center;
+  padding: toRem(8) 0;
   justify-content: space-between;
   width: 100%;
-  gap: toRem(20);
+  min-width: 0;
+  gap: toRem(8);
+  flex-shrink: 0;
 
   &-context {
-    display: grid;
-    grid-template-columns: toRem(25) 1fr;
-    gap: toRem(20);
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
     overflow: hidden;
-    place-items: center start;
-    width: 100%;
+    min-width: 0;
+    flex: 1;
+
+    .icon {
+      flex-shrink: 0;
+    }
 
     > div {
-      padding: toRem(5);
       display: flex;
-      gap: toRem(10);
+      align-items: center;
+      gap: toRem(4);
+      min-width: 0;
+      flex: 1;
+      overflow: hidden;
     }
 
     input {
-      font-size: $fs-heading5;
+      font-size: toRem(17);
+      font-weight: $fw-semibold;
       color: $black;
+      min-width: 0;
+      max-width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      border: none;
+      background: transparent;
+      outline: none;
+      padding: 0;
     }
 
     > span {
-      font-size: $fs-heading5;
+      font-size: toRem(17);
+      font-weight: $fw-semibold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &-dropdown.icon-button {
+      flex-shrink: 0;
       span {
         font-size: $fs-heading4;
       }
@@ -43,7 +67,8 @@
 
   &-actions {
     display: flex;
-    gap: toRem(10);
-    place-items: center;
+    gap: toRem(6);
+    align-items: center;
+    flex-shrink: 0;
   }
 }

@@ -1,21 +1,22 @@
 @use "@styles/variables" as *;
 @use "@styles/colors" as *;
 @use "@styles/functions" as *;
+@use "@styles/mixins" as *;
 
-.message {
+.chat-message {
   display: flex;
   gap: toRem(8);
   margin-bottom: toRem(12);
 
-  &-user {
+  &--user {
     flex-direction: row-reverse;
   }
 
-  &-teacher {
+  &--teacher {
     flex-direction: row;
   }
 
-  &-avatar {
+  &__avatar {
     flex-shrink: 0;
     width: toRem(32);
     height: toRem(32);
@@ -28,32 +29,32 @@
     margin-top: toRem(4);
   }
 
-  &-user &-avatar {
+  &--user &__avatar {
     background-color: $mode-green;
     color: $white;
   }
 
-  &-teacher &-avatar {
+  &--teacher &__avatar {
     background-color: $navy-pastel-200;
     color: $neutral-700;
   }
 
-  &-body {
+  &__body {
     display: flex;
     flex-direction: column;
     gap: toRem(2);
     max-width: 70%;
   }
 
-  &-user &-body {
+  &--user &__body {
     align-items: flex-end;
   }
 
-  &-teacher &-body {
+  &--teacher &__body {
     align-items: flex-start;
   }
 
-  &-bubble {
+  &__bubble {
     padding: toRem(10) toRem(14);
     border-radius: toRem(16);
     position: relative;
@@ -65,40 +66,111 @@
     max-width: 100%;
   }
 
-  &-user &-bubble {
+  &--user &__bubble {
     background-color: $green-200;
     color: $black;
     border-bottom-right-radius: toRem(4);
   }
 
-  &-teacher &-bubble {
+  &--teacher &__bubble {
     background-color: $neutral-150;
     color: $neutral-900;
     border-bottom-left-radius: toRem(4);
   }
 
-  &-text {
+  &__text {
     margin: 0;
     font-size: $fs-paragraph;
     font-weight: $fw-regular;
     line-height: 1.5;
   }
 
-  &-time {
+  &__time {
     font-size: toRem(11);
     color: $neutral-400;
     padding: 0 toRem(4);
   }
 
-  &-user &-time {
+  &--user &__time {
     text-align: right;
   }
 
-  &-image {
+  &__image {
     max-width: 100%;
     max-height: 40dvh;
     object-fit: contain;
     display: block;
     border-radius: inherit;
+    cursor: zoom-in;
+  }
+
+  &__modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.85);
+    flex-direction: column;
+    gap: toRem(16);
+  }
+
+  &__modal-toolbar {
+    display: flex;
+    align-items: center;
+    gap: toRem(12);
+    padding: toRem(8) toRem(16);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: toRem(12);
+    backdrop-filter: blur(8px);
+  }
+
+  &__modal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: toRem(36);
+    height: toRem(36);
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: $white;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .icon {
+      font-size: toRem(20);
+    }
+  }
+
+  &__modal-zoom {
+    color: $white;
+    font-size: $fs-small;
+    font-weight: $fw-medium;
+    min-width: toRem(48);
+    text-align: center;
+  }
+
+  &__modal-image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow: hidden;
+  }
+
+  &__modal-image {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: toRem(8);
+    @include transition;
+    transition-property: transform;
   }
 }

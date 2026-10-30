@@ -1,0 +1,64 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: to-rgba($black, 0.5);
+  backdrop-filter: blur(2px);
+  animation: modal-overlay-in 0.2s ease both;
+}
+
+.modal {
+  background: $white;
+  border-radius: toRem(12);
+  width: toRem(480);
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: modal-panel-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: toRem(16) toRem(20);
+    border-bottom: toRem(1) solid $neutral-200;
+  }
+
+  &__title {
+    font-size: toRem(18);
+    font-weight: 600;
+    color: $neutral-900;
+  }
+
+  &__body {
+    padding: toRem(20);
+  }
+}
+
+@keyframes modal-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(toRem(8)) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

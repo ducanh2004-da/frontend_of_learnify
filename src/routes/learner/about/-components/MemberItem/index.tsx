@@ -1,4 +1,4 @@
-import type { TMemberProps } from "@/routes/learner/about/-types/about";
+import type { TMemberProps } from "@learner/about/-types/about";
 import { OptimizeImage } from "@/components/Images";
 import "./style.scss";
 

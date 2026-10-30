@@ -1,31 +1,10 @@
-import { useState, useEffect } from "react";
+import { useThemeStore } from "@/store/themeStore";
+import type { TTheme } from "@/store/themeStore";
 
-export type TTheme = "light" | "dark";
+export type { TTheme };
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState<TTheme>(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as TTheme;
-      if (savedTheme) {
-        return savedTheme;
-      }
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    }
-    return "light";
-  });
-
-  useEffect(() => {
-    const root = document.documentElement;
-    root.setAttribute("data-theme", theme);
-    root.style.colorScheme = theme;
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
-
+  const theme = useThemeStore((s) => s.theme);
+  const toggleTheme = useThemeStore((s) => s.toggleTheme);
   return { theme, toggleTheme };
 };

@@ -1,0 +1,50 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+  min-height: 0;
+  overflow: hidden;
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(8);
+    flex-grow: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: toRem(12) toRem(6);
+    scroll-behavior: smooth;
+  }
+
+  .chat-input {
+    flex-shrink: 0;
+    margin-top: auto;
+  }
+
+  &-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: toRem(8);
+    height: 100%;
+    color: $neutral-400;
+
+    .icon {
+      font-size: toRem(40);
+    }
+
+    &-text {
+      margin: 0;
+      font-size: $fs-paragraph;
+      color: $neutral-300;
+      text-align: center;
+    }
+  }
+}

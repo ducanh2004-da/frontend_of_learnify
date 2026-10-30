@@ -5,7 +5,7 @@ export type MockRoadmapDetail = {
   typeSpecial: TSpecial;
   title: string;
   description?: string;
-  duration?: string;
+  duration?: number;
   status?: TStatusCard;
   listFeature?: string[];
   percentage?: TProgress;
@@ -18,7 +18,7 @@ export const MOCK_ROADMAP_DETAILS: MockRoadmapDetail[] = [
     title: "Generative AI",
     description:
       "Learn the fundamentals of Generative AI, how it differs from traditional machine learning, and explore the core technologies behind large language models.",
-    duration: "45 mins",
+    duration: 45,
     status: "default",
     listFeature: ["Data Analysis", "Trend Prediction", "Workflow Optimization"],
   },
@@ -28,7 +28,7 @@ export const MOCK_ROADMAP_DETAILS: MockRoadmapDetail[] = [
     title: "Generative AI",
     description:
       "Learn the fundamentals of Generative AI, how it differs from traditional machine learning, and explore the core technologies behind large language models.",
-    duration: "45 mins",
+    duration: 45,
     status: "default",
     listFeature: ["Data Analysis", "Trend Prediction", "Workflow Optimization"],
   },
@@ -38,7 +38,7 @@ export const MOCK_ROADMAP_DETAILS: MockRoadmapDetail[] = [
     title: "Generative AI",
     description:
       "Learn the fundamentals of Generative AI, how it differs from traditional machine learning, and explore the core technologies behind large language models.",
-    duration: "45 mins",
+    duration: 45,
     status: "default",
     listFeature: ["Data Analysis", "Trend Prediction", "Workflow Optimization"],
   },
@@ -48,7 +48,7 @@ export const MOCK_ROADMAP_DETAILS: MockRoadmapDetail[] = [
     title: "Generative AI",
     description:
       "Learn the fundamentals of Generative AI, how it differs from traditional machine learning, and explore the core technologies behind large language models.",
-    duration: "45 mins",
+    duration: 45,
     status: "default",
     listFeature: ["Data Analysis", "Trend Prediction", "Workflow Optimization"],
   },

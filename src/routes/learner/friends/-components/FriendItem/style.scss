@@ -58,7 +58,7 @@
   }
 }
 
-@include break(s) {
+@include break(sm) {
   .friend-item {
     padding: toRem(12) toRem(16);
     gap: toRem(12);

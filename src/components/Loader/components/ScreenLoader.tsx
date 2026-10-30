@@ -14,7 +14,7 @@ const ScreenLoader = (props: TScreenLoaderProps) => {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({ delay: 1.0 });
+      const tl = gsap.timeline();
       tl.to(".loader-4", {
         keyframes: {
           "0%": {
@@ -34,7 +34,7 @@ const ScreenLoader = (props: TScreenLoaderProps) => {
           "100%": { clipPath: "polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%)" },
           easeEach: "none",
         },
-        duration: 1.5,
+        duration: 0.8,
         ease: "hop",
       }).to(
         ".loader-3",
@@ -62,10 +62,10 @@ const ScreenLoader = (props: TScreenLoaderProps) => {
             "100%": { clipPath: "polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%)" },
             easeEach: "none",
           },
-          duration: 1.5,
+          duration: 0.8,
           ease: "hop",
         },
-        "-=0.5"
+        "-=0.3"
       );
 
       if (onPhase1Complete) tl.call(onPhase1Complete);
@@ -96,7 +96,7 @@ const ScreenLoader = (props: TScreenLoaderProps) => {
           "100%": { clipPath: "polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%)" },
           easeEach: "none",
         },
-        duration: 1.5,
+        duration: 0.8,
         ease: "hop",
       }).to(
         ".loader-1",
@@ -124,10 +124,10 @@ const ScreenLoader = (props: TScreenLoaderProps) => {
             "100%": { clipPath: "polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%)" },
             easeEach: "none",
           },
-          duration: 1.5,
+          duration: 0.8,
           ease: "hop",
         },
-        "-=0.5"
+        "-=0.3"
       );
 
       if (onPhase2Complete) tl.call(onPhase2Complete);

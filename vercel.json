@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm codegen && pnpm build",
+  "installCommand": "pnpm install",
+  "rewrites": [
+    {
+      "source": "/backend-graphql",
+      "destination": "https://learnify-be.onrender.com/graphql"
+    },
+    {
+      "source": "/csrf-token",
+      "destination": "https://learnify-be.onrender.com/csrf-token"
+    }
+  ]
+}

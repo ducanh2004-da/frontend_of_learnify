@@ -1,6 +1,7 @@
 @use "@styles/variables" as *;
 @use "@styles/colors" as *;
 @use "@styles/functions" as *;
+@use "@styles/mixins" as *;
 
 .quiz-panel {
   display: flex;
@@ -58,6 +59,7 @@
     cursor: pointer;
     font-size: $fs-paragraph;
     text-align: left;
+    @include transition;
     transition:
       border-color 0.15s,
       background-color 0.15s;
@@ -72,8 +74,8 @@
     }
 
     &.correct {
-      border-color: $green-600;
-      background-color: $green-100;
+      border-color: $accent-emerald;
+      background-color: $green-200;
     }
 
     &.wrong {
@@ -87,22 +89,30 @@
 
     &-indicator {
       font-size: toRem(20);
+      @include transition;
       color: $neutral-400;
     }
 
     &.selected &-indicator {
-      color: $green-500;
+      color: $white;
+    }
+
+    &.selected &-label {
+      color: $white;
     }
 
     &.correct &-indicator {
-      color: $green-600;
+      color: $accent-emerald;
     }
 
-    &.wrong &-indicator {
-      color: $salmon-500;
+    &.wrong &-indicator,
+    &.wrong &-label {
+      color: $white;
     }
 
     &-label {
+      color: $black;
+      @include transition;
       flex: 1;
     }
   }
@@ -140,11 +150,11 @@
       min-width: toRem(120);
 
       &.correct {
-        color: $green-600;
+        color: $accent-emerald;
       }
 
       &.wrong {
-        color: $salmon-500;
+        color: $accent-blaze;
       }
     }
   }
@@ -275,24 +285,24 @@
       flex-wrap: wrap;
 
       &.correct {
-        background-color: $green-pastel-100;
-        border: toRem(1) solid $green-200;
+        background-color: $green-200;
+        border: toRem(1) solid $accent-emerald;
       }
 
       &.wrong {
-        background-color: $salmon-100;
-        border: toRem(1) solid $salmon-200;
+        background-color: $salmon-200;
+        border: toRem(1) solid $accent-blaze;
       }
 
       &-icon {
         font-size: toRem(20);
 
         .correct & {
-          color: $green-600;
+          color: $black;
         }
 
         .wrong & {
-          color: $salmon-500;
+          color: $white;
         }
       }
 
@@ -300,6 +310,14 @@
         flex: 1;
         font-size: $fs-paragraph;
         color: $neutral-800;
+
+        .correct & {
+          color: $black;
+        }
+
+        .wrong & {
+          color: $white;
+        }
       }
 
       &-hint {
@@ -307,6 +325,14 @@
         font-size: $fs-small;
         color: $neutral-600;
         padding-left: toRem(28);
+
+        .correct & {
+          color: $black;
+        }
+
+        .wrong & {
+          color: $white;
+        }
       }
     }
 

@@ -123,7 +123,7 @@ section.decoration-shapes {
   }
 }
 
-@include break(s) {
+@include break(sm) {
   section.decoration-shapes {
     display: none;
   }

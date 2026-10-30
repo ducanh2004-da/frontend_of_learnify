@@ -1,0 +1,36 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.course-item-skeleton {
+  @include flex-gap(20);
+  padding: toRem(14) toRem(16);
+  border: toRem(1) solid $neutral-200;
+  border-radius: $br-sm;
+
+  &__icon {
+    width: toRem(20);
+    height: toRem(20);
+    border-radius: $br-xs;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    @include flex-gap(10);
+    place-items: start;
+    flex: 1;
+  }
+
+  &__name {
+    width: 70%;
+    height: toRem(14);
+    border-radius: $br-xs;
+  }
+
+  &__status {
+    width: 40%;
+    height: toRem(10);
+    border-radius: $br-xl;
+  }
+}

@@ -1,0 +1,112 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.shop-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100dvh - toRem(65));
+  padding: toRem(40) toRem(24);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  gap: toRem(24);
+
+  &__glow {
+    position: absolute;
+    width: toRem(400);
+    height: toRem(400);
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba($accent-blue-celeste, 0.15) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__diamond {
+    position: relative;
+    z-index: 1;
+    color: $accent-blue-celeste;
+    filter: drop-shadow(0 0 toRem(20) rgba($accent-blue-celeste, 0.4));
+  }
+
+  &__particles {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: toRem(100);
+    pointer-events: none;
+
+    > .icon {
+      position: absolute;
+      color: rgba($accent-blue-celeste, 0.25);
+
+      &:nth-child(1) {
+        top: 30%;
+        left: 15%;
+      }
+      &:nth-child(2) {
+        top: 20%;
+        right: 20%;
+      }
+      &:nth-child(3) {
+        bottom: 35%;
+        left: 10%;
+      }
+      &:nth-child(4) {
+        bottom: 25%;
+        right: 15%;
+      }
+      &:nth-child(5) {
+        top: 50%;
+        left: 5%;
+      }
+      &:nth-child(6) {
+        top: 45%;
+        right: 8%;
+      }
+    }
+  }
+
+  &__title {
+    font-size: $fs-heading2;
+    font-weight: $fw-medium;
+    color: $neutral-900;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(12);
+    max-width: toRem(500);
+    position: relative;
+    z-index: 1;
+  }
+
+  &__coming-soon {
+    font-size: $fs-heading5;
+    font-weight: $fw-semibold;
+    color: $accent-blue-celeste;
+    margin: 0;
+  }
+
+  &__message {
+    font-size: $fs-paragraph;
+    color: $neutral-600;
+    line-height: 1.7;
+    margin: 0;
+  }
+}

@@ -27,19 +27,19 @@ footer {
     justify-content: space-between;
     gap: toRem(100);
 
-    > h6,
+    > .footer-section-label,
     > p {
       color: $neutral-600;
     }
   }
 
   .item-1 {
-    h1 {
+    h2 {
       color: $mode-green;
     }
 
     a {
-      color: $accent-minty;
+      color: $green-400;
     }
   }
 
@@ -51,7 +51,7 @@ footer {
       flex-direction: column;
       gap: toRem(20);
 
-      & > h6 {
+      & > .footer-section-label {
         color: $neutral-600;
       }
 
@@ -61,7 +61,7 @@ footer {
         gap: toRem(20);
       }
 
-      .socials-context h6:not(:last-child):after {
+      .socials-context a:not(:last-child):after {
         content: "/";
         margin-left: toRem(10);
       }
@@ -100,7 +100,7 @@ footer {
   }
 }
 
-@include break(s) {
+@include break(sm) {
   .footer-content {
     grid-template-columns: 1fr;
     gap: toRem(75);

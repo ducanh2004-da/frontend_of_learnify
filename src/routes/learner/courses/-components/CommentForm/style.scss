@@ -1,12 +1,16 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
 .comment-form {
-  background-color: var(--color-white);
-  border-radius: 12px;
-  padding: 16px;
-  border: 1px solid var(--color-neutral-200);
+  background-color: $white;
+  border: toRem(2) solid $neutral-200;
+  border-radius: toRem(25);
+  padding: toRem(24);
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 16px;
+  gap: toRem(16);
 
   &-head {
     display: flex;
@@ -15,17 +19,17 @@
 
     h4 {
       margin: 0;
-      font-size: 16px;
+      font-size: toRem(16);
       font-weight: 600;
-      color: var(--color-neutral-700);
+      color: $mode-neutral;
     }
 
     .stars {
       display: flex;
-      gap: 4px;
+      gap: toRem(4);
 
       .icon {
-        font-size: 24px;
+        font-size: toRem(24);
         transition: transform 0.1s ease;
         &:hover {
           transform: scale(1.1);
@@ -37,21 +41,31 @@
   &-body {
     textarea {
       width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid var(--color-neutral-300);
+      background-color: $neutral-100;
+      border: toRem(2) solid $neutral-400;
+      border-radius: $br-xl;
+      padding: toRem(15) toRem(30);
       resize: vertical;
       font-family: inherit;
-      font-size: 14px;
+      font-size: toRem(14);
+      color: $black;
       outline: none;
-      transition: border-color 0.2s;
+      min-height: toRem(80);
+
+      @include transition;
+      transition-property: border-color, border-radius;
+
+      &::placeholder {
+        color: $neutral-500;
+      }
 
       &:focus {
-        border-color: var(--color-green-500);
+        border-color: $green-600;
+        border-radius: $br-sm;
       }
 
       &:disabled {
-        background-color: var(--color-neutral-100);
+        background-color: $neutral-100;
         cursor: not-allowed;
       }
     }
@@ -60,7 +74,7 @@
   &-footer {
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
+    gap: toRem(12);
 
     .submit-btn-wrapper {
       display: flex;

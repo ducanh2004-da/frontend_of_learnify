@@ -16,7 +16,7 @@ const LogoLoader = (props: TLogoLoaderProps) => {
       if (!ready) return;
       gsap.to(logoDivRef.current, {
         opacity: 0,
-        duration: 1.5,
+        duration: 0.8,
         ease: "hop",
         onComplete: () => {
           gsap.set(logoDivRef.current, { visibility: "hidden" });

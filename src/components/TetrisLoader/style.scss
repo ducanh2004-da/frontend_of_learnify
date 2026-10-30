@@ -21,11 +21,6 @@
     transition-property: background-color, border-color;
     @include transition;
 
-    [data-theme="dark"] & {
-      border-color: $neutral-200;
-      background-color: $black;
-    }
-
     &-sm {
       padding: toRem(2);
     }

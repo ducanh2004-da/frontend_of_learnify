@@ -57,3 +57,5 @@ mutation Mutation($data: UpdateUserInput!) {
   }
 }
 `;
+
+export * from "./gamification";

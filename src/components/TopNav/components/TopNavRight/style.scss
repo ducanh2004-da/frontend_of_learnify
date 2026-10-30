@@ -5,33 +5,9 @@
 .top-nav-right {
   gap: toRem(30);
 
-  .crystal,
-  .streak {
-    display: flex;
-    gap: toRem(10);
-    place-items: center;
-
-    span {
-      font-variation-settings: "FILL" 1;
-      font-size: toRem(25);
-    }
-
-    p {
-      color: $black;
-    }
-  }
-
   .icon-button.tiny {
     > span {
       font-size: toRem(18);
     }
-  }
-
-  .crystal {
-    color: $accent-blue-celeste;
-  }
-
-  .streak {
-    color: $mode-orange;
   }
 }

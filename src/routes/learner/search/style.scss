@@ -1,0 +1,67 @@
+@use "@styles/variables" as *;
+@use "@styles/colors" as *;
+@use "@styles/mixins" as *;
+@use "@styles/functions" as *;
+
+.search-page {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(30);
+  width: 100%;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(8);
+
+    h2 {
+      color: $mode-neutral;
+    }
+  }
+
+  &__results {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(32);
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+  }
+
+  &__section-header {
+    display: flex;
+    align-items: baseline;
+    gap: toRem(12);
+  }
+
+  &__section-title {
+    font-size: $fs-heading5;
+    font-weight: $fw-medium;
+    color: $neutral-900;
+    margin: 0;
+  }
+
+  &__section-count {
+    font-size: $fs-small;
+    color: $neutral-500;
+  }
+
+  &__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(toRem(300), 1fr));
+    gap: toRem(20);
+    align-items: stretch;
+  }
+}
+
+@include break(md) {
+  .search-page {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

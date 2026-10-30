@@ -1,18 +1,35 @@
-import Footer from "@/components/Footer";
-import LeftNav from "@/components/LeftNav";
-import TetrisLoader from "@/components/TetrisLoader";
-import TopNav from "@/components/TopNav";
-import { createLearnerHead } from "@/utils";
+import "./route.scss";
+
+import LearnerErrorComponent from "./-components/LearnerErrorComponent";
+
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { Suspense } from "react";
-import { Toaster } from "sonner";
-import "./style.scss";
+
+import { getCurrentUserFn } from "@/server/auth";
+import { createLearnerHead } from "@/utils";
+import { requireAuth } from "@/utils/authGuard";
+
+import Footer from "@/components/Footer";
+import LeftNav from "@/components/LeftNav";
+import NotFound from "@/components/NotFound";
+import RouterComponentHolder from "@/components/RouterComponentHolder";
+import TetrisLoader from "@/components/TetrisLoader";
+import TopNav from "@/components/TopNav";
 
 export const Route = createFileRoute("/learner")({
+  beforeLoad: async () => {
+    const { user, expired } = await getCurrentUserFn();
+    requireAuth({ user, isAuthenticated: !!user, expired });
+  },
   head: () => ({
     ...createLearnerHead("Home"),
   }),
   component: LearnerLayout,
+  errorComponent: ({ error }) => (
+    <RouterComponentHolder children={<LearnerErrorComponent error={error} />} />
+  ),
+  pendingComponent: () => <RouterComponentHolder children={<TetrisLoader />} />,
+  notFoundComponent: () => <RouterComponentHolder children={<NotFound />} />,
 });
 
 function LearnerLayout() {
@@ -26,7 +43,6 @@ function LearnerLayout() {
             <Suspense fallback={<TetrisLoader />}>
               <Outlet />
             </Suspense>
-            <Toaster position="bottom-right" richColors />
           </div>
           <Footer />
         </div>
