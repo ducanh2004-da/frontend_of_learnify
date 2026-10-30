@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from "vinxi/http";
+import { getCookie, setCookie } from "@tanstack/react-start/server";
 import { getIronSession } from "iron-session";
 import type { TSessionUser } from "@/router";
 
@@ -15,11 +15,10 @@ export async function useAppSession() {
   const password =
     envSecret && envSecret.length >= 32 ? envSecret : FALLBACK_SESSION_SECRET;
 
-  // Đọc và ghi cookie thông qua vinxi/http
   const session = await getIronSession<TSessionData>(
     {
       read: (name) => getCookie(name) || "",
-      write: (name, value, opts) => setCookie(name, value, opts as any),
+      write: (name, value, opts) => setCookie(name, value, opts),
     },
     {
       cookieName: "learnify-fe-session",
@@ -38,8 +37,9 @@ export async function useAppSession() {
 
   return {
     get data() {
-      // Đã loại bỏ 'isNew' khỏi object destructuring
       const { save, destroy, ...payload } = session;
+      void save;
+      void destroy;
       return Object.keys(payload).length > 0
         ? (payload as TSessionData)
         : undefined;
