@@ -35,9 +35,21 @@ export default defineConfig(({ command }) => {
       routeRules: {
         "/backend-graphql": {
           proxy: `${backendOrigin}/graphql`,
+          headers: {
+            "Cache-Control":
+              "no-store, no-cache, must-revalidate, proxy-revalidate",
+            "CDN-Cache-Control": "no-store",
+            "Vercel-CDN-Cache-Control": "no-store",
+          },
         },
         "/csrf-token": {
           proxy: `${backendOrigin}/csrf-token`,
+          headers: {
+            "Cache-Control":
+              "no-store, no-cache, must-revalidate, proxy-revalidate",
+            "CDN-Cache-Control": "no-store",
+            "Vercel-CDN-Cache-Control": "no-store",
+          },
         },
       },
     }),

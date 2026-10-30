@@ -74,6 +74,7 @@ export const fetchCsrfToken = async (): Promise<string> => {
   const response = await fetch(getCsrfEndpoint(), {
     method: "GET",
     credentials: "include",
+    cache: "no-store",
   });
   if (!response.ok) {
     throw new Error(`Failed to fetch CSRF token (${response.status})`);
@@ -121,7 +122,12 @@ const sendWithCsrf = async (
 ): Promise<Response> => {
   const headers = new Headers(init?.headers);
   headers.set(CSRF_HEADER, await ensureCsrfToken(forceRefresh));
-  return fetch(input, { ...init, headers, credentials: "include" });
+  return fetch(input, {
+    ...init,
+    headers,
+    credentials: "include",
+    cache: "no-store",
+  });
 };
 
 const customFetch = async (
@@ -133,6 +139,7 @@ const customFetch = async (
     return fetch(getDirectBackendGraphqlUrl(), {
       ...init,
       credentials: "include",
+      cache: "no-store",
     });
   }
 
