@@ -17,7 +17,10 @@ import TetrisLoader from "@/components/TetrisLoader";
 import TopNav from "@/components/TopNav";
 
 export const Route = createFileRoute("/learner")({
-  beforeLoad: async () => {
+  beforeLoad: async ({ location }) => {
+    if (location.pathname.startsWith("/learner/verify-email")) {
+      return;
+    }
     const { user, expired } = await getCurrentUserFn();
     requireAuth({ user, isAuthenticated: !!user, expired });
   },

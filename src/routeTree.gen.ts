@@ -28,6 +28,7 @@ import { Route as InstructorCoursesRouteRouteImport } from './routes/instructor/
 import { Route as LearnerIndexRouteImport } from './routes/learner/index'
 import { Route as LearnerAboutRouteRouteImport } from './routes/learner/about/route'
 import { Route as LearnerUserRouteRouteImport } from './routes/learner/user/route'
+import { Route as LearnerVerifyEmailRouteImport } from './routes/learner/verify-email'
 import { Route as LearnerLessonsRouteRouteImport } from './routes/learner_/lessons/route'
 import { Route as ReviewerIndexRouteImport } from './routes/reviewer/index'
 import { Route as ReviewerCoursesRouteRouteImport } from './routes/reviewer/courses/route'
@@ -155,6 +156,11 @@ const LearnerAboutRouteRoute = LearnerAboutRouteRouteImport.update({
 const LearnerUserRouteRoute = LearnerUserRouteRouteImport.update({
   id: '/user',
   path: '/user',
+  getParentRoute: () => LearnerRouteRoute,
+} as any)
+const LearnerVerifyEmailRoute = LearnerVerifyEmailRouteImport.update({
+  id: '/verify-email',
+  path: '/verify-email',
   getParentRoute: () => LearnerRouteRoute,
 } as any)
 const LearnerLessonsRouteRoute = LearnerLessonsRouteRouteImport.update({
@@ -378,6 +384,7 @@ export interface FileRoutesByFullPath {
   '/reviewer/courses': typeof ReviewerCoursesRouteRouteWithChildren
   '/api/users': typeof ApiUsersRouteWithChildren
   '/instructor/course-builder': typeof InstructorCourseBuilderRoute
+  '/learner/verify-email': typeof LearnerVerifyEmailRoute
   '/about-us/': typeof AboutUsIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/blogs/': typeof BlogsIndexRoute
@@ -420,6 +427,7 @@ export interface FileRoutesByTo {
   '/redirect': typeof RedirectRoute
   '/api/users': typeof ApiUsersRouteWithChildren
   '/instructor/course-builder': typeof InstructorCourseBuilderRoute
+  '/learner/verify-email': typeof LearnerVerifyEmailRoute
   '/about-us': typeof AboutUsIndexRoute
   '/admin': typeof AdminIndexRoute
   '/blogs': typeof BlogsIndexRoute
@@ -473,6 +481,7 @@ export interface FileRoutesById {
   '/reviewer/courses': typeof ReviewerCoursesRouteRouteWithChildren
   '/api/users': typeof ApiUsersRouteWithChildren
   '/instructor/course-builder': typeof InstructorCourseBuilderRoute
+  '/learner/verify-email': typeof LearnerVerifyEmailRoute
   '/about-us/': typeof AboutUsIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/blogs/': typeof BlogsIndexRoute
@@ -527,6 +536,7 @@ export interface FileRouteTypes {
     | '/reviewer/courses'
     | '/api/users'
     | '/instructor/course-builder'
+    | '/learner/verify-email'
     | '/about-us/'
     | '/admin/'
     | '/blogs/'
@@ -569,6 +579,7 @@ export interface FileRouteTypes {
     | '/redirect'
     | '/api/users'
     | '/instructor/course-builder'
+    | '/learner/verify-email'
     | '/about-us'
     | '/admin'
     | '/blogs'
@@ -621,6 +632,7 @@ export interface FileRouteTypes {
     | '/reviewer/courses'
     | '/api/users'
     | '/instructor/course-builder'
+    | '/learner/verify-email'
     | '/about-us/'
     | '/admin/'
     | '/blogs/'
@@ -811,6 +823,13 @@ declare module '@tanstack/react-router' {
       path: '/user'
       fullPath: '/learner/user'
       preLoaderRoute: typeof LearnerUserRouteRouteImport
+      parentRoute: typeof LearnerRouteRoute
+    }
+    '/learner/verify-email': {
+      id: '/learner/verify-email'
+      path: '/verify-email'
+      fullPath: '/learner/verify-email'
+      preLoaderRoute: typeof LearnerVerifyEmailRouteImport
       parentRoute: typeof LearnerRouteRoute
     }
     '/learner_/lessons': {
@@ -1104,6 +1123,7 @@ const LearnerUserRouteRouteWithChildren =
 interface LearnerRouteRouteChildren {
   LearnerAboutRouteRoute: typeof LearnerAboutRouteRouteWithChildren
   LearnerUserRouteRoute: typeof LearnerUserRouteRouteWithChildren
+  LearnerVerifyEmailRoute: typeof LearnerVerifyEmailRoute
   LearnerIndexRoute: typeof LearnerIndexRoute
   LearnerCoursesIndexRoute: typeof LearnerCoursesIndexRoute
   LearnerDashboardIndexRoute: typeof LearnerDashboardIndexRoute
@@ -1123,6 +1143,7 @@ interface LearnerRouteRouteChildren {
 const LearnerRouteRouteChildren: LearnerRouteRouteChildren = {
   LearnerAboutRouteRoute: LearnerAboutRouteRouteWithChildren,
   LearnerUserRouteRoute: LearnerUserRouteRouteWithChildren,
+  LearnerVerifyEmailRoute: LearnerVerifyEmailRoute,
   LearnerIndexRoute: LearnerIndexRoute,
   LearnerCoursesIndexRoute: LearnerCoursesIndexRoute,
   LearnerDashboardIndexRoute: LearnerDashboardIndexRoute,
