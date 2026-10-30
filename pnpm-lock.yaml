@@ -13,7 +13,7 @@ importers:
     dependencies:
       '@apollo/client':
         specifier: ^4.3.3
-        version: 4.3.3(graphql-ws@6.3.0(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)
+        version: 4.3.3(graphql-ws@6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)
       '@chenglou/pretext':
         specifier: ^0.0.4
         version: 0.0.4
@@ -34,7 +34,7 @@ importers:
         version: 0.13.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/react-form':
         specifier: ^1.29.1
-        version: 1.32.0(@tanstack/react-start@1.167.65(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        version: 1.32.0(@tanstack/react-start@1.167.65(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/react-query':
         specifier: ^5.91.0
         version: 5.100.10(react@19.2.6)
@@ -52,13 +52,13 @@ importers:
         version: 1.166.12(@tanstack/query-core@5.100.10)(@tanstack/react-query@5.100.10(react@19.2.6))(@tanstack/react-router@1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@tanstack/router-core@1.169.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/react-start':
         specifier: ^1.167.65
-        version: 1.167.65(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
+        version: 1.167.65(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
       '@unpic/react':
         specifier: ^1.0.2
         version: 1.0.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       apollo-upload-client:
         specifier: ^20.0.0
-        version: 20.0.0(@apollo/client@4.3.3(graphql-ws@6.3.0(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2))(graphql@16.14.0)(rxjs@7.8.2)
+        version: 20.0.0(@apollo/client@4.3.3(graphql-ws@6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2))(graphql@16.14.0)(rxjs@7.8.2)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -76,7 +76,7 @@ importers:
         version: 7.4.0(graphql@16.14.0)
       graphql-ws:
         specifier: ^6.3.0
-        version: 6.3.0(graphql@16.14.0)(ws@8.20.1)
+        version: 6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1)
       gsap:
         specifier: ^3.14.2
         version: 3.15.0
@@ -128,7 +128,7 @@ importers:
         version: 9.39.4
       '@graphql-codegen/cli':
         specifier: ^6.3.0
-        version: 6.3.1(@parcel/watcher@2.5.6)(@types/node@25.7.0)(graphql@16.14.0)(typescript@5.9.3)
+        version: 6.3.1(@parcel/watcher@2.5.6)(@types/node@25.7.0)(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(typescript@5.9.3)
       '@graphql-codegen/client-preset':
         specifier: ^5.3.0
         version: 5.3.0(graphql@16.14.0)
@@ -143,7 +143,7 @@ importers:
         version: 1.161.6(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
       '@types/apollo-upload-client':
         specifier: ^19.0.0
-        version: 19.0.0(graphql-ws@6.3.0(graphql@16.14.0)(ws@8.20.1))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)
+        version: 19.0.0(graphql-ws@6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
@@ -189,6 +189,9 @@ importers:
       lint-staged:
         specifier: ^16.4.0
         version: 16.4.0
+      nitro:
+        specifier: 3.0.261029-rc
+        version: 3.0.261029-rc
       prettier:
         specifier: ^3.8.1
         version: 3.8.3
@@ -1856,6 +1859,14 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
+  crossws@0.4.17:
+    resolution: {integrity: sha512-YG2kyfafNXKmu7e6k64yrj6whrw7m5sBIsOSXOlJ/72X3TQWRQuw8DhvXFDcBk8HF77PnTSygnm7xpYCTnFpow==}
+    peerDependencies:
+      srvx: '>=0.11.5'
+    peerDependenciesMeta:
+      srvx:
+        optional: true
+
   css-select@5.2.2:
     resolution: {integrity: sha512-TizTzUddG/xYLA3NXodFM0fSbNizXjOKhqiQQwvhlspadZokn1KDy0NZFS0wuEubIYAV5/c1/lAr0TaaFXEXzw==}
 
@@ -2012,6 +2023,10 @@ packages:
   env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
+
+  env-runner@0.3.11:
+    resolution: {integrity: sha512-jKG29hxqGrL9ktunIwmt9aHbP3n995DGUY1KyXS7iGYFoD/yDdpc2CjJt6remFI3x2H1JOmBBMo0KXxjEQ2G6g==}
+    hasBin: true
 
   environment@1.1.0:
     resolution: {integrity: sha512-xUtoPkMggbz0MPyPiIWr1Kp4aeWJjDZ6SMvURhimjdZgsRuDplF5/s9hcgGhyXMhs+6vpnuoiZ2kFiu3FMnS8Q==}
@@ -2336,6 +2351,19 @@ packages:
       crossws: ^0.4.1
     peerDependenciesMeta:
       crossws:
+        optional: true
+
+  h3@2.0.8:
+    resolution: {integrity: sha512-ENuKlF9kC6E6PrvY1PUyE0qkrnnPTIt2/v48uyEEfTVfgoiqBCE0uwwf++2XrWwT1gxjQBDLQ8PAsmZVniKvTw==}
+    engines: {node: '>=20.19.0'}
+    hasBin: true
+    peerDependencies:
+      crossws: ^0.4.12
+      ocache: '>=0.3.0'
+    peerDependenciesMeta:
+      crossws:
+        optional: true
+      ocache:
         optional: true
 
   has-bigints@1.1.0:
@@ -2979,6 +3007,11 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
+  nitro@3.0.261029-rc:
+    resolution: {integrity: sha512-BQvzAV0HgcsJCkDqZAbGYlGNi9ALJznhsihugYAIi+8IcItz320FNaxbAJvn/pMNxGOYo2MGs10mTU9tcnB9jQ==}
+    engines: {node: '>=22.22.0'}
+    hasBin: true
+
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
@@ -3048,6 +3081,9 @@ packages:
   object.values@1.2.1:
     resolution: {integrity: sha512-gXah6aZrcUxjWg2zR2MwouP2eHlCBzdV4pygudehaKXSGW4v2AsRQUK+lwwXhii6KFZcunEnmSUoYp5CXibxtA==}
     engines: {node: '>= 0.4'}
+
+  ocache@0.3.1:
+    resolution: {integrity: sha512-qeBrhQ0ly6tgXsakgNwLx6diRUppJZIcV5OjVGa5yp9HzztutkaGDDXJqVMo1fKWz5fNDtTp3iPU2fuhHf0+Lg==}
 
   onetime@7.0.0:
     resolution: {integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==}
@@ -3310,6 +3346,10 @@ packages:
   rou3@0.8.1:
     resolution: {integrity: sha512-ePa+XGk00/3HuCqrEnK3LxJW7I0SdNg6EFzKUJG73hMAdDcOUC/i/aSz7LSDwLrGr33kal/rqOGydzwl6U7zBA==}
 
+  rou3@1.0.0:
+    resolution: {integrity: sha512-ySeaQkSrua+ut9g+65I7FHqOFBaY8tV0FmccXItoq0q21se32Q3u4YiW7/RqXSosWgYJaaKwRHXy3BST9PeCNQ==}
+    engines: {node: '>=20.19.0'}
+
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
@@ -3454,6 +3494,11 @@ packages:
 
   srvx@0.11.15:
     resolution: {integrity: sha512-iXsux0UcOjdvs0LCMa2Ws3WwcDUozA3JN3BquNXkaFPP7TpRqgunKdEgoZ/uwb1J6xaYHfxtz9Twlh6yzwM6Tg==}
+    engines: {node: '>=20.16.0'}
+    hasBin: true
+
+  srvx@1.0.8:
+    resolution: {integrity: sha512-ngFS/J6St4PJfHRHGjr78xkPPtbyXtdMOLNE4x/XZunEK3OhV7aGUWMHf9WTUEy6wm1U0W4okkd82ZFFWRVQTw==}
     engines: {node: '>=20.16.0'}
     hasBin: true
 
@@ -3902,7 +3947,7 @@ packages:
 
 snapshots:
 
-  '@apollo/client@4.3.3(graphql-ws@6.3.0(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)':
+  '@apollo/client@4.3.3(graphql-ws@6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.14.0)
       '@wry/caches': 1.0.1
@@ -3914,7 +3959,7 @@ snapshots:
       rxjs: 7.8.2
       tslib: 2.8.1
     optionalDependencies:
-      graphql-ws: 6.3.0(graphql@16.14.0)(ws@8.20.1)
+      graphql-ws: 6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1)
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
@@ -4224,7 +4269,7 @@ snapshots:
       graphql: 16.14.0
       tslib: 2.8.1
 
-  '@graphql-codegen/cli@6.3.1(@parcel/watcher@2.5.6)(@types/node@25.7.0)(graphql@16.14.0)(typescript@5.9.3)':
+  '@graphql-codegen/cli@6.3.1(@parcel/watcher@2.5.6)(@types/node@25.7.0)(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(typescript@5.9.3)':
     dependencies:
       '@babel/generator': 7.29.1
       '@babel/template': 7.28.6
@@ -4240,7 +4285,7 @@ snapshots:
       '@graphql-tools/json-file-loader': 8.0.28(graphql@16.14.0)
       '@graphql-tools/load': 8.1.10(graphql@16.14.0)
       '@graphql-tools/merge': 9.1.9(graphql@16.14.0)
-      '@graphql-tools/url-loader': 9.1.2(@types/node@25.7.0)(graphql@16.14.0)
+      '@graphql-tools/url-loader': 9.1.2(@types/node@25.7.0)(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)
       '@graphql-tools/utils': 11.1.0(graphql@16.14.0)
       '@inquirer/prompts': 7.10.1(@types/node@25.7.0)
       '@whatwg-node/fetch': 0.10.13
@@ -4249,7 +4294,7 @@ snapshots:
       debounce: 2.2.0
       detect-indent: 6.1.0
       graphql: 16.14.0
-      graphql-config: 5.1.6(@types/node@25.7.0)(graphql@16.14.0)(typescript@5.9.3)
+      graphql-config: 5.1.6(@types/node@25.7.0)(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(typescript@5.9.3)
       is-glob: 4.0.3
       jiti: 2.7.0
       json-to-pretty-yaml: 1.2.2
@@ -4419,13 +4464,13 @@ snapshots:
       '@graphql-tools/utils': 11.1.0(graphql@16.14.0)
       graphql: 16.14.0
 
-  '@graphql-tools/executor-graphql-ws@3.1.5(graphql@16.14.0)':
+  '@graphql-tools/executor-graphql-ws@3.1.5(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)':
     dependencies:
       '@graphql-tools/executor-common': 1.0.6(graphql@16.14.0)
       '@graphql-tools/utils': 11.1.0(graphql@16.14.0)
       '@whatwg-node/disposablestack': 0.0.6
       graphql: 16.14.0
-      graphql-ws: 6.3.0(graphql@16.14.0)(ws@8.20.1)
+      graphql-ws: 6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1)
       isows: 1.0.7(ws@8.20.1)
       tslib: 2.8.1
       ws: 8.20.1
@@ -4568,9 +4613,9 @@ snapshots:
       graphql: 16.14.0
       tslib: 2.8.1
 
-  '@graphql-tools/url-loader@9.1.2(@types/node@25.7.0)(graphql@16.14.0)':
+  '@graphql-tools/url-loader@9.1.2(@types/node@25.7.0)(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)':
     dependencies:
-      '@graphql-tools/executor-graphql-ws': 3.1.5(graphql@16.14.0)
+      '@graphql-tools/executor-graphql-ws': 3.1.5(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)
       '@graphql-tools/executor-http': 3.3.0(@types/node@25.7.0)(graphql@16.14.0)
       '@graphql-tools/executor-legacy-ws': 1.1.28(graphql@16.14.0)
       '@graphql-tools/utils': 11.1.0(graphql@16.14.0)
@@ -4981,13 +5026,13 @@ snapshots:
 
   '@tanstack/query-devtools@5.100.10': {}
 
-  '@tanstack/react-form@1.32.0(@tanstack/react-start@1.167.65(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@tanstack/react-form@1.32.0(@tanstack/react-start@1.167.65(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@tanstack/form-core': 1.32.0
       '@tanstack/react-store': 0.9.3(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react: 19.2.6
     optionalDependencies:
-      '@tanstack/react-start': 1.167.65(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
+      '@tanstack/react-start': 1.167.65(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
     transitivePeerDependencies:
       - react-dom
 
@@ -5041,16 +5086,16 @@ snapshots:
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
-  '@tanstack/react-start-rsc@0.0.44(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))':
+  '@tanstack/react-start-rsc@0.0.44(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))':
     dependencies:
       '@tanstack/react-router': 1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@tanstack/react-start-server': 1.166.52(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@tanstack/react-start-server': 1.166.52(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/router-core': 1.169.2
       '@tanstack/router-utils': 1.161.8
       '@tanstack/start-client-core': 1.168.2
       '@tanstack/start-fn-stubs': 1.161.6
-      '@tanstack/start-plugin-core': 1.169.20(@tanstack/react-router@1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
-      '@tanstack/start-server-core': 1.167.30
+      '@tanstack/start-plugin-core': 1.169.20(@tanstack/react-router@1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(crossws@0.4.17(srvx@1.0.8))(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
+      '@tanstack/start-server-core': 1.167.30(crossws@0.4.17(srvx@1.0.8))
       '@tanstack/start-storage-context': 1.166.35
       pathe: 2.0.3
       react: 19.2.6
@@ -5063,28 +5108,28 @@ snapshots:
       - vite-plugin-solid
       - webpack
 
-  '@tanstack/react-start-server@1.166.52(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@tanstack/react-start-server@1.166.52(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@tanstack/history': 1.161.6
       '@tanstack/react-router': 1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/router-core': 1.169.2
       '@tanstack/start-client-core': 1.168.2
-      '@tanstack/start-server-core': 1.167.30
+      '@tanstack/start-server-core': 1.167.30(crossws@0.4.17(srvx@1.0.8))
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
     transitivePeerDependencies:
       - crossws
 
-  '@tanstack/react-start@1.167.65(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))':
+  '@tanstack/react-start@1.167.65(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))':
     dependencies:
       '@tanstack/react-router': 1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/react-start-client': 1.166.48(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@tanstack/react-start-rsc': 0.0.44(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
-      '@tanstack/react-start-server': 1.166.52(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@tanstack/react-start-rsc': 0.0.44(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
+      '@tanstack/react-start-server': 1.166.52(crossws@0.4.17(srvx@1.0.8))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@tanstack/router-utils': 1.161.8
       '@tanstack/start-client-core': 1.168.2
-      '@tanstack/start-plugin-core': 1.169.20(@tanstack/react-router@1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
-      '@tanstack/start-server-core': 1.167.30
+      '@tanstack/start-plugin-core': 1.169.20(@tanstack/react-router@1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(crossws@0.4.17(srvx@1.0.8))(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
+      '@tanstack/start-server-core': 1.167.30(crossws@0.4.17(srvx@1.0.8))
       pathe: 2.0.3
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
@@ -5182,7 +5227,7 @@ snapshots:
 
   '@tanstack/start-fn-stubs@1.161.6': {}
 
-  '@tanstack/start-plugin-core@1.169.20(@tanstack/react-router@1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))':
+  '@tanstack/start-plugin-core@1.169.20(@tanstack/react-router@1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(crossws@0.4.17(srvx@1.0.8))(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))':
     dependencies:
       '@babel/code-frame': 7.27.1
       '@babel/core': 7.29.0
@@ -5193,7 +5238,7 @@ snapshots:
       '@tanstack/router-plugin': 1.167.35(@tanstack/react-router@1.169.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(vite@8.0.12(@types/node@25.7.0)(jiti@2.7.0)(sass@1.99.0)(yaml@2.9.0))
       '@tanstack/router-utils': 1.161.8
       '@tanstack/start-client-core': 1.168.2
-      '@tanstack/start-server-core': 1.167.30
+      '@tanstack/start-server-core': 1.167.30(crossws@0.4.17(srvx@1.0.8))
       cheerio: 1.2.0
       exsolve: 1.0.8
       lightningcss: 1.32.0
@@ -5216,14 +5261,14 @@ snapshots:
       - vite-plugin-solid
       - webpack
 
-  '@tanstack/start-server-core@1.167.30':
+  '@tanstack/start-server-core@1.167.30(crossws@0.4.17(srvx@1.0.8))':
     dependencies:
       '@tanstack/history': 1.161.6
       '@tanstack/router-core': 1.169.2
       '@tanstack/start-client-core': 1.168.2
       '@tanstack/start-storage-context': 1.166.35
       fetchdts: 0.1.7
-      h3-v2: h3@2.0.1-rc.20
+      h3-v2: h3@2.0.1-rc.20(crossws@0.4.17(srvx@1.0.8))
       seroval: 1.5.4
     transitivePeerDependencies:
       - crossws
@@ -5241,9 +5286,9 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@types/apollo-upload-client@19.0.0(graphql-ws@6.3.0(graphql@16.14.0)(ws@8.20.1))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)':
+  '@types/apollo-upload-client@19.0.0(graphql-ws@6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)':
     dependencies:
-      '@apollo/client': 4.3.3(graphql-ws@6.3.0(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)
+      '@apollo/client': 4.3.3(graphql-ws@6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)
       '@types/extract-files': 13.0.2
       graphql: 16.14.0
     transitivePeerDependencies:
@@ -5508,9 +5553,9 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.2
 
-  apollo-upload-client@20.0.0(@apollo/client@4.3.3(graphql-ws@6.3.0(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2))(graphql@16.14.0)(rxjs@7.8.2):
+  apollo-upload-client@20.0.0(@apollo/client@4.3.3(graphql-ws@6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2))(graphql@16.14.0)(rxjs@7.8.2):
     dependencies:
-      '@apollo/client': 4.3.3(graphql-ws@6.3.0(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)
+      '@apollo/client': 4.3.3(graphql-ws@6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1))(graphql@16.14.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rxjs@7.8.2)
       extract-files: 14.0.0
       graphql: 16.14.0
       rxjs: 7.8.2
@@ -5847,6 +5892,10 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
+  crossws@0.4.17(srvx@1.0.8):
+    optionalDependencies:
+      srvx: 1.0.8
+
   css-select@5.2.2:
     dependencies:
       boolbase: 1.0.0
@@ -5997,6 +6046,11 @@ snapshots:
   entities@7.0.1: {}
 
   env-paths@2.2.1: {}
+
+  env-runner@0.3.11:
+    dependencies:
+      crossws: 0.4.17(srvx@1.0.8)
+      srvx: 1.0.8
 
   environment@1.1.0: {}
 
@@ -6386,13 +6440,13 @@ snapshots:
 
   gopd@1.2.0: {}
 
-  graphql-config@5.1.6(@types/node@25.7.0)(graphql@16.14.0)(typescript@5.9.3):
+  graphql-config@5.1.6(@types/node@25.7.0)(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(typescript@5.9.3):
     dependencies:
       '@graphql-tools/graphql-file-loader': 8.1.14(graphql@16.14.0)
       '@graphql-tools/json-file-loader': 8.0.28(graphql@16.14.0)
       '@graphql-tools/load': 8.1.10(graphql@16.14.0)
       '@graphql-tools/merge': 9.1.9(graphql@16.14.0)
-      '@graphql-tools/url-loader': 9.1.2(@types/node@25.7.0)(graphql@16.14.0)
+      '@graphql-tools/url-loader': 9.1.2(@types/node@25.7.0)(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)
       '@graphql-tools/utils': 11.1.0(graphql@16.14.0)
       cosmiconfig: 8.3.6(typescript@5.9.3)
       graphql: 16.14.0
@@ -6418,20 +6472,31 @@ snapshots:
       graphql: 16.14.0
       tslib: 2.8.1
 
-  graphql-ws@6.3.0(graphql@16.14.0)(ws@8.20.1):
+  graphql-ws@6.3.0(crossws@0.4.17(srvx@1.0.8))(graphql@16.14.0)(ws@8.20.1):
     dependencies:
       graphql: 16.14.0
     optionalDependencies:
+      crossws: 0.4.17(srvx@1.0.8)
       ws: 8.20.1
 
   graphql@16.14.0: {}
 
   gsap@3.15.0: {}
 
-  h3@2.0.1-rc.20:
+  h3@2.0.1-rc.20(crossws@0.4.17(srvx@1.0.8)):
     dependencies:
       rou3: 0.8.1
       srvx: 0.11.15
+    optionalDependencies:
+      crossws: 0.4.17(srvx@1.0.8)
+
+  h3@2.0.8(crossws@0.4.17(srvx@1.0.8))(ocache@0.3.1):
+    dependencies:
+      rou3: 1.0.0
+      srvx: 1.0.8
+    optionalDependencies:
+      crossws: 0.4.17(srvx@1.0.8)
+      ocache: 0.3.1
 
   has-bigints@1.1.0: {}
 
@@ -7173,6 +7238,15 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
+  nitro@3.0.261029-rc:
+    dependencies:
+      crossws: 0.4.17(srvx@1.0.8)
+      env-runner: 0.3.11
+      h3: 2.0.8(crossws@0.4.17(srvx@1.0.8))(ocache@0.3.1)
+      ocache: 0.3.1
+      rou3: 1.0.0
+      srvx: 1.0.8
+
   no-case@3.0.4:
     dependencies:
       lower-case: 2.0.2
@@ -7247,6 +7321,8 @@ snapshots:
       call-bound: 1.0.4
       define-properties: 1.2.1
       es-object-atoms: 1.1.1
+
+  ocache@0.3.1: {}
 
   onetime@7.0.0:
     dependencies:
@@ -7567,6 +7643,8 @@ snapshots:
 
   rou3@0.8.1: {}
 
+  rou3@1.0.0: {}
+
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
@@ -7721,6 +7799,8 @@ snapshots:
       tslib: 2.8.1
 
   srvx@0.11.15: {}
+
+  srvx@1.0.8: {}
 
   stop-iteration-iterator@1.1.0:
     dependencies:

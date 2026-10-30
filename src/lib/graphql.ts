@@ -3,11 +3,53 @@ import { useAuthStore } from "@/store/authStore";
 import { toast } from "sonner";
 import { logoutFn } from "@/server/auth";
 
-export const GRAPHQL_ENDPOINT =
-  import.meta.env.VITE_GRAPHQL_ENDPOINT ||
-  "https://learnify-be.onrender.com/graphql";
+const DEFAULT_BACKEND_GRAPHQL_URL = "https://learnify-be.onrender.com/graphql";
 
-const CSRF_ENDPOINT = new URL("/csrf-token", GRAPHQL_ENDPOINT).toString();
+const getDirectBackendGraphqlUrl = (): string => {
+  const candidates = [
+    typeof process !== "undefined" ? process.env.BACKEND_URL : undefined,
+    import.meta.env.VITE_BACKEND_URL,
+    import.meta.env.VITE_GRAPHQL_ENDPOINT,
+  ];
+
+  for (const candidate of candidates) {
+    if (
+      candidate &&
+      (candidate.startsWith("http://") || candidate.startsWith("https://"))
+    ) {
+      return candidate;
+    }
+  }
+
+  return DEFAULT_BACKEND_GRAPHQL_URL;
+};
+
+const shouldUseReverseProxy = (): boolean => {
+  if (typeof window === "undefined") return false;
+  if (import.meta.env.VITE_DISABLE_PROXY === "true") return false;
+  if (import.meta.env.VITE_GRAPHQL_ENDPOINT?.startsWith("/")) return true;
+  return import.meta.env.PROD;
+};
+
+export const getGraphqlEndpoint = (): string => {
+  if (shouldUseReverseProxy() && typeof window !== "undefined") {
+    const proxyPath = import.meta.env.VITE_GRAPHQL_ENDPOINT?.startsWith("/")
+      ? import.meta.env.VITE_GRAPHQL_ENDPOINT
+      : "/backend-graphql";
+    return new URL(proxyPath, window.location.origin).toString();
+  }
+  return getDirectBackendGraphqlUrl();
+};
+
+export const getCsrfEndpoint = (): string => {
+  if (shouldUseReverseProxy() && typeof window !== "undefined") {
+    return new URL("/csrf-token", window.location.origin).toString();
+  }
+  return new URL("/csrf-token", getDirectBackendGraphqlUrl()).toString();
+};
+
+export const GRAPHQL_ENDPOINT = getGraphqlEndpoint();
+
 const CSRF_HEADER = "x-csrf-token";
 const AUTH_ERROR_CODES = ["UnauthorizedException", "UNAUTHENTICATED"];
 const CSRF_ERROR_CODE = "CSRF_TOKEN_INVALID";
@@ -29,7 +71,7 @@ let csrfRequest: Promise<string> | null = null;
  * double-submit cookie, and caches the returned token for later requests.
  */
 export const fetchCsrfToken = async (): Promise<string> => {
-  const response = await fetch(CSRF_ENDPOINT, {
+  const response = await fetch(getCsrfEndpoint(), {
     method: "GET",
     credentials: "include",
   });
@@ -86,16 +128,20 @@ const customFetch = async (
   input: RequestInfo | URL,
   init?: RequestInit
 ): Promise<Response> => {
-  // The CSRF cookie lives in the browser; SSR requests cannot obtain one.
+  // The CSRF cookie lives in the browser; SSR requests call the backend directly.
   if (typeof window === "undefined") {
-    return fetch(input, { ...init, credentials: "include" });
+    return fetch(getDirectBackendGraphqlUrl(), {
+      ...init,
+      credentials: "include",
+    });
   }
 
-  let response = await sendWithCsrf(input, init, false);
+  const targetUrl = getGraphqlEndpoint();
+  let response = await sendWithCsrf(targetUrl, init, false);
   let codes = await getErrorCodes(response);
 
   if (response.status === 403 || codes.includes(CSRF_ERROR_CODE)) {
-    response = await sendWithCsrf(input, init, true);
+    response = await sendWithCsrf(targetUrl, init, true);
     codes = await getErrorCodes(response);
   }
 

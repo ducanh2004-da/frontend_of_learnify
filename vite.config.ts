@@ -1,13 +1,40 @@
 // vite.config.ts
 import { defineConfig, type PluginOption } from "vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { nitro } from "nitro/vite";
 import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { fileURLToPath } from "node:url";
 import babelPlugin from "@rolldown/plugin-babel";
 import { visualizer } from "rollup-plugin-visualizer";
 
+const rawBackendUrl =
+  process.env.BACKEND_URL ||
+  process.env.VITE_BACKEND_URL ||
+  (process.env.VITE_GRAPHQL_ENDPOINT?.startsWith("http")
+    ? process.env.VITE_GRAPHQL_ENDPOINT
+    : undefined) ||
+  "https://learnify-be.onrender.com/graphql";
+
+const backendOrigin = (() => {
+  try {
+    return new URL(rawBackendUrl).origin;
+  } catch {
+    return "https://learnify-be.onrender.com";
+  }
+})();
+
 const plugins: PluginOption[] = [
   tanstackStart(),
+  nitro({
+    routeRules: {
+      "/backend-graphql": {
+        proxy: `${backendOrigin}/graphql`,
+      },
+      "/csrf-token": {
+        proxy: `${backendOrigin}/csrf-token`,
+      },
+    },
+  }),
   // react's vite plugin must come after start's vite plugin
   viteReact(),
   babelPlugin({
@@ -29,6 +56,17 @@ if (process.env.ANALYZE) {
 export default defineConfig({
   server: {
     port: 3000,
+    proxy: {
+      "/backend-graphql": {
+        target: backendOrigin,
+        changeOrigin: true,
+        rewrite: () => "/graphql",
+      },
+      "/csrf-token": {
+        target: backendOrigin,
+        changeOrigin: true,
+      },
+    },
   },
   resolve: {
     tsconfigPaths: true,

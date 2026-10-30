@@ -1,4 +1,5 @@
 import { CURRENT_USER_QUERY } from "@/graphql/mutations";
+import { getGraphqlEndpoint } from "@/lib/graphql";
 import { logger } from "@/utils/logger";
 import type { User } from "@/utils/users";
 
@@ -6,9 +7,7 @@ export const fetchCurrentUser = async (
   serverCookieHeader?: string
 ): Promise<User | null> => {
   try {
-    const endpoint =
-      import.meta.env.VITE_GRAPHQL_ENDPOINT ||
-      "https://learnify-be.onrender.com/graphql";
+    const endpoint = getGraphqlEndpoint();
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
