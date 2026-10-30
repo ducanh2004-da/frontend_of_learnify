@@ -29,10 +29,10 @@ const sessionSchema = z.object({
 export const getCurrentUserFn = createServerFn({ method: "GET" }).handler(
   async () => {
     const session = await useAppSession();
-    const user = session.data.user || null;
+    const user = session.data?.user || null;
 
-    if (user && session.data.loggedInAt) {
-      const elapsed = Date.now() - session.data.loggedInAt;
+    if (user && session.data?.loggedInAt) {
+      const elapsed = Date.now() - session.data?.loggedInAt;
       if (elapsed > SESSION_TTL) {
         await session.clear();
         return { user: null, expired: true };
@@ -44,7 +44,7 @@ export const getCurrentUserFn = createServerFn({ method: "GET" }).handler(
 );
 
 export const setSessionFn = createServerFn({ method: "POST" })
-  .inputValidator((data: UserData) => sessionSchema.parse(data))
+  .validator((data: UserData) => sessionSchema.parse(data))
   .handler(async ({ data }) => {
     const session = await useAppSession();
     await session.update({ user: data, loggedInAt: Date.now() });
